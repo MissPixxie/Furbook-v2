@@ -4,7 +4,7 @@ import { Drawer } from "expo-router/drawer";
 export default function DrawerLayout() {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
-      <Drawer />
+      <Drawer screenOptions={{ drawerPosition: "right" }} />
     </GestureHandlerRootView>
   );
 }

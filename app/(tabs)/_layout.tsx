@@ -1,5 +1,5 @@
 import React from "react";
-import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { Entypo, FontAwesome, Ionicons, AntDesign } from "@expo/vector-icons";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
 
@@ -7,31 +7,29 @@ import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
-
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        //tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
+        tabBarShowLabel: false,
+        tabBarInactiveTintColor: "#51951a",
+        tabBarActiveTintColor: "#294d0d",
       }}
     >
       <Tabs.Screen
         name="(drawer)"
         options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <Entypo name="home" size={26} color={color} />
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -49,31 +47,42 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="mydogs"
         options={{
-          title: "Search",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="paw" size={26} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
-        name="mydogs"
+        name="search"
         options={{
-          title: "My Dogs",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: "",
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="search" size={26} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="messages"
         options={{
-          title: "Messages",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: "",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="envelope" size={26} color={color} />
+          ),
         }}
       />
       <Tabs.Screen
         name="notifications"
         options={{
-          title: "Notifications",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          headerShown: false,
+          title: "",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="notifications" size={26} color={color} />
+          ),
         }}
       />
     </Tabs>
