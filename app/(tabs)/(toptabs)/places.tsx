@@ -6,7 +6,7 @@ import { Stack } from "expo-router";
 
 const Page = () => {
   return (
-    <View>
+    <View accessible={true}>
       <Text>Search places screen</Text>
     </View>
   );

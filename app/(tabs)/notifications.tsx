@@ -5,7 +5,7 @@ import { Text, View } from "@/components/Themed";
 
 export default function NotificationsScreen() {
   return (
-    <View style={styles.container}>
+    <View accessible={true} style={styles.container}>
       <Text style={styles.title}>Notifications</Text>
       <View
         style={styles.separator}

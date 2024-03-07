@@ -1,12 +1,19 @@
 import { StyleSheet } from "react-native";
-
+import * as Speech from "expo-speech";
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
+import { Button } from "@rneui/themed";
 
 export default function HomeScreen() {
+  const speak = () => {
+    const thingToSay = "Morocco";
+    Speech.speak(thingToSay);
+  };
+
   return (
-    <View style={styles.container}>
+    <View accessible={true} style={styles.container}>
       <Text style={styles.title}>Home</Text>
+      <Button title="test" onPress={speak} />
       <View
         style={styles.separator}
         lightColor="#eee"

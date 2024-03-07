@@ -15,6 +15,7 @@ const TabLayout = () => {
     <SafeAreaProvider>
       <Tabs
         screenOptions={{
+          tabBarAccessibilityLabel: "Bottom tab navigation",
           //tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
           // Disable the static render of the header on web
           // to prevent a hydration error in React Navigation v6.
@@ -27,6 +28,7 @@ const TabLayout = () => {
         <Tabs.Screen
           name="(drawer)"
           options={{
+            tabBarAccessibilityLabel: "home button",
             title: "",
             headerShown: false,
             tabBarIcon: ({ color }) => (
@@ -51,6 +53,7 @@ const TabLayout = () => {
         <Tabs.Screen
           name="mydogs"
           options={{
+            tabBarAccessibilityLabel: "my dogs button",
             title: "My Dogs",
             headerTitleAlign: "center",
             tabBarIcon: ({ color }) => (
@@ -62,6 +65,7 @@ const TabLayout = () => {
         <Tabs.Screen
           name="(toptabs)"
           options={{
+            tabBarAccessibilityLabel: "search page button",
             title: "",
             headerShown: false,
             tabBarIcon: ({ color }) => (
@@ -72,6 +76,7 @@ const TabLayout = () => {
         <Tabs.Screen
           name="messages"
           options={{
+            tabBarAccessibilityLabel: "messages button",
             headerShown: false,
             title: "",
             tabBarIcon: ({ color }) => (
@@ -82,6 +87,7 @@ const TabLayout = () => {
         <Tabs.Screen
           name="notifications"
           options={{
+            tabBarAccessibilityLabel: "notifications button",
             headerShown: false,
             title: "",
             tabBarIcon: ({ color }) => (

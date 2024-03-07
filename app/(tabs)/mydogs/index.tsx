@@ -5,7 +5,7 @@ export default function MyDogsScreen() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
+    <View accessible={true} style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.title}>My Dogs</Text>
         <Button onPress={() => router.push("/mydogs/1")} title="Dog Details" />

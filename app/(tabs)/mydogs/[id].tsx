@@ -9,7 +9,7 @@ export default function DogIdPage() {
   return (
     <>
       <Stack.Screen options={{ headerTitle: `Dog ${id}` }} />
-      <View style={styles.container}>
+      <View accessible={true} style={styles.container}>
         <View style={styles.main}>
           <Text style={styles.title}>Dog {id} details</Text>
         </View>

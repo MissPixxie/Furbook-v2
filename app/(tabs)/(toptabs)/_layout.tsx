@@ -31,6 +31,8 @@ const Layout = () => {
     <>
       <SafeAreaView>
         <SearchBar
+          accessible={true}
+          accessibilityLabel="Searchbar"
           containerStyle={{
             backgroundColor: "white",
             borderBottomColor: "transparent",
