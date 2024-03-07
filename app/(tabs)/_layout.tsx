@@ -7,7 +7,7 @@ import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 
-export default function TabLayout() {
+const TabLayout = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -55,8 +55,9 @@ export default function TabLayout() {
           ),
         }}
       />
+
       <Tabs.Screen
-        name="search"
+        name="(toptabs)"
         options={{
           title: "",
           headerShown: false,
@@ -87,4 +88,6 @@ export default function TabLayout() {
       />
     </Tabs>
   );
-}
+};
+
+export default TabLayout;
