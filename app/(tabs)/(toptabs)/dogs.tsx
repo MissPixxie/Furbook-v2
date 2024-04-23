@@ -11,14 +11,12 @@ const Page = () => {
 
   useEffect(() => {
     const getDogs = async () => {
-      const res = await fetch("../api/dogs");
-      console.log(res);
+      const res = await fetch("http://localhost:8081/api/dogs");
       const data = await res.json();
-
-      console.log(data);
+      setData(data);
     };
     getDogs();
-  }, [data]);
+  }, []);
 
   const itemFromList = ({ item }: { item: Dog }) => {
     return <DogItem item={item} />;
