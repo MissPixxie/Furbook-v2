@@ -1,9 +1,12 @@
 import { ExpoRequest, ExpoResponse } from "expo-router/server";
 import React from "react";
 
-export async function GET(request: ExpoRequest): Promise<ExpoResponse> {
+export async function GET(
+  request: ExpoRequest,
+  url: string
+): Promise<ExpoResponse> {
   // Fetch data from external API
-  const response = await fetch("http://localhost:8001/dogs");
+  const response = await fetch("http://localhost:8001/places");
   // Check for successful response
   if (!response.ok) {
     return new ExpoResponse(null, { status: response.status });
