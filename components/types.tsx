@@ -1,5 +1,5 @@
 export type Dog = {
-  _id: number;
+  _id: string;
   name: string;
   age: number;
   sex: string;
@@ -11,7 +11,7 @@ export type Dog = {
 };
 
 export type Event = {
-  _id: number;
+  _id: string;
   title: string;
   place: string;
   time: string;
