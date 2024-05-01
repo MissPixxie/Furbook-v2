@@ -20,7 +20,7 @@ export const MaterialTopTabs = withLayoutContext<
   MaterialTopTabNavigationEventMap
 >(Navigator);
 
-const Layout = () => {
+const TopTabsLayout = () => {
   const [search, setSearch] = useState<string>("");
 
   const updateSearch = (search: string) => {
@@ -64,4 +64,4 @@ const Layout = () => {
   );
 };
 
-export default Layout;
+export default TopTabsLayout;
