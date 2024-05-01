@@ -5,6 +5,8 @@ import { Text, View } from "@/components/Themed";
 import { Button } from "@rneui/themed";
 import DrawerLayout from "../_layout";
 import { DrawerToggleButton } from "@react-navigation/drawer";
+import { CustomCard } from "@/components/CustomCard";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function HomeScreen() {
   const speak = () => {
@@ -13,24 +15,39 @@ export default function HomeScreen() {
   };
 
   return (
-    <View accessible={true} style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <View style={{ width: 500, height: 300 }}></View>
-      <Button title="test" onPress={speak} />
+    <SafeAreaView style={styles.container} accessible={true}>
+      <Text>Hello</Text>
+      <CustomCard>
+        <Text>Hello</Text>
+      </CustomCard>
+      <CustomCard>
+        <Text>Hello</Text>
+      </CustomCard>
+      <CustomCard>
+        <Text>Hello</Text>
+      </CustomCard>
+      {/* <Button title="test" onPress={speak} /> */}
       <View
         style={styles.separator}
-        lightColor="#eee"
+        lightColor="green"
         darkColor="rgba(255,255,255,0.1)"
       />
-    </View>
+      <CustomCard>
+        <Text>Hello</Text>
+      </CustomCard>
+      <CustomCard>
+        <Text>Hello</Text>
+      </CustomCard>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
+    rowGap: 15,
+    backgroundColor: "transparent",
+    paddingHorizontal: 15,
   },
   title: {
     fontSize: 20,
@@ -40,6 +57,7 @@ const styles = StyleSheet.create({
     marginVertical: 30,
     height: 1,
     width: "80%",
+    alignSelf: "center",
   },
 });
 

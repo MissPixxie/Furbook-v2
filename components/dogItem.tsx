@@ -27,6 +27,9 @@ import { RefreshControl } from "react-native-gesture-handler";
 import { Entypo, AntDesign } from "@expo/vector-icons";
 import { Dog } from "./types";
 import Colors from "@/constants/Colors";
+import { ThemeContext } from "@/constants/ThemeContext";
+import { Route } from "expo-router";
+import { RouteNode } from "expo-router/build/Route";
 
 interface ItemProps {
   item: Dog;
@@ -35,6 +38,9 @@ interface ItemProps {
 export const DogItem = ({ item }: ItemProps) => {
   const [isVisable, setIsVisable] = useState(false);
   const [isActive, setActive] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+
+  const { colors } = theme;
 
   console.log("dogitem");
 
@@ -47,7 +53,7 @@ export const DogItem = ({ item }: ItemProps) => {
       width: "100%",
       marginVertical: 10,
       flexDirection: "row",
-      backgroundColor: "black",
+      backgroundColor: colors.card,
       padding: 15,
       borderRadius: 10,
       shadowColor: "#080808",
@@ -70,15 +76,17 @@ export const DogItem = ({ item }: ItemProps) => {
         source={require("../assets/images/OGBUB40.jpg")}
       />
       <View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
-        <Text style={{ fontSize: 26, color: "white" }}>{item.name}</Text>
-        <Text style={{ fontSize: 18, color: "white" }}>{item.sex}</Text>
-        <Text style={{ fontSize: 18, color: "white" }}>{item.breed}</Text>
-        <Text style={{ fontSize: 18, color: "white" }}>{item.neutered}</Text>
+        <Text style={{ fontSize: 26, color: colors.text }}>{item.name}</Text>
+        <Text style={{ fontSize: 18, color: colors.text }}>{item.sex}</Text>
+        <Text style={{ fontSize: 18, color: colors.text }}>{item.breed}</Text>
+        <Text style={{ fontSize: 18, color: colors.text }}>
+          {item.neutered}
+        </Text>
       </View>
       <Text
         style={{
           fontSize: 20,
-          color: "white",
+          color: colors.text,
           flexGrow: 2,
           textAlign: "right",
           marginRight: 10,

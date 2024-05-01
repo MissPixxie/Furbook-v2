@@ -1,6 +1,6 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
-import { CustomDrawer } from "@/components/customDrawer";
+import { CustomDrawer } from "@/components/CustomDrawer";
 import { Feather, FontAwesome } from "@expo/vector-icons";
 import { Link, useNavigation } from "expo-router";
 import { Pressable } from "react-native";
@@ -28,9 +28,7 @@ export default function DrawerLayout() {
           <CustomDrawer navigation={navigation} />
         )}
       >
-        <Drawer.Screen
-          name="index"
-        />
+        <Drawer.Screen name="index" />
       </Drawer>
     </GestureHandlerRootView>
   );
