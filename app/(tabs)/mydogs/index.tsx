@@ -44,6 +44,7 @@ export default function MyDogsScreen() {
     const getDogs = async () => {
       const res = await fetch("http://localhost:8081/api/dogs");
       const data = await res.json();
+      console.log(data);
       setData(data);
     };
     getDogs();

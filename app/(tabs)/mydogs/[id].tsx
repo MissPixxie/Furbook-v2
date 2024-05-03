@@ -2,8 +2,6 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import React from "react";
 import { useLocalSearchParams, router, Stack, useRouter } from "expo-router";
 
-
-
 export default function DogIdPage() {
   const router = useRouter();
   const { id } = useLocalSearchParams();
