@@ -7,8 +7,14 @@ import DrawerLayout from "../_layout";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import { CustomCard } from "@/components/CustomCard";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ThemeContext } from "@/constants/ThemeContext";
+import { useContext } from "react";
+import { TextStyle } from "@/components/TextStyle";
 
 export default function HomeScreen() {
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const { colors } = theme;
+
   const speak = () => {
     const thingToSay = "Morocco";
     Speech.speak(thingToSay);
@@ -16,15 +22,16 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container} accessible={true}>
-      <Text>Hello</Text>
-      <CustomCard>
-        <Text>Hello</Text>
-      </CustomCard>
-      <CustomCard>
-        <Text>Hello</Text>
-      </CustomCard>
-      <CustomCard>
-        <Text>Hello</Text>
+      <CustomCard gradientColors={["green", "purple"]} rowGap={10}>
+        <TextStyle fontFamily={"Manrope_600SemiBold"} fontSize={18}>
+          Saved Events
+        </TextStyle>
+        <View style={{ backgroundColor: "transparent" }}>
+          <Text>Hello</Text>
+        </View>
+        <View style={{ backgroundColor: "transparent" }}>
+          <Text>Hello</Text>
+        </View>
       </CustomCard>
       {/* <Button title="test" onPress={speak} /> */}
       <View
@@ -32,11 +39,13 @@ export default function HomeScreen() {
         lightColor="green"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <CustomCard>
-        <Text>Hello</Text>
-      </CustomCard>
-      <CustomCard>
-        <Text>Hello</Text>
+      <CustomCard gradientColors={["green", "purple"]}>
+        <View style={{ backgroundColor: "transparent" }}>
+          <Text>Hello</Text>
+        </View>
+        <View style={{ backgroundColor: "transparent" }}>
+          <Text>Hello</Text>
+        </View>
       </CustomCard>
     </SafeAreaView>
   );

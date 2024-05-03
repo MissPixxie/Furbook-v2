@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Entypo, FontAwesome, Ionicons, AntDesign } from "@expo/vector-icons";
 import { Link, Tabs } from "expo-router";
 import { Pressable } from "react-native";
@@ -7,9 +7,12 @@ import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { ThemeContext } from "@/constants/ThemeContext";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
+  const { theme } = useContext(ThemeContext);
+  const { colors } = theme;
 
   return (
     <SafeAreaProvider>

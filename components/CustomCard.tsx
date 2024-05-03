@@ -14,6 +14,8 @@ interface Props {
   flexDirection?: flexDirection;
   width?: number;
   height?: number;
+  rowGap?: number;
+  gradientColors: Array<string>;
 }
 
 type FontSize = 18 | 20 | 22 | 26 | 28 | 32;
@@ -31,10 +33,13 @@ export const CustomCard = ({
   flexDirection,
   width,
   height,
+  gradientColors,
+  rowGap,
 }: Props) => {
   const styles = StyleSheet.create({
     linearGradient: {
       padding: 20,
+      rowGap: rowGap,
       color: color,
       flex: flex,
       width: width,
@@ -53,10 +58,7 @@ export const CustomCard = ({
 
   return (
     <View style={styles.cardContainer}>
-      <LinearGradient
-        colors={["#404040", "#333333", "#262626"]}
-        style={styles.linearGradient}
-      >
+      <LinearGradient colors={gradientColors} style={styles.linearGradient}>
         {children}
       </LinearGradient>
     </View>
