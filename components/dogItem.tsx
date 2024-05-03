@@ -70,12 +70,15 @@ export const DogItem = ({ item }: ItemProps) => {
   });
 
   return (
-    <Animated.View style={styles.postContainer}>
+    <Animated.View accessible={true} style={styles.postContainer}>
       <Image
         style={styles.imgAvatar}
         source={require("../assets/images/OGBUB40.jpg")}
       />
-      <View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
+      <View
+        accessible={true}
+        style={{ marginLeft: 15, alignSelf: "flex-start" }}
+      >
         <Text style={{ fontSize: 26, color: colors.text }}>{item.name}</Text>
         <Text style={{ fontSize: 18, color: colors.text }}>{item.sex}</Text>
         <Text style={{ fontSize: 18, color: colors.text }}>{item.breed}</Text>

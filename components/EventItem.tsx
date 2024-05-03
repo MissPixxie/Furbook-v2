@@ -30,6 +30,13 @@ import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Route } from "expo-router";
 import { RouteNode } from "expo-router/build/Route";
+import {
+  useFonts,
+  Manrope_800ExtraBold,
+  Manrope_600SemiBold,
+  Manrope_300Light,
+  Manrope_200ExtraLight,
+} from "@expo-google-fonts/manrope";
 
 interface ItemProps {
   item: Event;
@@ -39,6 +46,17 @@ export const EventItem = ({ item }: ItemProps) => {
   const [isVisable, setIsVisable] = useState(false);
   const [isActive, setActive] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
+
+  let [fontsLoaded, fontError] = useFonts({
+    Manrope_800ExtraBold,
+    Manrope_600SemiBold,
+    Manrope_300Light,
+    Manrope_200ExtraLight,
+  });
+
+  if (!fontsLoaded && !fontError) {
+    return null;
+  }
 
   const { colors } = theme;
 
@@ -50,9 +68,8 @@ export const EventItem = ({ item }: ItemProps) => {
     postContainer: {
       width: "100%",
       marginVertical: 10,
-      flexDirection: "row",
+      flexDirection: "column",
       backgroundColor: colors.card,
-      padding: 15,
       borderRadius: 10,
       shadowColor: "#080808",
       shadowOffset: { width: -1, height: 2 },
@@ -61,37 +78,82 @@ export const EventItem = ({ item }: ItemProps) => {
       elevation: 4,
     },
     imgAvatar: {
-      width: 100,
-      height: 100,
-      borderRadius: 400 / 2,
+      borderTopLeftRadius: 10,
+      borderTopRightRadius: 20,
+    },
+    textTitle: {
+      fontFamily: "Manrope_600SemiBold",
+      color: colors.text,
+      fontSize: 20,
+    },
+    textStyle: {
+      fontFamily: "Manrope_300Light",
+      color: colors.text,
+      fontSize: 16,
     },
   });
 
+  // Fix styling, cards big image
+
   return (
-    <Animated.View style={styles.postContainer}>
+    <Animated.View accessible={true} style={styles.postContainer}>
       <Image
         style={styles.imgAvatar}
         source={require("../assets/images/beach.jpg")}
       />
-      <View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
-        <Text style={{ fontSize: 26, color: colors.text }}>{item._id}</Text>
-        <Text style={{ fontSize: 18, color: colors.text }}>{item.title}</Text>
-        <Text style={{ fontSize: 18, color: colors.text }}>{item.place}</Text>
-        <Text style={{ fontSize: 18, color: colors.text }}>
-          {item.description}
-        </Text>
-      </View>
-      <Text
+      <View
+        accessible={true}
         style={{
-          fontSize: 20,
-          color: colors.text,
-          flexGrow: 2,
-          textAlign: "right",
-          marginRight: 10,
+          flex: 1,
+          flexDirection: "row",
+          paddingHorizontal: 5,
+          paddingVertical: 10,
         }}
       >
-        {item.typeOfEvent}
-      </Text>
+        <View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
+          <Text
+            accessible={true}
+            accessibilityLabel={item.title}
+            style={styles.textTitle}
+          >
+            {item.title}
+          </Text>
+          <Text style={styles.textStyle}>{item.description}</Text>
+          <Text style={styles.textStyle}>{item.place}</Text>
+        </View>
+        <View style={{ flex: 1, alignItems: "flex-end", paddingRight: 15 }}>
+          <Text
+            style={{
+              fontFamily: "Manrope_300Light",
+              fontSize: 18,
+              color: colors.text,
+              flexGrow: 2,
+              textAlign: "right",
+              marginRight: 10,
+              alignItems: "flex-start",
+            }}
+          >
+            12.00 24/4
+          </Text>
+          {isActive ? (
+            <Entypo
+              name="heart"
+              size={24}
+              color="black"
+              style={{ alignSelf: "flex-end" }}
+              onPress={toggleSavedItems}
+            />
+          ) : (
+            <Entypo
+              name="heart-outlined"
+              size={24}
+              color="black"
+              style={{ alignSelf: "flex-end" }}
+              onPress={toggleSavedItems}
+            />
+          )}
+        </View>
+      </View>
     </Animated.View>
   );
 };

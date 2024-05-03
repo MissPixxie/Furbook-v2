@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Event } from "@/components/types";
 import { DogItem } from "@/components/dogItem";
 import { EventItem } from "@/components/EventItem";
+import { useFonts, Manrope_800ExtraBold } from "@expo-google-fonts/manrope";
 
 const Page = () => {
   const [data, setData] = useState();
