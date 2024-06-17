@@ -1,4 +1,4 @@
-import { Feather } from "@expo/vector-icons";
+import { AntDesign, Feather } from "@expo/vector-icons";
 import { DrawerActions } from "@react-navigation/native";
 import { useNavigation } from "expo-router";
 import React, { useContext } from "react";
@@ -6,7 +6,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
 
-export const Header = () => {
+export const TabHeader = () => {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
@@ -34,7 +34,7 @@ export const Header = () => {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.iconStyle}>
-        <Feather name="menu" size={30} color={"black"} onPress={toggleDrawer} />
+        <AntDesign name="arrowleft" size={30} color={"black"} onPress={() => {}} />
       </Text>
     </SafeAreaView>
   );

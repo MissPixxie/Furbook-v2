@@ -2,12 +2,15 @@ import { FlatList, StyleSheet } from "react-native";
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { Stack } from "expo-router";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Dog } from "@/components/types";
 import { DogItem } from "@/components/dogItem";
+import { ThemeContext } from "@/constants/ThemeContext";
 
 const Page = () => {
   const [data, setData] = useState();
+  const { theme } = useContext(ThemeContext);
+  const { colors } = theme;
 
   useEffect(() => {
     const getDogs = async () => {
@@ -22,12 +25,18 @@ const Page = () => {
     return <DogItem item={item} />;
   };
 
+  const styles = StyleSheet.create({
+    container: {
+      backgroundColor: colors.background,
+    },
+  });
+
   return (
-    <View accessible={true}>
+    <View accessible={true} style={styles.container}>
       <FlatList
         data={data}
         renderItem={itemFromList}
-        keyExtractor={(item) => item.name}
+        keyExtractor={(item) => item._id}
       />
       <Text>Search dog screen</Text>
     </View>

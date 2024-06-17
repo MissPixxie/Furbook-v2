@@ -82,12 +82,10 @@ export const EventItem = ({ item }: ItemProps) => {
       borderTopRightRadius: 20,
     },
     textTitle: {
-      fontFamily: "Manrope_600SemiBold",
       color: colors.text,
       fontSize: 20,
     },
     textStyle: {
-      fontFamily: "Manrope_300Light",
       color: colors.text,
       fontSize: 16,
     },

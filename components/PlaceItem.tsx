@@ -8,6 +8,7 @@ import {
   FlatList,
   Button,
   Image,
+  Platform,
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -54,6 +55,12 @@ export const PlaceItem = ({ item }: ItemProps) => {
     Manrope_200ExtraLight,
   });
 
+  if (Platform.OS === "ios") {
+    console.log("ios");
+  } else {
+    console.log("android");
+  }
+
   if (!fontsLoaded && !fontError) {
     return null;
   }
@@ -82,12 +89,11 @@ export const PlaceItem = ({ item }: ItemProps) => {
       borderTopRightRadius: 20,
     },
     textTitle: {
-      fontFamily: "Manrope_600SemiBold",
+      fontFamily: "Manrope_800ExtraBold",
       color: colors.text,
       fontSize: 20,
     },
     textStyle: {
-      fontFamily: "Manrope_300Light",
       color: colors.text,
       fontSize: 16,
     },

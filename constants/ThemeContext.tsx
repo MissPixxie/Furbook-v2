@@ -13,8 +13,10 @@ interface Theme {
     secondaryLight: string;
     background: string;
     card: string;
+    gradientCard: Array<string>;
     inputs: string;
     text: string;
+    textSecondary: string;
     border: string;
     notification: string;
     tabBar: Array<string>;
@@ -40,8 +42,10 @@ const MyTheme: MyTheme = {
       secondaryLight: "#E5E5E5",
       background: "#151515",
       card: "#272727",
+      gradientCard: ["#4a4a4a", "#212121"],
       inputs: "#272727",
       text: "#fff",
+      textSecondary: "#b5b5b5",
       border: "rgb(199, 199, 204)",
       notification: "rgb(255, 69, 58)",
       tabBar: ["#252525", "#141414"],
@@ -56,8 +60,10 @@ const MyTheme: MyTheme = {
       secondaryLight: "#FEFEFE",
       background: "#f3f3f3",
       card: "#fff",
+      gradientCard: ["#c9c9c9", "#fff"],
       inputs: "#fff",
       text: "#000",
+      textSecondary: "#000",
       border: "rgb(199, 199, 204)",
       notification: "rgb(255, 69, 58)",
       tabBar: ["#bced95", "#fff"],

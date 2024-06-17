@@ -9,28 +9,62 @@ import { CustomCard } from "@/components/CustomCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { useContext } from "react";
-import { TextStyle } from "@/components/TextStyle";
+
+import {
+  useFonts,
+  Manrope_800ExtraBold,
+  Manrope_600SemiBold,
+  Manrope_300Light,
+  Manrope_200ExtraLight,
+} from "@expo-google-fonts/manrope";
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { colors } = theme;
+  let [fontsLoaded, fontError] = useFonts({
+    Manrope_800ExtraBold,
+    Manrope_600SemiBold,
+    Manrope_300Light,
+    Manrope_200ExtraLight,
+  });
 
   const speak = () => {
     const thingToSay = "Morocco";
     Speech.speak(thingToSay);
   };
 
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+      rowGap: 15,
+      backgroundColor: colors.background,
+      paddingHorizontal: 15,
+    },
+    title: {
+      fontSize: 20,
+      color: colors.text,
+    },
+    text: {
+      fontSize: 16,
+      color: colors.text,
+    },
+    separator: {
+      marginVertical: 30,
+      height: 1,
+      width: "80%",
+      alignSelf: "center",
+    },
+  });
+
   return (
     <SafeAreaView style={styles.container} accessible={true}>
-      <CustomCard gradientColors={["green", "purple"]} rowGap={10}>
-        <TextStyle fontFamily={"Manrope_600SemiBold"} fontSize={18}>
-          Saved Events
-        </TextStyle>
+      <CustomCard gradientColors={colors.gradientCard} rowGap={10}>
+        <Text style={styles.title}>Saved Events</Text>
         <View style={{ backgroundColor: "transparent" }}>
-          <Text>Hello</Text>
+          <Text style={styles.text}>Hello</Text>
         </View>
         <View style={{ backgroundColor: "transparent" }}>
-          <Text>Hello</Text>
+          <Text style={styles.text}>Hello</Text>
         </View>
       </CustomCard>
       {/* <Button title="test" onPress={speak} /> */}
@@ -39,36 +73,17 @@ export default function HomeScreen() {
         lightColor="green"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <CustomCard gradientColors={["green", "purple"]}>
+      <CustomCard gradientColors={colors.gradientCard}>
         <View style={{ backgroundColor: "transparent" }}>
-          <Text>Hello</Text>
+          <Text style={styles.text}>Hello</Text>
         </View>
         <View style={{ backgroundColor: "transparent" }}>
-          <Text>Hello</Text>
+          <Text style={styles.text}>Hello</Text>
         </View>
       </CustomCard>
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    rowGap: 15,
-    backgroundColor: "transparent",
-    paddingHorizontal: 15,
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-    alignSelf: "center",
-  },
-});
 
 // import { Redirect, useRouter, useFocusEffect } from "expo-router";
 // import { Text } from "react-native";

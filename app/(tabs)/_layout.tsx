@@ -8,6 +8,7 @@ import { useColorScheme } from "@/components/useColorScheme";
 import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
+import { LinearGradient } from "expo-linear-gradient";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
@@ -19,11 +20,17 @@ const TabLayout = () => {
       <Tabs
         screenOptions={{
           tabBarAccessibilityLabel: "Bottom tab navigation",
-          //tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-          // Disable the static render of the header on web
-          // to prevent a hydration error in React Navigation v6.
           headerShown: useClientOnlyValue(false, true),
           tabBarShowLabel: false,
+          tabBarStyle: { position: "absolute", height: 55 },
+          tabBarBackground: () => (
+            <LinearGradient
+              colors={colors.tabBar}
+              style={{
+                height: 70,
+              }}
+            />
+          ),
           tabBarInactiveTintColor: "#51951a",
           tabBarActiveTintColor: "#294d0d",
         }}
@@ -37,27 +44,30 @@ const TabLayout = () => {
             tabBarIcon: ({ color }) => (
               <Entypo name="home" size={26} color={color} />
             ),
-            headerRight: () => (
-              <Link href="/modal" asChild>
-                <Pressable>
-                  {({ pressed }) => (
-                    <FontAwesome
-                      name="info-circle"
-                      size={25}
-                      color={Colors[colorScheme ?? "light"].text}
-                      style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                    />
-                  )}
-                </Pressable>
-              </Link>
-            ),
+            // headerRight: () => (
+            //   <Link href="/modal" asChild>
+            //     <Pressable>
+            //       {({ pressed }) => (
+            //         <FontAwesome
+            //           name="info-circle"
+            //           size={25}
+            //           color={Colors[colorScheme ?? "light"].text}
+            //           style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+            //         />
+            //       )}
+            //     </Pressable>
+            //   </Link>
+            // ),
           }}
         />
         <Tabs.Screen
           name="mydogs"
           options={{
             tabBarAccessibilityLabel: "my dogs button",
+            headerTitleStyle: { color: colors.text },
             title: "My Dogs",
+            headerShown: false,
+            headerStyle: { backgroundColor: colors.primary },
             headerTitleAlign: "center",
             tabBarIcon: ({ color }) => (
               <Ionicons name="paw" size={26} color={color} />
@@ -81,7 +91,7 @@ const TabLayout = () => {
           options={{
             tabBarAccessibilityLabel: "messages button",
             headerShown: false,
-            title: "",
+            title: "Messages",
             tabBarIcon: ({ color }) => (
               <FontAwesome name="envelope" size={26} color={color} />
             ),

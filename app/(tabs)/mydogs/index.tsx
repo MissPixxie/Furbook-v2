@@ -14,9 +14,10 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default function MyDogsScreen() {
-  const [data, setData] = useState();
+  const [data, setData] = useState<Dog[]>();
   const router = useRouter();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [updateFromDetailScreen, setUpdateFromDetailScreen] = useState(false);
@@ -38,7 +39,19 @@ export default function MyDogsScreen() {
     }
   };
 
-  async function getData() {}
+  async function getData() {
+    try {
+      const response = await fetch(
+        "http://localhost:8081/api/dogs/64c2d55242e5f091901c5497"
+      );
+      const data = await response.json();
+      setData(data);
+    } catch (error) {
+      if (error instanceof Error) {
+        console.log(error);
+      }
+    }
+  }
 
   useEffect(() => {
     const getDogs = async () => {
@@ -51,14 +64,13 @@ export default function MyDogsScreen() {
   }, []);
 
   // const routeToDog = () => {
-  //   router.push(`/(tabs)/mydogs/${item.id}`);
+  //   router.push("/(tabs)/mydogs/1");
   // };
 
   const itemFromList = ({ item }: { item: Dog }) => {
+    console.log(typeof item);
     return (
-      <TouchableOpacity
-        onPress={() => router.push(`/(tabs)/mydogs/${item._id}`)}
-      >
+      <TouchableOpacity onPress={() => router.push(`/mydogs/${item._id}`)}>
         <DogItem item={item} />
       </TouchableOpacity>
     );
@@ -66,12 +78,15 @@ export default function MyDogsScreen() {
 
   const styles = StyleSheet.create({
     container: {
-      backgroundColor: colors.card,
+      backgroundColor: colors.background,
+    },
+    flatList: {
+      backgroundColor: colors.background,
     },
   });
 
   return (
-    <View accessible={true}>
+    <View accessible={true} style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
         {modalVisible && (
           <AddDog
@@ -84,8 +99,8 @@ export default function MyDogsScreen() {
       <FlatList
         data={data}
         renderItem={itemFromList}
-        keyExtractor={(item) => item.name}
-        style={styles.container}
+        keyExtractor={(item) => item._id}
+        style={styles.flatList}
       />
       <CustomButton
         title="New dog"

@@ -3,5 +3,13 @@ import { Button } from "react-native";
 
 // För att ta bort nested navigering i tabsen
 export default function _layout() {
-  return <Stack screenOptions={{ headerShown: false }} />;
+  return (
+    <Stack
+      screenOptions={{
+        headerShown: true,
+        headerTitle: "My Dogs",
+        headerTitleAlign: "center",
+      }}
+    />
+  );
 }

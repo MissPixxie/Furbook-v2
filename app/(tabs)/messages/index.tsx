@@ -25,12 +25,15 @@ import {
 import { Divider } from "@rneui/themed/dist/Divider";
 
 export default function MessagesScreen() {
-  const [data, setData] = useState<{
-    _id: string;
-    sender: string;
-    message: { messageTitle: string; messageContent: string };
-    date: string;
-  }>();
+  const [data, setData] = useState<
+    {
+      _id: string;
+      sender: string;
+      receiver: string;
+      message: { messageTitle: string; messageContent: string };
+      date: string;
+    }[]
+  >();
   const router = useRouter();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [updateFromDetailScreen, setUpdateFromDetailScreen] = useState(false);
@@ -68,6 +71,7 @@ export default function MessagesScreen() {
         {
           _id: "456654646",
           sender: "Olle",
+          receiver: "",
           message: {
             messageTitle: "Titel",
             messageContent: "Innehåll i meddelande",
@@ -77,6 +81,7 @@ export default function MessagesScreen() {
         {
           _id: "45665fdsf4646",
           sender: "Pelle",
+          receiver: "",
           message: {
             messageTitle: "Titel",
             messageContent: "Innehåll i meddelande",
@@ -86,6 +91,7 @@ export default function MessagesScreen() {
         {
           _id: "456654hghf646",
           sender: "Göran",
+          receiver: "",
           message: {
             messageTitle: "Titel",
             messageContent: "Innehåll i meddelande",
@@ -93,6 +99,9 @@ export default function MessagesScreen() {
           date: "24/4",
         },
       ];
+      // const test = data.map((item) => {
+      //   setData(item);
+      // });
       setData(data);
     };
     getMessages();
@@ -100,7 +109,7 @@ export default function MessagesScreen() {
 
   const itemFromList = ({ item }: { item: Message }) => {
     return (
-      <TouchableOpacity onPress={() => router.push("/(tabs)/messages/1")}>
+      <TouchableOpacity onPress={() => router.push("/messages/1")}>
         <MessageItem item={item} />
       </TouchableOpacity>
     );
@@ -112,7 +121,7 @@ export default function MessagesScreen() {
       padding: 10,
       marginVertical: 10,
       flexDirection: "column",
-      backgroundColor: colors.card,
+      backgroundColor: colors.background,
       borderRadius: 10,
       shadowColor: "#080808",
       shadowOffset: { width: -1, height: 2 },

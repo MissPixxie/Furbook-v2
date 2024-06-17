@@ -42,7 +42,7 @@ export const DogItem = ({ item }: ItemProps) => {
 
   const { colors } = theme;
 
-  console.log("dogitem");
+  console.log(item);
 
   const toggleSavedItems = () => {
     setActive((prevState) => !prevState);

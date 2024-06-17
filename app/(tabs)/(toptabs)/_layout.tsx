@@ -10,6 +10,8 @@ import { ParamListBase, TabNavigationState } from "@react-navigation/native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { View } from "react-native";
 import { SearchBar } from "@rneui/themed";
+import { ThemeContext } from "@/constants/ThemeContext";
+import { color } from "@rneui/themed/dist/config";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -22,34 +24,35 @@ export const MaterialTopTabs = withLayoutContext<
 
 const TopTabsLayout = () => {
   const [search, setSearch] = useState<string>("");
-
+  const { theme } = useContext(ThemeContext);
+  const { colors } = theme;
   const updateSearch = (search: string) => {
     setSearch(search);
   };
 
   return (
     <>
-      <SafeAreaView>
+      <SafeAreaView style={{ backgroundColor: colors.background }}>
         <SearchBar
           accessible={true}
           accessibilityLabel="Searchbar"
           containerStyle={{
-            backgroundColor: "white",
+            backgroundColor: colors.primary,
             borderBottomColor: "transparent",
             borderTopColor: "transparent",
           }}
           inputContainerStyle={{
-            backgroundColor: "#fff",
+            backgroundColor: colors.inputs,
           }}
           searchIcon={{
             size: 26,
-            color: "black",
+            color: colors.textSecondary,
           }}
           inputStyle={{
             fontSize: 16,
-            color: "black",
+            color: colors.textSecondary,
           }}
-          placeholderTextColor={"black"}
+          placeholderTextColor={colors.textSecondary}
           placeholder="Type Here..."
           onChangeText={updateSearch}
           value={search}
