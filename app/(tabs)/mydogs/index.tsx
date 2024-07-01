@@ -40,10 +40,9 @@ export default function MyDogsScreen() {
   };
 
   async function getData() {
+    console.log(data);
     try {
-      const response = await fetch(
-        "http://localhost:8081/api/dogs/64c2d55242e5f091901c5497"
-      );
+      const response = await fetch("http://localhost:8081/api/dogs/");
       const data = await response.json();
       setData(data);
     } catch (error) {
@@ -57,7 +56,6 @@ export default function MyDogsScreen() {
     const getDogs = async () => {
       const res = await fetch("http://localhost:8081/api/dogs");
       const data = await res.json();
-      console.log(data);
       setData(data);
     };
     getDogs();
@@ -68,7 +66,6 @@ export default function MyDogsScreen() {
   // };
 
   const itemFromList = ({ item }: { item: Dog }) => {
-    console.log(typeof item);
     return (
       <TouchableOpacity onPress={() => router.push(`/mydogs/${item._id}`)}>
         <DogItem item={item} />

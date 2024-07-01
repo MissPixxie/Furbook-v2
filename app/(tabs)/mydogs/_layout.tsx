@@ -6,7 +6,7 @@ export default function _layout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         headerTitle: "My Dogs",
         headerTitleAlign: "center",
       }}

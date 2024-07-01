@@ -6,6 +6,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
 
+
 export const Header = () => {
   const navigation = useNavigation();
   const { theme } = useContext(ThemeContext);

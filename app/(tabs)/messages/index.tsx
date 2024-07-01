@@ -3,7 +3,7 @@ import { CustomButton } from "@/components/customButton";
 import { MessageItem } from "@/components/MessageItem";
 import { Message } from "@/components/types";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Stack, useRouter } from "expo-router";
+import { Link, Stack, useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import {
   Button,
@@ -25,15 +25,7 @@ import {
 import { Divider } from "@rneui/themed/dist/Divider";
 
 export default function MessagesScreen() {
-  const [data, setData] = useState<
-    {
-      _id: string;
-      sender: string;
-      receiver: string;
-      message: { messageTitle: string; messageContent: string };
-      date: string;
-    }[]
-  >();
+  const [data, setData] = useState<Message[]>();
   const router = useRouter();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [updateFromDetailScreen, setUpdateFromDetailScreen] = useState(false);
@@ -52,56 +44,21 @@ export default function MessagesScreen() {
     setModalVisible(!modalVisible);
   };
 
-  // const updateWhenMessageRemoved = (actionType: string, newState: boolean) => {
-  //   if (actionType === "updated") {
-  //     setUpdateFromDetailScreen(newState);
-  //     getData();
-  //   } else {
-  //     console.log("something went wrong");
-  //   }
-  // };
+  const updateWhenMessageRemoved = (actionType: string, newState: boolean) => {
+    if (actionType === "updated") {
+      setUpdateFromDetailScreen(newState);
+      getData();
+    } else {
+      console.log("something went wrong");
+    }
+  };
 
-  // async function getData() {}
+  async function getData() {}
 
   useEffect(() => {
     const getMessages = async () => {
-      // const res = await fetch("http://localhost:8081/api/messages");
-      // const data = await res.json();
-      const data = [
-        {
-          _id: "456654646",
-          sender: "Olle",
-          receiver: "",
-          message: {
-            messageTitle: "Titel",
-            messageContent: "Innehåll i meddelande",
-          },
-          date: "24/4",
-        },
-        {
-          _id: "45665fdsf4646",
-          sender: "Pelle",
-          receiver: "",
-          message: {
-            messageTitle: "Titel",
-            messageContent: "Innehåll i meddelande",
-          },
-          date: "24/4",
-        },
-        {
-          _id: "456654hghf646",
-          sender: "Göran",
-          receiver: "",
-          message: {
-            messageTitle: "Titel",
-            messageContent: "Innehåll i meddelande",
-          },
-          date: "24/4",
-        },
-      ];
-      // const test = data.map((item) => {
-      //   setData(item);
-      // });
+      const res = await fetch("http://localhost:8081/api/messages");
+      const data = await res.json();
       setData(data);
     };
     getMessages();
@@ -109,7 +66,11 @@ export default function MessagesScreen() {
 
   const itemFromList = ({ item }: { item: Message }) => {
     return (
-      <TouchableOpacity onPress={() => router.push("/messages/1")}>
+      <TouchableOpacity
+        onPress={() => {
+          router.push(`/messages/${item._id}`);
+        }}
+      >
         <MessageItem item={item} />
       </TouchableOpacity>
     );
@@ -117,10 +78,10 @@ export default function MessagesScreen() {
 
   const styles = StyleSheet.create({
     container: {
+      flex: 1,
       width: "100%",
       padding: 10,
       marginVertical: 10,
-      flexDirection: "column",
       backgroundColor: colors.background,
       borderRadius: 10,
       shadowColor: "#080808",
@@ -142,7 +103,7 @@ export default function MessagesScreen() {
   });
 
   return (
-    <SafeAreaView accessible={true} style={{ flex: 1 }}>
+    <View accessible={true} style={{ flex: 1 }}>
       <FlatList
         data={data}
         renderItem={itemFromList}
@@ -150,7 +111,7 @@ export default function MessagesScreen() {
         style={styles.container}
       />
       <Divider />
-    </SafeAreaView>
+    </View>
   );
 
   // return (

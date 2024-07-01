@@ -29,47 +29,67 @@ export default function MessageIdPage() {
     Manrope_200ExtraLight,
   });
 
-  console.log(id);
-
   return (
     <>
-      <Stack.Screen options={{ headerTitle: "", headerShown: true }} />
-      <SafeAreaView accessible={true} style={styles.container}>
-        <View>
-          <View style={styles.dateAndDivider}>
-            <Divider style={{ width: "35%", backgroundColor: colors.text }} />
-            <Text style={{ marginHorizontal: 15 }}>{date}</Text>
-            <Divider style={{ width: "35%", backgroundColor: colors.text }} />
+      <View style={{ flex: 1 }}>
+        <View accessible={true} style={styles.container}>
+          <View>
+            <View style={styles.dateAndDivider}>
+              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
+              <Text style={{ marginHorizontal: 15 }}>{date}</Text>
+              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
+            </View>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>Olle</Text>
+              <Text style={styles.title}>12.00</Text>
+            </View>
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+              consectetur purus id eros accumsan commodo. Integer nibh erat,
+              vulputate sit amet pulvinar gravida, viverra vel justo. Nulla
+              facilisi. Ut vel porta magna. Suspendisse efficitur, lacus eu
+              mattis auctor, leo nisi gravida dolor, vitae rhoncus tortor augue
+              varius ex. Aliquam non nunc nibh.
+            </Text>
           </View>
-          <View style={styles.titleContainer}>
-            <Text style={styles.title}>Olle</Text>
-            <Text style={styles.title}>12.00</Text>
+        </View>
+        <View accessible={true} style={styles.container}>
+          <View>
+            <View style={styles.dateAndDivider}>
+              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
+              <Text style={{ marginHorizontal: 15 }}>{date}</Text>
+              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
+            </View>
+            <View style={styles.titleContainer}>
+              <Text style={styles.title}>Olle</Text>
+              <Text style={styles.title}>12.00</Text>
+            </View>
+            <Text style={styles.text}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
+              consectetur purus id eros accumsan commodo. Integer nibh erat,
+              vulputate sit amet pulvinar gravida, viverra vel justo. Nulla
+              facilisi. Ut vel porta magna. Suspendisse efficitur, lacus eu
+              mattis auctor, leo nisi gravida dolor, vitae rhoncus tortor augue
+              varius ex. Aliquam non nunc nibh.
+            </Text>
           </View>
-          <Text style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-            consectetur purus id eros accumsan commodo. Integer nibh erat,
-            vulputate sit amet pulvinar gravida, viverra vel justo. Nulla
-            facilisi. Ut vel porta magna. Suspendisse efficitur, lacus eu mattis
-            auctor, leo nisi gravida dolor, vitae rhoncus tortor augue varius
-            ex. Aliquam non nunc nibh.
-          </Text>
+          <View style={{ flexDirection: "row" }}>
+            <TextInput
+              style={styles.input}
+              onChangeText={onChangeText}
+              value={text}
+              placeholder="Skriv meddelande"
+            />
+            <Feather
+              name="send"
+              color={colors.text}
+              size={24}
+              onPress={() => {}}
+              style={{ alignSelf: "center", margin: 8 }}
+            />
+          </View>
         </View>
-        <View style={{ flexDirection: "row" }}>
-          <TextInput
-            style={styles.input}
-            onChangeText={onChangeText}
-            value={text}
-            placeholder="Skriv meddelande"
-          />
-          <Feather
-            name="send"
-            color={colors.text}
-            size={24}
-            onPress={() => {}}
-            style={{ alignSelf: "center", margin: 8 }}
-          />
-        </View>
-      </SafeAreaView>
+      </View>
     </>
   );
 }
@@ -78,6 +98,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     rowGap: 20,
+    paddingVertical: 20,
     paddingHorizontal: 15,
     backgroundColor: "white",
     justifyContent: "space-between",

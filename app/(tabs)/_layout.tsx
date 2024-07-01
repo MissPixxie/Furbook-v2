@@ -1,6 +1,14 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Entypo, FontAwesome, Ionicons, AntDesign } from "@expo/vector-icons";
-import { Link, Tabs } from "expo-router";
+import {
+  Link,
+  Tabs,
+  useLocalSearchParams,
+  useNavigation,
+  usePathname,
+  useRouter,
+  useSegments,
+} from "expo-router";
 import { Pressable } from "react-native";
 
 import Colors from "@/constants/Colors";
@@ -12,8 +20,15 @@ import { LinearGradient } from "expo-linear-gradient";
 
 const TabLayout = () => {
   const colorScheme = useColorScheme();
+  const id = null;
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
+  const navigation = useNavigation();
+  const router = useRouter();
+  const params = useLocalSearchParams();
+
+  const path = usePathname();
+  console.log(path);
 
   return (
     <SafeAreaProvider>
@@ -22,7 +37,10 @@ const TabLayout = () => {
           tabBarAccessibilityLabel: "Bottom tab navigation",
           headerShown: useClientOnlyValue(false, true),
           tabBarShowLabel: false,
-          tabBarStyle: { position: "absolute", height: 55 },
+          tabBarStyle: {
+            position: "absolute",
+            height: 55,
+          },
           tabBarBackground: () => (
             <LinearGradient
               colors={colors.tabBar}
@@ -66,7 +84,7 @@ const TabLayout = () => {
             tabBarAccessibilityLabel: "my dogs button",
             headerTitleStyle: { color: colors.text },
             title: "My Dogs",
-            headerShown: false,
+            headerShown: true,
             headerStyle: { backgroundColor: colors.primary },
             headerTitleAlign: "center",
             tabBarIcon: ({ color }) => (
@@ -90,13 +108,33 @@ const TabLayout = () => {
           name="messages"
           options={{
             tabBarAccessibilityLabel: "messages button",
-            headerShown: false,
+            headerTitleStyle: { color: colors.text },
             title: "Messages",
+            headerShown: false,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleAlign: "center",
+            tabBarStyle: {
+              display: path === "/messages/1" ? "none" : "flex",
+            },
             tabBarIcon: ({ color }) => (
               <FontAwesome name="envelope" size={26} color={color} />
             ),
           }}
         />
+        {/* <Tabs.Screen
+          name="messages"
+          options={{
+            tabBarAccessibilityLabel: "messages button",
+            headerTitleStyle: { color: colors.text },
+            title: "Messages",
+            headerShown: false,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleAlign: "center",
+            tabBarIcon: ({ color }) => (
+              <FontAwesome name="envelope" size={26} color={color} />
+            ),
+          }}
+        /> */}
         <Tabs.Screen
           name="notifications"
           options={{

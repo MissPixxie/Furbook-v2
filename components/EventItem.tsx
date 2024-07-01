@@ -28,7 +28,6 @@ import { Entypo, AntDesign } from "@expo/vector-icons";
 import { Event } from "./types";
 import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Route } from "expo-router";
 import { RouteNode } from "expo-router/build/Route";
 import {
   useFonts,

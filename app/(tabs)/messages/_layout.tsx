@@ -1,13 +1,15 @@
-import { Link, Stack, Tabs, router } from "expo-router";
-import { Button } from "react-native";
-import { ThemeContext } from "@/constants/ThemeContext";
-import { useContext } from "react";
+import {
+  Link,
+  Stack,
+  Tabs,
+  router,
+  useLocalSearchParams,
+  useRouter,
+} from "expo-router";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // För att ta bort nested navigering i tabsen
 export default function _layout() {
-  const { theme } = useContext(ThemeContext);
-  const { colors } = theme;
-
   return (
     <Stack
       screenOptions={{
@@ -15,6 +17,8 @@ export default function _layout() {
         headerTitle: "Messages",
         headerTitleAlign: "center",
       }}
-    />
+    >
+      <Stack.Screen name="index" />
+    </Stack>
   );
 }

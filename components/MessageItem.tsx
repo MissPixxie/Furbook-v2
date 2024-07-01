@@ -28,7 +28,6 @@ import { Entypo, AntDesign } from "@expo/vector-icons";
 import { Message } from "./types";
 import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Route } from "expo-router";
 import { RouteNode } from "expo-router/build/Route";
 import {
   useFonts,
@@ -107,15 +106,8 @@ export const MessageItem = ({ item }: ItemProps) => {
         }}
       >
         <View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
-          <Text
-            accessible={true}
-            accessibilityLabel="Titel"
-            style={styles.textTitle}
-          >
-            Titel
-          </Text>
-          <Text style={styles.textStyle}>sender</Text>
-          <Text style={styles.textStyle}>date</Text>
+          <Text style={styles.textStyle}>{item.sender}</Text>
+          {/* <Text style={styles.textStyle}>{item.message}</Text> */}
         </View>
         <View style={{ flex: 1, alignItems: "flex-end", paddingRight: 15 }}>
           <Text
@@ -129,7 +121,7 @@ export const MessageItem = ({ item }: ItemProps) => {
               alignItems: "flex-start",
             }}
           >
-            12.00 24/4
+            {item.date}
           </Text>
           {isActive ? (
             <Entypo
