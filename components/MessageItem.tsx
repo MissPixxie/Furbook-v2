@@ -42,8 +42,6 @@ interface ItemProps {
 }
 
 export const MessageItem = ({ item }: ItemProps) => {
-  const [isVisable, setIsVisable] = useState(false);
-  const [isActive, setActive] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
 
   let [fontsLoaded, fontError] = useFonts({
@@ -57,11 +55,9 @@ export const MessageItem = ({ item }: ItemProps) => {
     return null;
   }
 
-  const { colors } = theme;
+  console.log(item);
 
-  const toggleSavedItems = () => {
-    setActive((prevState) => !prevState);
-  };
+  const { colors } = theme;
 
   const styles = StyleSheet.create({
     postContainer: {
@@ -92,8 +88,6 @@ export const MessageItem = ({ item }: ItemProps) => {
     },
   });
 
-  // Fix styling, cards big image
-
   return (
     <Animated.View accessible={true} style={styles.postContainer}>
       <View
@@ -106,8 +100,8 @@ export const MessageItem = ({ item }: ItemProps) => {
         }}
       >
         <View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
-          <Text style={styles.textStyle}>{item.sender}</Text>
-          {/* <Text style={styles.textStyle}>{item.message}</Text> */}
+          <Text style={styles.textStyle}>{item.sender.name}</Text>
+          <Text style={styles.textStyle}>{item.message}</Text>
         </View>
         <View style={{ flex: 1, alignItems: "flex-end", paddingRight: 15 }}>
           <Text
@@ -120,26 +114,7 @@ export const MessageItem = ({ item }: ItemProps) => {
               marginRight: 10,
               alignItems: "flex-start",
             }}
-          >
-            {item.date}
-          </Text>
-          {isActive ? (
-            <Entypo
-              name="heart"
-              size={24}
-              color="black"
-              style={{ alignSelf: "flex-end" }}
-              onPress={toggleSavedItems}
-            />
-          ) : (
-            <Entypo
-              name="heart-outlined"
-              size={24}
-              color="black"
-              style={{ alignSelf: "flex-end" }}
-              onPress={toggleSavedItems}
-            />
-          )}
+          ></Text>
         </View>
       </View>
     </Animated.View>

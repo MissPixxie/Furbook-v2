@@ -8,7 +8,7 @@ import { DrawerToggleButton } from "@react-navigation/drawer";
 import { CustomCard } from "@/components/CustomCard";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import {
   useFonts,
@@ -20,6 +20,7 @@ import {
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);
+  const [data, setData] = useState();
   const { colors } = theme;
   let [fontsLoaded, fontError] = useFonts({
     Manrope_800ExtraBold,
@@ -31,6 +32,14 @@ export default function HomeScreen() {
   const speak = () => {
     const thingToSay = "Morocco";
     Speech.speak(thingToSay);
+  };
+
+  const getUser = async () => {
+    const response = await fetch("http://localhost:8081/api/users/");
+    console.log(response)
+    const data = await response.json();
+    console.log(data);
+    setData(data);
   };
 
   const styles = StyleSheet.create({
@@ -81,6 +90,7 @@ export default function HomeScreen() {
           <Text style={styles.text}>Hello</Text>
         </View>
       </CustomCard>
+      <Button onPress={getUser} title="Get user" />
     </SafeAreaView>
   );
 }

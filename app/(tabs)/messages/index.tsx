@@ -68,7 +68,7 @@ export default function MessagesScreen() {
     return (
       <TouchableOpacity
         onPress={() => {
-          router.push(`/messages/${item._id}`);
+          router.navigate(`/messages/${item._id}`);
         }}
       >
         <MessageItem item={item} />
@@ -113,14 +113,4 @@ export default function MessagesScreen() {
       <Divider />
     </View>
   );
-
-  // return (
-  //   <View accessible={true} style={styles.container}>
-  //     <View style={styles.main}>
-  //       <Text style={styles.title}>My Dogs</Text>
-  //       <Button onPress={() => router.push("/mydogs/1")} title="Dog Details" />
-  //       <Button onPress={() => router.back()} title="Go back" />
-  //     </View>
-  //   </View>
-  // );
 }

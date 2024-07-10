@@ -1,133 +1,44 @@
-import { View, Text, Button, StyleSheet, TextInput } from "react-native";
-import React, { useContext, useState } from "react";
+import { View, Text, Button, StyleSheet } from "react-native";
+import React, { useContext } from "react";
 import { useLocalSearchParams, router, Stack, useRouter } from "expo-router";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Divider } from "@rneui/themed";
-import {
-  useFonts,
-  Manrope_800ExtraBold,
-  Manrope_600SemiBold,
-  Manrope_300Light,
-  Manrope_200ExtraLight,
-} from "@expo-google-fonts/manrope";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Feather } from "@expo/vector-icons";
+import { Header } from "@/components/header";
+import { Image } from "expo-image";
+import { DogImage } from "@/components/DogImage";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { Message } from "@/components/types";
 
-export default function MessageIdPage() {
+interface Props {
+  item: Message;
+}
+
+export default function MessageIdPage({ item }: Props) {
   const router = useRouter();
   const { id } = useLocalSearchParams();
-  const [text, onChangeText] = useState("");
-  const [date, setDate] = useState("24 April");
-  const { theme, toggleTheme } = useContext(ThemeContext);
-
+  const { theme } = useContext(ThemeContext);
   const { colors } = theme;
+  console.log(item);
 
-  let [fontsLoaded, fontError] = useFonts({
-    Manrope_800ExtraBold,
-    Manrope_600SemiBold,
-    Manrope_300Light,
-    Manrope_200ExtraLight,
+  // pass dog object not just id
+
+  const styles = StyleSheet.create({
+    imgAvatar: {
+      width: "50%",
+      height: "auto",
+    },
   });
 
   return (
     <>
-      <View style={{ flex: 1 }}>
-        <View accessible={true} style={styles.container}>
-          <View>
-            <View style={styles.dateAndDivider}>
-              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
-              <Text style={{ marginHorizontal: 15 }}>{date}</Text>
-              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
-            </View>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Olle</Text>
-              <Text style={styles.title}>12.00</Text>
-            </View>
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-              consectetur purus id eros accumsan commodo. Integer nibh erat,
-              vulputate sit amet pulvinar gravida, viverra vel justo. Nulla
-              facilisi. Ut vel porta magna. Suspendisse efficitur, lacus eu
-              mattis auctor, leo nisi gravida dolor, vitae rhoncus tortor augue
-              varius ex. Aliquam non nunc nibh.
-            </Text>
-          </View>
-        </View>
-        <View accessible={true} style={styles.container}>
-          <View>
-            <View style={styles.dateAndDivider}>
-              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
-              <Text style={{ marginHorizontal: 15 }}>{date}</Text>
-              <Divider style={{ width: "35%", backgroundColor: colors.text }} />
-            </View>
-            <View style={styles.titleContainer}>
-              <Text style={styles.title}>Olle</Text>
-              <Text style={styles.title}>12.00</Text>
-            </View>
-            <Text style={styles.text}>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-              consectetur purus id eros accumsan commodo. Integer nibh erat,
-              vulputate sit amet pulvinar gravida, viverra vel justo. Nulla
-              facilisi. Ut vel porta magna. Suspendisse efficitur, lacus eu
-              mattis auctor, leo nisi gravida dolor, vitae rhoncus tortor augue
-              varius ex. Aliquam non nunc nibh.
-            </Text>
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <TextInput
-              style={styles.input}
-              onChangeText={onChangeText}
-              value={text}
-              placeholder="Skriv meddelande"
-            />
-            <Feather
-              name="send"
-              color={colors.text}
-              size={24}
-              onPress={() => {}}
-              style={{ alignSelf: "center", margin: 8 }}
-            />
-          </View>
-        </View>
-      </View>
+      <Stack.Screen
+        options={{
+          headerTitle: "",
+          headerShown: false,
+        }}
+      />
+      <SafeAreaView accessible={true}>
+        <Button onPress={() => router.back()} title="Go back" />
+      </SafeAreaView>
     </>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    rowGap: 20,
-    paddingVertical: 20,
-    paddingHorizontal: 15,
-    backgroundColor: "white",
-    justifyContent: "space-between",
-  },
-  dateAndDivider: {
-    flexDirection: "row",
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  titleContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginVertical: 10,
-  },
-  title: {
-    fontSize: 18,
-    fontFamily: "Manrope_300Light",
-  },
-  text: {
-    fontSize: 16,
-    fontFamily: "Manrope_300Light",
-  },
-  input: {
-    fontFamily: "Manrope_300Light",
-    flexGrow: 2,
-    paddingHorizontal: 15,
-    paddingVertical: 5,
-    borderRadius: 5,
-    borderColor: "black",
-    borderWidth: 1,
-  },
-});
