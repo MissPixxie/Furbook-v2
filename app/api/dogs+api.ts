@@ -1,8 +1,10 @@
+import { useNavigation } from "expo-router";
 import React from "react";
+//import { Request, Response } from "expo-router/server";
 
-export async function GET(request: Request, url: string): Promise<Response> {
+export async function GET(request: Request): Promise<Response> {
   // Fetch data from external API
-  const response = await fetch("http://localhost:8001/dogs");
+  const response = await fetch("http://localhost:8001/dogs/");
   // Check for successful response
   if (!response.ok) {
     return new Response(null, { status: response.status });

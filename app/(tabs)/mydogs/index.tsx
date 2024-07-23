@@ -40,10 +40,12 @@ export default function MyDogsScreen() {
   };
 
   async function getData() {
-    console.log(data);
     try {
-      const response = await fetch("http://localhost:8081/api/dogs/");
+      const response = await fetch(
+        "http://localhost:8081/api/dogs/64c2d55242e5f091901c5497"
+      );
       const data = await response.json();
+      console.log(data);
       setData(data);
     } catch (error) {
       if (error instanceof Error) {
@@ -54,7 +56,9 @@ export default function MyDogsScreen() {
 
   useEffect(() => {
     const getDogs = async () => {
-      const res = await fetch("http://localhost:8081/api/dogs");
+      const res = await fetch(
+        "http://localhost:8081/api/dogs/64c2d55242e5f091901c5497"
+      );
       const data = await res.json();
       setData(data);
     };

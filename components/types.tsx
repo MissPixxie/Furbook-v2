@@ -45,8 +45,8 @@ export type User = {
 
 export type Message = {
   _id: string;
-  sender: User; // User
-  receiver: User; // User
+  sender: User["name"]; // User
+  receiver: User["name"]; // User
   message: string;
   createdAt: Date;
 };
