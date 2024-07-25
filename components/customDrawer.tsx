@@ -13,6 +13,7 @@ import {
 //CONTEXT
 import { CustomButton } from "@/components/customButton";
 import { ThemeContext } from "@/constants/ThemeContext";
+import { useSession } from "@/constants/authenticationContext";
 
 //ICONS
 import {
@@ -34,6 +35,7 @@ export const CustomDrawer = ({ navigation }: Props) => {
   //   const { state, setState } = useContext(AuthContext);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [isEnabled, setIsEnabled] = useState(false);
+  const { signOut } = useSession();
 
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
@@ -217,7 +219,7 @@ export const CustomDrawer = ({ navigation }: Props) => {
 
             {/* SIGN OUT BUTTON */}
             <View>
-              {/* <LinearGradient
+              <LinearGradient
                 colors={
                   theme.dark
                     ? ["#E1F2D4", "#83a15d"]
@@ -231,8 +233,9 @@ export const CustomDrawer = ({ navigation }: Props) => {
               >
                 <TouchableOpacity
                   onPress={() => {
-                    setState(defaultContextState);
-                    navigation.closeDrawer();
+                    signOut();
+                    // setState(defaultContextState);
+                    // navigation.closeDrawer();
                   }}
                   style={{
                     flexDirection: "row",
@@ -245,7 +248,7 @@ export const CustomDrawer = ({ navigation }: Props) => {
                   </Text>
                   <Octicons name="sign-out" size={22} color="black" />
                 </TouchableOpacity>
-              </LinearGradient> */}
+              </LinearGradient>
             </View>
             {/* SIGN OUT BUTTON END */}
           </View>

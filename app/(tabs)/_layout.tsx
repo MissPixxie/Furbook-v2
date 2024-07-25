@@ -10,6 +10,7 @@ import {
   useSegments,
 } from "expo-router";
 import { Pressable } from "react-native";
+import { Text } from "react-native";
 
 import Colors from "@/constants/Colors";
 import { useColorScheme } from "@/components/useColorScheme";
@@ -17,18 +18,29 @@ import { useClientOnlyValue } from "@/components/useClientOnlyValue";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { LinearGradient } from "expo-linear-gradient";
+import { Redirect, Stack } from "expo-router";
+import { useSession } from "@/constants/authenticationContext";
 
 const TabLayout = () => {
-  const colorScheme = useColorScheme();
-  const id = null;
+  // const colorScheme = useColorScheme();
+  // const id = null;
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
-  const navigation = useNavigation();
-  const router = useRouter();
-  const params = useLocalSearchParams();
+  // const navigation = useNavigation();
+  // const router = useRouter();
+  // const params = useLocalSearchParams();
+  const { session, isLoading } = useSession();
 
   const path = usePathname();
-  console.log(path);
+  console.log(session);
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
+  }
+
+  if (!session) {
+    return <Redirect href="/sign-in" />;
+  }
 
   return (
     <SafeAreaProvider>
