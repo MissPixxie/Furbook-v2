@@ -3,7 +3,6 @@ import * as Speech from "expo-speech";
 import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { Button } from "@rneui/themed";
-import DrawerLayout from "../_layout";
 import { DrawerToggleButton } from "@react-navigation/drawer";
 import { CustomCard } from "@/components/CustomCard";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -18,6 +17,7 @@ import {
   Manrope_200ExtraLight,
 } from "@expo-google-fonts/manrope";
 import { Tabs } from "expo-router";
+import { Header } from "@/components/header";
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);

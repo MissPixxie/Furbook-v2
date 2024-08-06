@@ -26,6 +26,7 @@ import { ThemeContext } from "@/constants/ThemeContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { Redirect, Stack } from "expo-router";
 import { useSession } from "@/constants/authenticationContext";
+import { Header } from "@/components/header";
 
 const TabLayout = () => {
   // const colorScheme = useColorScheme();
@@ -86,40 +87,18 @@ const TabLayout = () => {
         }}
       >
         <Tabs.Screen
-          name="(drawer)"
+          name="(home)/index"
           options={{
             tabBarAccessibilityLabel: "home button",
-            title: "",
-            headerShown: false,
-            href: {
-              pathname: "/(drawer)",
-              params: {},
-            },
-            tabBarStyle: {
-              display: showTabs === false ? "none" : "flex",
-            },
+            headerTitleStyle: { color: colors.text },
+            title: "Home",
+            headerShown: true,
+            header: () => <Header />,
+            headerStyle: { backgroundColor: colors.primary },
+            headerTitleAlign: "center",
             tabBarIcon: ({ color }) => (
-              <Entypo
-                name="home"
-                size={26}
-                color={color}
-                onPress={toggleTabs}
-              />
+              <Entypo name="home" size={26} color={color} />
             ),
-            // headerRight: () => (
-            //   <Link href="/modal" asChild>
-            //     <Pressable>
-            //       {({ pressed }) => (
-            //         <FontAwesome
-            //           name="info-circle"
-            //           size={25}
-            //           color={Colors[colorScheme ?? "light"].text}
-            //           style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-            //         />
-            //       )}
-            //     </Pressable>
-            //   </Link>
-            // ),
           }}
         />
         <Tabs.Screen

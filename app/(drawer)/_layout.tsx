@@ -18,15 +18,15 @@ export default function DrawerLayout() {
         screenOptions={{
           drawerPosition: "right",
           headerTitle: "",
-          headerShown: true,
-          header: () => <Header />,
+          headerShown: false,
+          // header: () => <Header />,
         }}
         drawerContent={({ navigation }) => (
           <CustomDrawer navigation={navigation} />
         )}
       >
         {/* <Drawer.Screen name="index" /> */}
-        <Drawer.Screen name="index" />
+        <Drawer.Screen name="(tabs)" />
       </Drawer>
     </GestureHandlerRootView>
   );
