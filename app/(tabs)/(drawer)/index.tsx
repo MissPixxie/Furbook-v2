@@ -17,6 +17,7 @@ import {
   Manrope_300Light,
   Manrope_200ExtraLight,
 } from "@expo-google-fonts/manrope";
+import { Tabs } from "expo-router";
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -36,7 +37,7 @@ export default function HomeScreen() {
 
   const getUser = async () => {
     const response = await fetch("http://localhost:8081/api/users/");
-    console.log(response)
+    console.log(response);
     const data = await response.json();
     console.log(data);
     setData(data);
@@ -94,12 +95,3 @@ export default function HomeScreen() {
     </SafeAreaView>
   );
 }
-
-// import { Redirect, useRouter, useFocusEffect } from "expo-router";
-// import { Text } from "react-native";
-
-// export default function Page() {
-//   const router = useRouter();
-
-//   return <Redirect href={"/(drawer)/home"} />;
-// }

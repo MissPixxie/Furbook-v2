@@ -51,10 +51,6 @@ export default function RootLayout() {
     <SessionProvider>
       <ThemeProvider>
         <Slot />
-        {/* <Stack>
-          <Stack.Screen name="/(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="sign-in" options={{ headerShown: true }} />
-        </Stack> */}
       </ThemeProvider>
     </SessionProvider>
   );

@@ -1,8 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, {
+  useContext,
+  useDeferredValue,
+  useEffect,
+  useState,
+} from "react";
 import { Entypo, FontAwesome, Ionicons, AntDesign } from "@expo/vector-icons";
 import {
   Link,
   Tabs,
+  useGlobalSearchParams,
   useLocalSearchParams,
   useNavigation,
   usePathname,
@@ -26,13 +32,27 @@ const TabLayout = () => {
   // const id = null;
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
-  // const navigation = useNavigation();
-  // const router = useRouter();
-  // const params = useLocalSearchParams();
+  const navigation = useNavigation();
+  const router = useRouter();
   const { session, isLoading } = useSession();
+  let [showTabs, setShowTabs] = useState<boolean>();
+  const params = useGlobalSearchParams<{ tab: string }>();
+  const deferredQuery = useDeferredValue(showTabs);
 
   const path = usePathname();
-  console.log(session);
+  //console.log(path);
+  //console.log(navigation);
+  //console.log(tab.test);
+
+  console.log(deferredQuery);
+  console.log(params);
+
+  const toggleTabs = () => {
+    if (showTabs === undefined) {
+      setShowTabs(true);
+    }
+    //setShowTabs((previousState) => !previousState);
+  };
 
   if (isLoading) {
     return <Text>Loading...</Text>;
@@ -71,8 +91,20 @@ const TabLayout = () => {
             tabBarAccessibilityLabel: "home button",
             title: "",
             headerShown: false,
+            href: {
+              pathname: "/(drawer)",
+              params: {},
+            },
+            tabBarStyle: {
+              display: showTabs === false ? "none" : "flex",
+            },
             tabBarIcon: ({ color }) => (
-              <Entypo name="home" size={26} color={color} />
+              <Entypo
+                name="home"
+                size={26}
+                color={color}
+                onPress={toggleTabs}
+              />
             ),
             // headerRight: () => (
             //   <Link href="/modal" asChild>
@@ -134,19 +166,19 @@ const TabLayout = () => {
           }}
         />
         {/* <Tabs.Screen
-          name="messages"
-          options={{
-            tabBarAccessibilityLabel: "messages button",
-            headerTitleStyle: { color: colors.text },
-            title: "Messages",
-            headerShown: false,
-            headerStyle: { backgroundColor: colors.primary },
-            headerTitleAlign: "center",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome name="envelope" size={26} color={color} />
-            ),
-          }}
-        /> */}
+        name="messages"
+        options={{
+          tabBarAccessibilityLabel: "messages button",
+          headerTitleStyle: { color: colors.text },
+          title: "Messages",
+          headerShown: false,
+          headerStyle: { backgroundColor: colors.primary },
+          headerTitleAlign: "center",
+          tabBarIcon: ({ color }) => (
+            <FontAwesome name="envelope" size={26} color={color} />
+          ),
+        }}
+      /> */}
         <Tabs.Screen
           name="notifications"
           options={{
