@@ -95,7 +95,7 @@ export const CustomDrawer = ({ navigation }: Props) => {
           }}
         >
           <Image
-            source={require("../assets/images/avatar.jpg")}
+            source={require("../../assets/images/avatar.jpg")}
             style={{ height: 120, width: 120, borderRadius: 60 }}
           />
         </View>

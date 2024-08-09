@@ -2,7 +2,7 @@ import { View, Text, Button, StyleSheet } from "react-native";
 import React, { useContext } from "react";
 import { useLocalSearchParams, router, Stack, useRouter } from "expo-router";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Header } from "@/components/header";
+import { Header } from "@/app/(drawer)/_header";
 import { Image } from "expo-image";
 import { DogImage } from "@/components/DogImage";
 

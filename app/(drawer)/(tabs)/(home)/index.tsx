@@ -17,7 +17,7 @@ import {
   Manrope_200ExtraLight,
 } from "@expo-google-fonts/manrope";
 import { Tabs } from "expo-router";
-import { Header } from "@/components/header";
+import { Header } from "@/app/(drawer)/_header";
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);

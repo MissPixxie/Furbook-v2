@@ -26,7 +26,7 @@ import { ThemeContext } from "@/constants/ThemeContext";
 import { LinearGradient } from "expo-linear-gradient";
 import { Redirect, Stack } from "expo-router";
 import { useSession } from "@/constants/authenticationContext";
-import { Header } from "@/components/header";
+import { Header } from "@/app/(drawer)/_header";
 
 const TabLayout = () => {
   // const colorScheme = useColorScheme();
