@@ -27,7 +27,7 @@ export const Header = () => {
       shadowOpacity: 0.2,
       shadowRadius: 3,
       elevation: 3,
-      paddingBottom: 10,
+      paddingTop: 10,
     },
     iconStyle: {
       color: "black",

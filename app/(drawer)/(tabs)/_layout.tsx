@@ -37,23 +37,8 @@ const TabLayout = () => {
   const router = useRouter();
   const { session, isLoading } = useSession();
   let [showTabs, setShowTabs] = useState<boolean>();
-  const params = useGlobalSearchParams<{ tab: string }>();
-  const deferredQuery = useDeferredValue(showTabs);
 
   const path = usePathname();
-  //console.log(path);
-  //console.log(navigation);
-  //console.log(tab.test);
-
-  console.log(deferredQuery);
-  console.log(params);
-
-  const toggleTabs = () => {
-    if (showTabs === undefined) {
-      setShowTabs(true);
-    }
-    //setShowTabs((previousState) => !previousState);
-  };
 
   if (isLoading) {
     return <Text>Loading...</Text>;
