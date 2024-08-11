@@ -7,7 +7,7 @@ import {
   useNavigation,
 } from "expo-router";
 import React, { useContext, useState } from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
 
@@ -27,12 +27,12 @@ export const Header = () => {
       shadowOpacity: 0.2,
       shadowRadius: 3,
       elevation: 3,
-      paddingTop: 10,
     },
     iconStyle: {
       color: "black",
       textAlign: "right",
       marginRight: 15,
+      marginBottom: Platform.OS === "ios" ? -20 : 10,
     },
   });
 
