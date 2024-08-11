@@ -15,7 +15,7 @@ import {
   useRouter,
   useSegments,
 } from "expo-router";
-import { Pressable } from "react-native";
+import { Platform, Pressable } from "react-native";
 import { Text } from "react-native";
 
 import Colors from "@/constants/Colors";
@@ -57,7 +57,7 @@ const TabLayout = () => {
           tabBarShowLabel: false,
           tabBarStyle: {
             position: "absolute",
-            height: 55,
+            height: Platform.OS === "ios" ? 80 : 55,
           },
           tabBarBackground: () => (
             <LinearGradient
