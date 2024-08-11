@@ -158,12 +158,13 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
       top: 110,
       right: 95,
       backgroundColor: "#597D3E",
+      padding: 5,
     },
     ImageIcon: {
-      position: "relative",
-      zIndex: 2,
-      top: 110,
-      right: 95,
+      // position: "absolute",
+      // zIndex: 2,
+      // top: 110,
+      // right: 95,
     },
   });
 
@@ -213,7 +214,7 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
                   <View style={styles.ImageIconContainer}>
                     <MaterialIcons
                       name="add-a-photo"
-                      size={36}
+                      size={32}
                       color="black"
                       onPress={pickImage}
                       style={styles.ImageIcon}
@@ -268,6 +269,7 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
                         width: 300,
                         display: "flex",
                         paddingVertical: 7,
+                        zIndex: 1,
                       }}
                       textStyle={{
                         color: colors.text,

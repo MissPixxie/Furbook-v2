@@ -1,4 +1,4 @@
-import { AddDog } from "@/components/AddDog";
+import { AddDog } from "./_addDog";
 import { CustomButton } from "@/components/customButton";
 import { DogItem } from "@/components/dogItem";
 import { Dog } from "@/components/types";
@@ -41,11 +41,9 @@ export default function MyDogsScreen() {
 
   async function getData() {
     try {
-      const response = await fetch(
-        "http://localhost:8081/api/dogs/64c2d55242e5f091901c5497"
-      );
+      const response = await fetch("http://localhost:8081/api/dogs/");
+      console.log(response);
       const data = await response.json();
-      console.log(data);
       setData(data);
     } catch (error) {
       if (error instanceof Error) {
@@ -56,9 +54,7 @@ export default function MyDogsScreen() {
 
   useEffect(() => {
     const getDogs = async () => {
-      const res = await fetch(
-        "http://localhost:8081/api/dogs/64c2d55242e5f091901c5497"
-      );
+      const res = await fetch("http://localhost:8081/api/dogs/");
       const data = await res.json();
       setData(data);
     };

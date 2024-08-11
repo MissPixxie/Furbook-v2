@@ -92,7 +92,7 @@ const TabLayout = () => {
             tabBarAccessibilityLabel: "my dogs button",
             headerTitleStyle: { color: colors.text },
             title: "My Dogs",
-            headerShown: true,
+            headerShown: false,
             headerStyle: { backgroundColor: colors.primary },
             headerTitleAlign: "center",
             tabBarIcon: ({ color }) => (
