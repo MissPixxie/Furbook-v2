@@ -9,6 +9,7 @@ import {
   Button,
   FlatList,
   KeyboardAvoidingView,
+  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -76,6 +77,7 @@ export default function MyDogsScreen() {
   const styles = StyleSheet.create({
     container: {
       backgroundColor: colors.background,
+      flex: 1,
     },
     flatList: {
       backgroundColor: colors.background,
@@ -103,6 +105,7 @@ export default function MyDogsScreen() {
         title="New dog"
         bgColor="#bced95"
         onPress={() => setModalVisible(true)}
+        marginBottom={70}
       />
     </View>
   );

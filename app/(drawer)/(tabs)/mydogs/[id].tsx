@@ -28,12 +28,9 @@ export default function DogIdPage() {
         options={{
           headerTitle: "",
           headerShown: true,
+          headerTintColor: colors.text,
         }}
       />
-      <View accessible={true}>
-        <DogImage width={"50%"} height={"auto"} />
-        <Button onPress={() => router.back()} title="Go back" />
-      </View>
     </>
   );
 }

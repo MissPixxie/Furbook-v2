@@ -11,6 +11,7 @@ interface Props {
   borderWidth?: number;
   fontSize?: FontSize;
   icon?: any;
+  marginBottom?: number;
 }
 
 type FontSize = 16 | 18 | 20 | 22 | 26 | 28 | 32;
@@ -24,6 +25,7 @@ export const CustomButton = ({
   borderWidth,
   fontSize = 22,
   icon,
+  marginBottom,
 }: Props) => {
   const styles = StyleSheet.create({
     button: {
@@ -39,6 +41,7 @@ export const CustomButton = ({
       shadowRadius: 3,
       elevation: 3,
       borderColor: borderColor,
+      marginBottom: marginBottom,
     },
     text: {
       fontSize: fontSize,

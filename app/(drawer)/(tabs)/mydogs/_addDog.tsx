@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef } from "react";
+import React, { useCallback, useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import {
   StyleSheet,
@@ -47,18 +47,28 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
   const [name, setName] = useState("");
   const [age, setAge] = useState("");
   const [breed, setBreed] = useState("");
+
   const [openNeutered, setOpenNeutered] = useState(false);
   const [neutered, setNeutered] = useState(null);
   const [neuteredItems, setNeuteredItems] = useState([
     { label: "Yes", value: true },
     { label: "No", value: false },
   ]);
+
   const [openGender, setOpenGender] = useState(false);
   const [gender, setGender] = useState(null);
   const [genderItems, setGenderItems] = useState([
     { label: "Male", value: "Male" },
     { label: "Female", value: "Female" },
   ]);
+
+  const onNeuteredOpen = useCallback(() => {
+    setOpenGender(false);
+  }, []);
+
+  const onGenderOpen = useCallback(() => {
+    setOpenNeutered(false);
+  }, []);
 
   // const pickerRef = useRef<any>();
 
@@ -257,6 +267,7 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
                       value={gender}
                       items={genderItems}
                       setOpen={setOpenGender}
+                      onOpen={onGenderOpen}
                       setValue={setGender}
                       setItems={setGenderItems}
                       placeholder="Sex"
@@ -264,6 +275,7 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
                         backgroundColor: colors.inputs,
                         width: 300,
                       }}
+                      dropDownDirection={"BOTTOM"}
                       dropDownContainerStyle={{
                         backgroundColor: colors.inputs,
                         width: 300,
@@ -306,10 +318,12 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
                       setOpen={setOpenNeutered}
                       setValue={setNeutered}
                       setItems={setNeuteredItems}
+                      onOpen={onNeuteredOpen}
                       placeholder="Neutered"
                       style={{
                         backgroundColor: colors.inputs,
                         width: 300,
+                        zIndex: -1,
                       }}
                       dropDownContainerStyle={{
                         backgroundColor: colors.inputs,
@@ -317,6 +331,7 @@ export const AddDog = ({ closeModal, updateFunction }: Props) => {
                         display: "flex",
                         paddingVertical: 7,
                       }}
+                      dropDownDirection={"BOTTOM"}
                       textStyle={{
                         color: colors.text,
                         fontSize: 18,
