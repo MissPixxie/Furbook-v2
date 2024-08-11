@@ -7,15 +7,16 @@ interface Props {
   onPress: () => void;
   bgColor?: any;
   borderColor?: string;
-  color?: string;
+  color: string;
   borderWidth?: number;
   fontSize?: FontSize;
   icon?: any;
+  gradientColors: Array<string>;
 }
 
 type FontSize = 16 | 18 | 20 | 22 | 26 | 28 | 32;
 
-export const CustomButton = ({
+export const LinearButton = ({
   title,
   onPress,
   bgColor,
@@ -24,6 +25,7 @@ export const CustomButton = ({
   borderWidth,
   fontSize = 22,
   icon,
+  gradientColors,
 }: Props) => {
   const styles = StyleSheet.create({
     button: {
@@ -50,8 +52,10 @@ export const CustomButton = ({
   });
 
   return (
-    <TouchableOpacity style={styles.button} onPress={onPress}>
-      <Text style={styles.text}>{title}</Text>
+    <TouchableOpacity onPress={onPress}>
+      <LinearGradient colors={gradientColors} style={styles.button}>
+        <Text style={styles.text}>{title}</Text>
+      </LinearGradient>
     </TouchableOpacity>
   );
 };

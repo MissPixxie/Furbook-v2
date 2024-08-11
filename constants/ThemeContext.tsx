@@ -14,6 +14,7 @@ interface Theme {
     background: string;
     card: string;
     gradientCard: Array<string>;
+    gradientButton: Array<string>;
     inputs: string;
     text: string;
     textSecondary: string;
@@ -43,6 +44,7 @@ const MyTheme: MyTheme = {
       background: "#151515",
       card: "#272727",
       gradientCard: ["#4a4a4a", "#212121"],
+      gradientButton: ["#888888", "#3b3b3b"],
       inputs: "#272727",
       text: "#fff",
       textSecondary: "#b5b5b5",
@@ -61,6 +63,7 @@ const MyTheme: MyTheme = {
       background: "#f3f3f3",
       card: "#fff",
       gradientCard: ["#c9c9c9", "#fff"],
+      gradientButton: ["#fff", "#e2e2e2"],
       inputs: "#fff",
       text: "#000",
       textSecondary: "#000",

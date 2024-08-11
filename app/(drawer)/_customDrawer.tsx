@@ -26,6 +26,7 @@ import {
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import Svg, { Ellipse, G } from "react-native-svg";
+import { LinearButton } from "@/components/linearButton";
 
 interface Props {
   navigation: any;
@@ -53,8 +54,8 @@ export const CustomDrawer = ({ navigation }: Props) => {
       marginBottom: 10,
     },
     title: {
-      fontSize: 22,
-      color: "white",
+      fontSize: 18,
+      color: colors.text,
       marginLeft: 15,
     },
     links: {
@@ -74,7 +75,7 @@ export const CustomDrawer = ({ navigation }: Props) => {
       contentContainerStyle={{
         flex: 1,
         justifyContent: "space-between",
-        backgroundColor: "white",
+        backgroundColor: colors.background,
       }}
     >
       <LinearGradient
@@ -87,16 +88,20 @@ export const CustomDrawer = ({ navigation }: Props) => {
       >
         <View
           style={{
-            backgroundColor: "white",
+            backgroundColor: colors.background,
             justifyContent: "center",
             alignItems: "center",
-            borderBottomWidth: 2,
             borderBottomColor: "#EBF9E0",
           }}
         >
           <Image
-            source={require("../../assets/images/avatar.jpg")}
-            style={{ height: 120, width: 120, borderRadius: 60 }}
+            source={require("../../assets/images/avatar3.avif")}
+            style={{
+              height: 120,
+              width: 120,
+              borderRadius: 60,
+              marginBottom: 20,
+            }}
           />
         </View>
         <View style={{ paddingTop: 20, flex: 1 }}>
@@ -144,23 +149,29 @@ export const CustomDrawer = ({ navigation }: Props) => {
                 <Ionicons name="person" size={20} color={colors.text} />
                 <Text style={styles.title}> Account </Text>
               </View>
-              <CustomButton
+              <LinearButton
                 title="Profile"
                 fontSize={16}
                 onPress={() => {}}
                 bgColor={colors.secondaryLight}
+                gradientColors={colors.gradientButton}
+                color={colors.text}
               />
-              <CustomButton
+              <LinearButton
                 title="Privacy settings"
                 fontSize={16}
                 onPress={() => {}}
                 bgColor={colors.secondaryLight}
+                gradientColors={colors.gradientButton}
+                color={colors.text}
               />
-              <CustomButton
+              <LinearButton
                 title="Notifications"
                 fontSize={16}
                 onPress={() => {}}
                 bgColor={colors.secondaryLight}
+                gradientColors={colors.gradientButton}
+                color={colors.text}
               />
               <View
                 style={{
@@ -168,10 +179,11 @@ export const CustomDrawer = ({ navigation }: Props) => {
                   justifyContent: "space-evenly",
                   alignItems: "center",
                   paddingHorizontal: 40,
-                  marginVertical: Platform.OS === "ios" ? 20 : 0,
+                  marginVertical: Platform.OS === "ios" ? 30 : 20,
                 }}
               >
                 <Entypo
+                  gradientColors={["white", "black"]}
                   name="light-up"
                   size={18}
                   color={theme.dark ? colors.text : colors.text}
@@ -197,23 +209,29 @@ export const CustomDrawer = ({ navigation }: Props) => {
                 />
                 <Text style={styles.title}> Help </Text>
               </View>
-              <CustomButton
+              <LinearButton
                 title="About Furbooks"
                 fontSize={16}
                 onPress={() => {}}
                 bgColor={colors.secondaryLight}
+                gradientColors={colors.gradientButton}
+                color={colors.text}
               />
-              <CustomButton
+              <LinearButton
                 title="Contact"
                 fontSize={16}
                 onPress={() => {}}
                 bgColor={colors.secondaryLight}
+                gradientColors={colors.gradientButton}
+                color={colors.text}
               />
-              <CustomButton
+              <LinearButton
                 title="Privacy policy"
                 fontSize={16}
                 onPress={() => {}}
                 bgColor={colors.secondaryLight}
+                gradientColors={colors.gradientButton}
+                color={colors.text}
               />
             </View>
 
