@@ -106,7 +106,7 @@ export default function SignIn() {
           </Pressable>
           <View style={styles.SignUpButton}>
             <Text>Don't have an account? </Text>
-            <Pressable onPress={() => router.replace("/")}>
+            <Pressable onPress={() => router.replace("/sign-up")}>
               <Text
                 style={{
                   color: "#597D3E",

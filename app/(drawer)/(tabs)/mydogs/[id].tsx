@@ -5,8 +5,15 @@ import {
   StyleSheet,
   Alert,
   SafeAreaView,
+  Dimensions,
 } from "react-native";
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, {
+  useCallback,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import { useLocalSearchParams, router, Stack, useRouter } from "expo-router";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Header } from "@/app/(drawer)/_header";
@@ -20,12 +27,31 @@ import DropDownPicker from "react-native-dropdown-picker";
 import { CustomButton } from "@/components/customButton";
 import { MaterialIcons } from "@expo/vector-icons";
 import { LinearButton } from "@/components/linearButton";
+import type { ICarouselInstance } from "react-native-reanimated-carousel";
+import Carousel from "react-native-reanimated-carousel";
+import { SBItem } from "@/components/SBItem";
+import SButton from "@/components/SButton";
+
+const PAGE_WIDTH = window.innerWidth;
 
 export default function DogIdPage() {
   const router = useRouter();
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
   const [doggyData, setDoggyData] = useState<Dog | undefined>();
+
+  const [imageData, setImageData] = useState([...new Array(6).keys()]);
+  const [isFast, setIsFast] = useState(false);
+  const [isAutoPlay, setIsAutoPlay] = useState(false);
+  const [isPagingEnabled, setIsPagingEnabled] = useState(true);
+  const ref = useRef<ICarouselInstance>(null);
+  const width = Dimensions.get("window").width;
+
+  const baseOptions = {
+    vertical: false,
+    width: PAGE_WIDTH * 0.85,
+    height: PAGE_WIDTH / 2,
+  } as const;
 
   const [image, setImage] = useState<string | null>(null);
   const [selectedImageUpload, setSelectedImageUpload] = useState();
@@ -173,6 +199,101 @@ export default function DogIdPage() {
               />
             )}
           </View>
+          <View style={{ flex: 1 }}>
+            <Carousel
+              loop
+              width={width}
+              height={width / 2}
+              autoPlay={false}
+              data={[...new Array(6).keys()]}
+              scrollAnimationDuration={1000}
+              onSnapToItem={(index) => console.log("current index:", index)}
+              renderItem={({ index }) => (
+                <View
+                  style={{
+                    flex: 1,
+                    borderWidth: 1,
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text style={{ textAlign: "center", fontSize: 30 }}>
+                    {index}
+                  </Text>
+                </View>
+              )}
+            />
+          </View>
+          {/* <View style={{ flex: 1 }}>
+            <Carousel
+              {...baseOptions}
+              loop={false}
+              ref={ref}
+              style={{ width: "100%", transform: [{ rotateY: "-180deg" }] }}
+              autoPlay={isAutoPlay}
+              autoPlayInterval={isFast ? 100 : 2000}
+              data={data}
+              pagingEnabled={isPagingEnabled}
+              onSnapToItem={(index) => console.log("current index:", index)}
+              renderItem={({ index }) => (
+                <View style={{ flex: 1, marginLeft: "2.5%" }}>
+                  <SBItem key={index} index={index} />
+                </View>
+              )}
+            />
+            <SButton
+              onPress={() => {
+                setIsFast(!isFast);
+              }}
+            >
+              {isFast ? "NORMAL" : "FAST"}
+            </SButton>
+            <SButton
+              onPress={() => {
+                setIsPagingEnabled(!isPagingEnabled);
+              }}
+            >
+              PagingEnabled:{isPagingEnabled.toString()}
+            </SButton>
+            <SButton
+              onPress={() => {
+                setIsAutoPlay(!isAutoPlay);
+              }}
+            >
+              {ElementsText.AUTOPLAY}:{`${isAutoPlay}`}
+            </SButton>
+            <SButton
+              onPress={() => {
+                console.log(ref.current?.getCurrentIndex());
+              }}
+            >
+              Log current index
+            </SButton>
+            <SButton
+              onPress={() => {
+                setData(
+                  data.length === 6
+                    ? [...new Array(8).keys()]
+                    : [...new Array(6).keys()]
+                );
+              }}
+            >
+              Change data length to:{data.length === 6 ? 8 : 6}
+            </SButton>
+            <SButton
+              onPress={() => {
+                ref.current?.scrollTo({ count: -1, animated: true });
+              }}
+            >
+              prev
+            </SButton>
+            <SButton
+              onPress={() => {
+                ref.current?.scrollTo({ count: 1, animated: true });
+              }}
+            >
+              next
+            </SButton>
+          </View> */}
           <View
             style={{
               backgroundColor: colors.background,
