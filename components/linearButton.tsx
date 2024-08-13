@@ -1,6 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  DimensionValue,
+} from "react-native";
 
 interface Props {
   title: string;
@@ -12,6 +17,7 @@ interface Props {
   fontSize?: FontSize;
   icon?: any;
   gradientColors: Array<string>;
+  width?: DimensionValue | undefined;
 }
 
 type FontSize = 16 | 18 | 20 | 22 | 26 | 28 | 32;
@@ -26,10 +32,11 @@ export const LinearButton = ({
   fontSize = 22,
   icon,
   gradientColors,
+  width = "80%",
 }: Props) => {
   const styles = StyleSheet.create({
     button: {
-      width: "80%",
+      width: width,
       backgroundColor: bgColor,
       borderWidth: borderWidth,
       borderRadius: 10,

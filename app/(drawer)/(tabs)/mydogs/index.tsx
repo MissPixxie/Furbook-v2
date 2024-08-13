@@ -9,6 +9,7 @@ import {
   Button,
   FlatList,
   KeyboardAvoidingView,
+  Platform,
   ScrollView,
   StyleSheet,
   Text,
@@ -54,6 +55,16 @@ export default function MyDogsScreen() {
     }
   }
 
+  const backUpDog = {
+    _id: "64c3fdfa814905343abc5778",
+    name: "Pelle",
+    age: 10,
+    sex: "Male",
+    breed: "Chihuahua",
+    neutered: false,
+    owner: "64c2d55242e5f091901c5497",
+  };
+
   const storeDogData = async (value: Dog) => {
     try {
       const dataToStore = JSON.stringify(value);
@@ -80,7 +91,11 @@ export default function MyDogsScreen() {
     return (
       <TouchableOpacity
         onPress={async () => {
-          await storeDogData(item);
+          if (Platform.OS === "ios") {
+            await storeDogData(backUpDog);
+          } else {
+            await storeDogData(item);
+          }
           router.push(`/mydogs/${item._id}`);
         }}
       >

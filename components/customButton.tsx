@@ -12,6 +12,7 @@ interface Props {
   fontSize?: FontSize;
   icon?: any;
   marginBottom?: number;
+  width?: number;
 }
 
 type FontSize = 16 | 18 | 20 | 22 | 26 | 28 | 32;
@@ -26,10 +27,11 @@ export const CustomButton = ({
   fontSize = 22,
   icon,
   marginBottom,
+  width,
 }: Props) => {
   const styles = StyleSheet.create({
     button: {
-      width: "80%",
+      width: width,
       backgroundColor: bgColor,
       borderWidth: borderWidth,
       borderRadius: 10,
