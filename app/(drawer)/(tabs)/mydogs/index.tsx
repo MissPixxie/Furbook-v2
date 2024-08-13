@@ -3,7 +3,7 @@ import { CustomButton } from "@/components/customButton";
 import { DogItem } from "@/components/dogItem";
 import { Dog } from "@/components/types";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Stack, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import {
   Button,
@@ -16,6 +16,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function MyDogsScreen() {
   const [data, setData] = useState<Dog[]>();
@@ -53,6 +54,15 @@ export default function MyDogsScreen() {
     }
   }
 
+  const storeDogData = async (value: Dog) => {
+    try {
+      const dataToStore = JSON.stringify(value);
+      await AsyncStorage.setItem("dog", dataToStore);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     const getDogs = async () => {
       const res = await fetch("http://localhost:8081/api/dogs/");
@@ -68,7 +78,12 @@ export default function MyDogsScreen() {
 
   const itemFromList = ({ item }: { item: Dog }) => {
     return (
-      <TouchableOpacity onPress={() => router.push(`/mydogs/${item._id}`)}>
+      <TouchableOpacity
+        onPress={async () => {
+          await storeDogData(item);
+          router.push(`/mydogs/${item._id}`);
+        }}
+      >
         <DogItem item={item} />
       </TouchableOpacity>
     );
