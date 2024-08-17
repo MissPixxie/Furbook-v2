@@ -136,17 +136,8 @@ export default function MyDogsScreen() {
         bgColor="#bced95"
         onPress={() => setModalVisible(true)}
         marginBottom={70}
+        width="60%"
       />
     </View>
   );
-
-  // return (
-  //   <View accessible={true} style={styles.container}>
-  //     <View style={styles.main}>
-  //       <Text style={styles.title}>My Dogs</Text>
-  //       <Button onPress={() => router.push("/mydogs/1")} title="Dog Details" />
-  //       <Button onPress={() => router.back()} title="Go back" />
-  //     </View>
-  //   </View>
-  // );
 }

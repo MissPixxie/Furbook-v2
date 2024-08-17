@@ -113,7 +113,7 @@ export default function DogIdPage() {
       borderColor: colors.text,
       borderBottomWidth: 1,
     },
-    inputText: {
+    text: {
       marginLeft: 13,
       fontSize: 18,
       color: colors.text,
@@ -187,13 +187,19 @@ export default function DogIdPage() {
               )}
             />
           </View>
-          <Feather
-            name="settings"
-            size={28}
-            color="black"
-            style={{ textAlign: "right", margin: 20 }}
-            onPress={() => setModalVisible(true)}
-          />
+          <View style={{ backgroundColor: colors.background }}>
+            <Feather
+              name="settings"
+              size={28}
+              color={colors.text}
+              style={{
+                textAlign: "right",
+                margin: 20,
+                backgroundColor: colors.background,
+              }}
+              onPress={() => setModalVisible(true)}
+            />
+          </View>
           <View
             style={{
               backgroundColor: colors.background,
@@ -202,32 +208,34 @@ export default function DogIdPage() {
               paddingTop: 20,
             }}
           >
-            <Text>{doggyData?.name}</Text>
-            <Text>{doggyData?.age}</Text>
-            <Text>{doggyData?.breed}</Text>
+            <Text style={styles.text}>{doggyData?.name}</Text>
+            <Text style={styles.text}>{doggyData?.age}</Text>
+            <Text style={styles.text}>{doggyData?.breed}</Text>
           </View>
-          <TouchableOpacity
-            style={{
-              flexDirection: "row",
-              backgroundColor: "red",
-              borderRadius: 10,
-              width: "40%",
-              padding: 15,
-              margin: "auto",
-              alignItems: "center",
-              justifyContent: "center",
-              shadowColor: "#171717",
-              shadowOffset: { width: -2, height: 4 },
-              shadowOpacity: 0.2,
-              shadowRadius: 3,
-              elevation: 3,
-              marginVertical: 20,
-            }}
-            onPress={showAlert}
-          >
-            <Text style={{ fontSize: 20 }}>Remove dog</Text>
-            <Feather name="trash-2" size={24} color="black" />
-          </TouchableOpacity>
+          <View style={{ backgroundColor: colors.background }}>
+            <TouchableOpacity
+              style={{
+                flexDirection: "row",
+                backgroundColor: "#f82020",
+                borderRadius: 10,
+                width: "40%",
+                padding: 15,
+                margin: "auto",
+                alignItems: "center",
+                justifyContent: "center",
+                shadowColor: "#171717",
+                shadowOffset: { width: -2, height: 4 },
+                shadowOpacity: 0.2,
+                shadowRadius: 3,
+                elevation: 3,
+                marginVertical: 20,
+              }}
+              onPress={showAlert}
+            >
+              <Text style={{ fontSize: 20 }}>Remove dog</Text>
+              <Feather name="trash-2" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
         </ScrollView>
       </SafeAreaView>
     </>

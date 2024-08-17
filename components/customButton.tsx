@@ -1,6 +1,11 @@
 import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import { Text, StyleSheet, TouchableOpacity } from "react-native";
+import {
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  DimensionValue,
+} from "react-native";
 
 interface Props {
   title: string;
@@ -12,7 +17,8 @@ interface Props {
   fontSize?: FontSize;
   icon?: any;
   marginBottom?: number;
-  width?: number;
+  width?: number | DimensionValue;
+  padding?: number;
   children?: React.ReactNode;
 }
 
@@ -29,6 +35,7 @@ export const CustomButton = ({
   icon,
   marginBottom,
   width,
+  padding,
   children,
 }: Props) => {
   const styles = StyleSheet.create({
@@ -46,6 +53,7 @@ export const CustomButton = ({
       elevation: 3,
       borderColor: borderColor,
       marginBottom: marginBottom,
+      padding: padding,
     },
     text: {
       fontSize: fontSize,

@@ -326,11 +326,13 @@ export const UpdateDogModal = ({ closeModal, updateFunction }: Props) => {
                   borderColor="#71ce24"
                   borderWidth={2}
                   onPress={checkInput}
+                  width="60%"
                 />
                 <CustomButton
                   title="Close"
                   bgColor="#bced95"
                   onPress={closeModal}
+                  width="60%"
                 />
               </View>
             </View>
