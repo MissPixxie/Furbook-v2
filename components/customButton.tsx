@@ -13,6 +13,7 @@ interface Props {
   icon?: any;
   marginBottom?: number;
   width?: number;
+  children?: React.ReactNode;
 }
 
 type FontSize = 16 | 18 | 20 | 22 | 26 | 28 | 32;
@@ -28,6 +29,7 @@ export const CustomButton = ({
   icon,
   marginBottom,
   width,
+  children,
 }: Props) => {
   const styles = StyleSheet.create({
     button: {
@@ -56,6 +58,7 @@ export const CustomButton = ({
 
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
+      {children}
       <Text style={styles.text}>{title}</Text>
     </TouchableOpacity>
   );

@@ -7,6 +7,7 @@ import {
   SafeAreaView,
   Dimensions,
   KeyboardAvoidingView,
+  TouchableOpacity,
 } from "react-native";
 import React, {
   useCallback,
@@ -84,6 +85,17 @@ export default function DogIdPage() {
 
   const saveDog = () => {
     // Do update on dog
+  };
+
+  const showAlert = () => {
+    Alert.alert("Delete dog", "Are you sure you want to delete this dog?", [
+      {
+        text: "Cancel",
+        onPress: () => console.log("Cancel Pressed"),
+        style: "cancel",
+      },
+      { text: "OK", onPress: () => Alert.alert("Dog has been deleted") },
+    ]);
   };
 
   const styles = StyleSheet.create({
@@ -194,6 +206,28 @@ export default function DogIdPage() {
             <Text>{doggyData?.age}</Text>
             <Text>{doggyData?.breed}</Text>
           </View>
+          <TouchableOpacity
+            style={{
+              flexDirection: "row",
+              backgroundColor: "red",
+              borderRadius: 10,
+              width: "40%",
+              padding: 15,
+              margin: "auto",
+              alignItems: "center",
+              justifyContent: "center",
+              shadowColor: "#171717",
+              shadowOffset: { width: -2, height: 4 },
+              shadowOpacity: 0.2,
+              shadowRadius: 3,
+              elevation: 3,
+              marginVertical: 20,
+            }}
+            onPress={showAlert}
+          >
+            <Text style={{ fontSize: 20 }}>Remove dog</Text>
+            <Feather name="trash-2" size={24} color="black" />
+          </TouchableOpacity>
         </ScrollView>
       </SafeAreaView>
     </>
