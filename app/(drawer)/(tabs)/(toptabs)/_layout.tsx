@@ -58,7 +58,13 @@ const TopTabsLayout = () => {
           value={search}
         />
       </SafeAreaView>
-      <MaterialTopTabs>
+      <MaterialTopTabs
+        screenOptions={{
+          tabBarStyle: { backgroundColor: colors.inputs },
+          tabBarLabelStyle: { color: colors.text },
+          tabBarActiveTintColor: "green",
+        }}
+      >
         <MaterialTopTabs.Screen name="dogs" />
         <MaterialTopTabs.Screen name="events" />
         <MaterialTopTabs.Screen name="places" />

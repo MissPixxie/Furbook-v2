@@ -133,6 +133,19 @@ export default function DogIdPage() {
           headerTitle: doggyData?.name,
           headerShown: true,
           headerTintColor: colors.text,
+          // headerRight: () => (
+          //   <Feather
+          //     name="settings"
+          //     size={28}
+          //     color={colors.text}
+          //     style={{
+          //       textAlign: "right",
+          //       margin: 20,
+          //       backgroundColor: colors.background,
+          //     }}
+          //     onPress={() => setModalVisible(true)}
+          //   />
+          // ),
         }}
       />
       <KeyboardAvoidingView behavior="padding">
