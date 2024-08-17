@@ -32,10 +32,10 @@ import { ThemeContext } from "@/constants/ThemeContext";
 interface Props {
   closeModal: () => void;
   //addDog: (dogs: Dogs) => void;
-  updateFunction: () => void;
+  updateFunction?: () => void;
 }
 
-export const AddDog = ({ closeModal, updateFunction }: Props) => {
+export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { colors } = theme;
   const [image, setImage] = useState<string | null>(null);

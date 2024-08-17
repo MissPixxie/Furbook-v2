@@ -1,4 +1,4 @@
-import { AddDog } from "./_addDog";
+import { AddDogModal } from "./_addDogModal";
 import { CustomButton } from "@/components/customButton";
 import { DogItem } from "@/components/dogItem";
 import { Dog } from "@/components/types";
@@ -118,7 +118,7 @@ export default function MyDogsScreen() {
     <View accessible={true} style={styles.container}>
       <KeyboardAvoidingView behavior="padding">
         {modalVisible && (
-          <AddDog
+          <AddDogModal
             closeModal={toggleModal}
             //addDog={addDog}
             updateFunction={getData}
