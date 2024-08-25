@@ -62,6 +62,7 @@ const TopTabsLayout = () => {
         screenOptions={{
           tabBarStyle: { backgroundColor: colors.inputs },
           tabBarLabelStyle: { color: colors.text },
+          tabBarIndicatorStyle: { borderBottomColor: "green" },
           tabBarActiveTintColor: "green",
         }}
       >

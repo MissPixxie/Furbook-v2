@@ -12,16 +12,20 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
-      "config": {}
+      "config": {},
+      "bundleIdentifier": "com.misspixxie.Furbook"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.misspixxie.Furbook"
     },
     "web": {
       "bundler": "metro",
@@ -32,7 +36,9 @@
       [
         "expo-font",
         {
-          "fonts": ["./assets/fonts/Manrope-ExtraLight.otf"]
+          "fonts": [
+            "./assets/fonts/Manrope-ExtraLight.otf"
+          ]
         }
       ],
       "expo-router",
@@ -40,6 +46,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "39243883-6149-4c0e-af1c-142003c68ba8"
+      }
     }
   }
 }
