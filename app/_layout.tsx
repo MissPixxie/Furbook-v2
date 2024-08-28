@@ -10,6 +10,9 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeContext, ThemeProvider } from "@/constants/ThemeContext";
 import { Slot } from "expo-router";
 import { SessionProvider } from "../constants/authenticationContext";
+import { Realm, RealmProvider, useRealm, useQuery } from "@realm/react";
+import { ObjectSchema } from "realm";
+//import { AppWrapper } from "@/constants/appWrapper";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -46,13 +49,41 @@ export default function RootLayout() {
     return null;
   }
 
+  // class Task extends Realm.Object {
+  //   _id!: Realm.BSON.ObjectId;
+  //   description!: string;
+  //   isComplete!: boolean;
+  //   createdAt!: Date;
+
+  //   static generate(description: string) {
+  //     return {
+  //       _id: new Realm.BSON.ObjectId(),
+  //       description,
+  //       createdAt: new Date(),
+  //     };
+  //   }
+
+  //   static schema: ObjectSchema = {
+  //     name: "Task",
+  //     primaryKey: "_id",
+  //     properties: {
+  //       _id: "objectId",
+  //       description: "string",
+  //       isComplete: { type: "bool", default: false },
+  //       createdAt: "date",
+  //     },
+  //   };
+  // }
+
   // return <RootLayoutNav />;
   return (
-    <SessionProvider>
-      <ThemeProvider>
-        <Slot />
-      </ThemeProvider>
-    </SessionProvider>
+    <RealmProvider>
+      <SessionProvider>
+        <ThemeProvider>
+          <Slot />
+        </ThemeProvider>
+      </SessionProvider>
+    </RealmProvider>
   );
 }
 
