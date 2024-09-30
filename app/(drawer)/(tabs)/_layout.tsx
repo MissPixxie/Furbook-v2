@@ -36,17 +36,8 @@ const TabLayout = () => {
   const navigation = useNavigation();
   const router = useRouter();
   const { session, isLoading } = useSession();
-  let [showTabs, setShowTabs] = useState<boolean>();
 
   const path = usePathname();
-
-  if (isLoading) {
-    return <Text>Loading...</Text>;
-  }
-
-  if (!session) {
-    return <Redirect href="/sign-in" />;
-  }
 
   return (
     <SafeAreaProvider>

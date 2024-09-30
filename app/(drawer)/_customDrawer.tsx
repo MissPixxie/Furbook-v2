@@ -27,6 +27,8 @@ import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import Svg, { Ellipse, G } from "react-native-svg";
 import { LinearButton } from "@/components/linearButton";
+import { router } from "expo-router";
+import SignIn from "../sign-in";
 
 interface Props {
   navigation: any;
@@ -252,8 +254,8 @@ export const CustomDrawer = ({ navigation }: Props) => {
                 <TouchableOpacity
                   onPress={() => {
                     signOut();
-                    // setState(defaultContextState);
-                    // navigation.closeDrawer();
+                    router.replace("/sign-in");
+                    //navigation.closeDrawer();
                   }}
                   style={{
                     flexDirection: "row",

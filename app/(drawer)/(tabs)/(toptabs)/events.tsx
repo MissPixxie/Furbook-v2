@@ -4,7 +4,7 @@ import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
 import { Stack } from "expo-router";
 import { useContext, useEffect, useState } from "react";
-import { Event } from "@/components/types";
+import { Event } from "@/constants/types";
 import { DogItem } from "@/components/dogItem";
 import { EventItem } from "@/components/EventItem";
 import { useFonts, Manrope_800ExtraBold } from "@expo-google-fonts/manrope";

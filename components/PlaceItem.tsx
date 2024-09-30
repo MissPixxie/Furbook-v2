@@ -26,7 +26,7 @@ import Animated, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RefreshControl } from "react-native-gesture-handler";
 import { Entypo, AntDesign } from "@expo/vector-icons";
-import { Place } from "./types";
+import { Place } from "../constants/types";
 import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import {

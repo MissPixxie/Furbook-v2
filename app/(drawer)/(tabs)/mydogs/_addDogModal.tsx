@@ -17,6 +17,7 @@ import { Image } from "expo-image";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Overlay } from "@rneui/themed";
 import DropDownPicker from "react-native-dropdown-picker";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 // COMPONENTS
 import { CustomButton } from "@/components/customButton";
@@ -28,6 +29,7 @@ import { Foundation, Entypo, MaterialIcons } from "@expo/vector-icons";
 
 // CONTEXT
 import { ThemeContext } from "@/constants/ThemeContext";
+import { LinearButton } from "@/components/linearButton";
 
 interface Props {
   closeModal: () => void;
@@ -49,26 +51,30 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
   const [breed, setBreed] = useState("");
 
   const [openNeutered, setOpenNeutered] = useState(false);
-  const [neutered, setNeutered] = useState(null);
+  const [neutered, setNeutered] = useState(false);
   const [neuteredItems, setNeuteredItems] = useState([
     { label: "Yes", value: true },
     { label: "No", value: false },
   ]);
 
-  const [openGender, setOpenGender] = useState(false);
+  const [male, setMale] = useState(Boolean);
+  const [female, setFemale] = useState(Boolean);
   const [gender, setGender] = useState(null);
-  const [genderItems, setGenderItems] = useState([
-    { label: "Male", value: "Male" },
-    { label: "Female", value: "Female" },
-  ]);
 
-  const onNeuteredOpen = useCallback(() => {
-    setOpenGender(false);
-  }, []);
+  const onNeuteredOpen = useCallback(() => {}, []);
 
   const onGenderOpen = useCallback(() => {
     setOpenNeutered(false);
   }, []);
+
+  // const toggleGender = (value: string) => {
+  //   if (value === "Female") {
+
+  //   }
+  //   if (female === true) {
+  //     setMale(false);
+  //   }
+  // }, []);
 
   // const pickerRef = useRef<any>();
 
@@ -169,6 +175,7 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
       right: 95,
       backgroundColor: "#597D3E",
       padding: 5,
+      borderRadius: 4,
     },
     ImageIcon: {
       // position: "absolute",
@@ -250,47 +257,6 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
                     placeholderTextColor={colors.text}
                   />
                 </View>
-                <View
-                  style={{
-                    flexDirection: "row",
-                    width: 300,
-                    height: 50,
-                    padding: 10,
-                    marginTop: 10,
-                    alignItems: "center",
-                    zIndex: 1,
-                  }}
-                >
-                  <>
-                    <DropDownPicker
-                      open={openGender}
-                      value={gender}
-                      items={genderItems}
-                      setOpen={setOpenGender}
-                      onOpen={onGenderOpen}
-                      setValue={setGender}
-                      setItems={setGenderItems}
-                      placeholder="Sex"
-                      style={{
-                        backgroundColor: colors.inputs,
-                        width: 300,
-                      }}
-                      dropDownDirection={"BOTTOM"}
-                      dropDownContainerStyle={{
-                        backgroundColor: colors.inputs,
-                        width: 300,
-                        display: "flex",
-                        paddingVertical: 7,
-                        zIndex: 1,
-                      }}
-                      textStyle={{
-                        color: colors.text,
-                        fontSize: 18,
-                        margin: 10,
-                      }}
-                    />
-                  </>
-                </View>
                 <View style={styles.Input}>
                   <TextInput
                     onChangeText={(value) => setBreed(value)}
@@ -307,52 +273,89 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
                     height: 50,
                     padding: 10,
                     marginTop: 10,
+                    justifyContent: "center",
+                    alignItems: "center",
+                    zIndex: 1,
+                  }}
+                >
+                  <BouncyCheckbox
+                    onPress={(isChecked: boolean) => {
+                      setFemale(true);
+                      setMale(false);
+                    }}
+                    isChecked={female}
+                    fillColor="#7ba856"
+                    unFillColor="white"
+                    text="Female"
+                    style={{ width: "50%" }}
+                    iconStyle={{ borderRadius: 4 }}
+                    innerIconStyle={{ borderColor: "transparent" }}
+                    textStyle={{
+                      textDecorationLine: "none",
+                    }}
+                  />
+                  <BouncyCheckbox
+                    onPress={(isChecked: boolean) => {
+                      setFemale(false);
+                      setMale(true);
+                    }}
+                    isChecked={male}
+                    fillColor="#7ba856"
+                    unFillColor="white"
+                    text="Male"
+                    style={{ width: "50%" }}
+                    iconStyle={{ borderRadius: 4 }}
+                    innerIconStyle={{ borderColor: "transparent" }}
+                    textStyle={{
+                      textDecorationLine: "none",
+                    }}
+                  />
+                </View>
+                <View
+                  style={{
+                    flexDirection: "row",
+                    width: 300,
+                    height: 50,
+                    padding: 10,
+                    marginTop: 10,
                     alignItems: "center",
                   }}
                 >
-                  <>
-                    <DropDownPicker
-                      open={openNeutered}
-                      value={neutered}
-                      items={neuteredItems}
-                      setOpen={setOpenNeutered}
-                      setValue={setNeutered}
-                      setItems={setNeuteredItems}
-                      onOpen={onNeuteredOpen}
-                      placeholder="Neutered"
-                      style={{
-                        backgroundColor: colors.inputs,
-                        width: 300,
-                        zIndex: -1,
-                      }}
-                      dropDownContainerStyle={{
-                        backgroundColor: colors.inputs,
-                        width: 300,
-                        display: "flex",
-                        paddingVertical: 7,
-                      }}
-                      dropDownDirection={"BOTTOM"}
-                      textStyle={{
-                        color: colors.text,
-                        fontSize: 18,
-                        margin: 10,
-                      }}
-                    />
-                  </>
+                  <BouncyCheckbox
+                    onPress={(isChecked: boolean) => {
+                      setNeutered(true);
+                    }}
+                    isChecked={neutered}
+                    fillColor="#7ba856"
+                    unFillColor="white"
+                    text="Neutered"
+                    style={{ width: "50%" }}
+                    iconStyle={{ borderRadius: 4 }}
+                    innerIconStyle={{ borderColor: "transparent" }}
+                    textStyle={{
+                      textDecorationLine: "none",
+                    }}
+                  />
                 </View>
               </View>
+
               <View style={{ zIndex: -1, width: "100%" }}>
-                <CustomButton
+                <LinearButton
                   title="Add new dog"
-                  bgColor="#f7f7f7"
-                  borderColor="#71ce24"
-                  borderWidth={2}
                   onPress={checkInput}
+                  gradientColors={["#bced95", "#d2f2b8", "#bced95"]}
+                  color={colors.background}
+                />
+                <LinearButton
+                  title="Close"
+                  onPress={closeModal}
+                  gradientColors={["#0c1603", "#182c07", "#0c1603"]}
+                  color={colors.text}
                 />
                 <CustomButton
                   title="Close"
-                  bgColor="#bced95"
                   onPress={closeModal}
+                  bgColor={"#182c07"}
                 />
               </View>
             </View>

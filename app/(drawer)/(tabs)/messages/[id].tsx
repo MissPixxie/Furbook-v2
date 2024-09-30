@@ -6,7 +6,7 @@ import { Header } from "@/app/(drawer)/_header";
 import { Image } from "expo-image";
 import { DogImage } from "@/components/DogImage";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Message } from "@/components/types";
+import { Message } from "@/constants/types";
 
 interface Props {
   item: Message;

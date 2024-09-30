@@ -11,6 +11,9 @@ import { DrawerActions } from "@react-navigation/native";
 import { Header } from "@/app/(drawer)/_header";
 import { CustomDrawer } from "./_customDrawer";
 
+import { appId, baseUrl } from "../../atlasConfig.json";
+import SignIn from "../sign-in";
+
 export default function DrawerLayout() {
   const navigation = useNavigation();
   const params = useLocalSearchParams<{ user: string }>();

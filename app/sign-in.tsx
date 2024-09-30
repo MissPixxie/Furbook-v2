@@ -13,12 +13,14 @@ import { Image } from "expo-image";
 import { useSession } from "@/constants/authenticationContext";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useAuth } from "@realm/react";
 
 export default function SignIn() {
   const { signIn } = useSession();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   return (
     // <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
     //   <Text

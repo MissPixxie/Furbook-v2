@@ -25,7 +25,7 @@ import Animated, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RefreshControl } from "react-native-gesture-handler";
 import { Entypo, AntDesign } from "@expo/vector-icons";
-import { Dog } from "./types";
+import { Dog } from "../constants/types";
 import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { RouteNode } from "expo-router/build/Route";

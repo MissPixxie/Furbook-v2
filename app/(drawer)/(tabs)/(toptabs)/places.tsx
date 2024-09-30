@@ -2,7 +2,7 @@ import { FlatList, StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
 import { Stack } from "expo-router";
 import { useContext, useEffect, useState } from "react";
-import { Place } from "@/components/types";
+import { Place } from "@/constants/types";
 import { PlaceItem } from "@/components/PlaceItem";
 import { ThemeContext } from "@/constants/ThemeContext";
 

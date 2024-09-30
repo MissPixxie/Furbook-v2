@@ -9,7 +9,7 @@ import {
   useNavigation,
 } from "expo-router";
 import { useContext, useEffect, useState } from "react";
-import { Dog } from "@/components/types";
+import { Dog } from "@/constants/types";
 import { DogItem } from "@/components/dogItem";
 import { ThemeContext } from "@/constants/ThemeContext";
 

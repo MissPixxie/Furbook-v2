@@ -22,7 +22,7 @@ import { Header } from "@/app/(drawer)/_header";
 import { Image } from "expo-image";
 import { DogImage } from "@/components/DogImage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { Dog } from "@/components/types";
+import { Dog } from "@/constants/types";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";

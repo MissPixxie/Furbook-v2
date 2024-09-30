@@ -1,5 +1,6 @@
 import React, { createContext, useState } from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Appearance } from "react-native";
 
 interface Props {
   children: React.ReactNode;
@@ -82,6 +83,12 @@ export const ThemeContext = createContext<Context>({
 
 export const ThemeProvider = ({ children }: Props) => {
   const [theme, setTheme] = useState<Theme>(MyTheme.light);
+
+  const colorScheme = Appearance.getColorScheme();
+  console.log(colorScheme);
+  if (colorScheme === "dark") {
+    setTheme(MyTheme.dark);
+  }
 
   const toggleTheme = () => {
     const newTheme = theme === MyTheme.light ? MyTheme.dark : MyTheme.light;

@@ -1,7 +1,7 @@
 import { AddDog } from "@/components/AddDog";
 import { CustomButton } from "@/components/customButton";
 import { MessageItem } from "@/components/MessageItem";
-import { Message } from "@/components/types";
+import { Message } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Link, Stack, useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
