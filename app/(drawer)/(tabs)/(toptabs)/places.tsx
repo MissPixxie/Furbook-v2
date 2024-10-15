@@ -5,24 +5,12 @@ import { useContext, useEffect, useState } from "react";
 import { Place } from "@/constants/types";
 import { PlaceItem } from "@/components/PlaceItem";
 import { ThemeContext } from "@/constants/ThemeContext";
+import { useFetchPlaces } from "@/apiFetch/useFetchPlaces";
 
-const Page = () => {
-  const [data, setData] = useState();
+const PlacesScreen = () => {
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
-
-  useEffect(() => {
-    const getPlaces = async () => {
-      const res = await fetch("http://localhost:8081/api/places");
-      const data = await res.json();
-      setData(data);
-    };
-    getPlaces();
-  }, []);
-
-  const itemFromList = ({ item }: { item: Place }) => {
-    return <PlaceItem item={item} />;
-  };
+  const { placesData, error } = useFetchPlaces();
 
   const styles = StyleSheet.create({
     container: {
@@ -31,10 +19,14 @@ const Page = () => {
     },
   });
 
+  const itemFromList = ({ item }: { item: Place }) => {
+    return <PlaceItem item={item} />;
+  };
+
   return (
     <View accessible={true} style={styles.container}>
       <FlatList
-        data={data}
+        data={placesData}
         renderItem={itemFromList}
         keyExtractor={(item) => item._id}
       />
@@ -42,4 +34,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default PlacesScreen;

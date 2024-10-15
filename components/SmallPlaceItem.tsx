@@ -34,6 +34,8 @@ import {
   Manrope_200ExtraLight,
 } from "@expo-google-fonts/manrope";
 import { useFetchPlaces } from "@/apiFetch/useFetchPlaces";
+import { CustomCard } from "./CustomCard";
+import { LinearGradient } from "expo-linear-gradient";
 
 interface ItemProps {
   item: Place;
@@ -43,6 +45,7 @@ export const PlaceItem = ({ item }: ItemProps) => {
   const [isActive, setActive] = useState(false);
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { colors } = theme;
+  const { placesData, error } = useFetchPlaces();
 
   let [fontsLoaded, fontError] = useFonts({
     Manrope_800ExtraBold,
@@ -51,26 +54,17 @@ export const PlaceItem = ({ item }: ItemProps) => {
     Manrope_200ExtraLight,
   });
 
-  if (Platform.OS === "ios") {
-    console.log("ios");
-  } else {
-    console.log("android");
-  }
-
   if (!fontsLoaded && !fontError) {
     return null;
   }
 
   const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: colors.background,
-    },
     postContainer: {
       width: "100%",
-      marginVertical: 10,
-      flexDirection: "column",
-      backgroundColor: colors.card,
+      marginVertical: 3,
+      padding: 5,
+      flexDirection: "row",
+      backgroundColor: "#d5fcb6",
       borderRadius: 10,
       shadowColor: "#080808",
       shadowOffset: { width: -1, height: 2 },
@@ -79,13 +73,14 @@ export const PlaceItem = ({ item }: ItemProps) => {
       elevation: 4,
     },
     imgAvatar: {
-      borderTopLeftRadius: 10,
-      borderTopRightRadius: 20,
+      borderRadius: 3,
+      width: "30%",
+      height: "auto",
     },
     textTitle: {
       fontFamily: "Manrope_800ExtraBold",
       color: colors.text,
-      fontSize: 20,
+      fontSize: 16,
     },
     textStyle: {
       color: colors.text,
@@ -95,7 +90,10 @@ export const PlaceItem = ({ item }: ItemProps) => {
 
   // Fix styling, cards big image
   return (
-    <Animated.View accessible={true} style={styles.postContainer}>
+    <LinearGradient
+      colors={["#d8fcbb", "#eaffd9"]}
+      style={styles.postContainer}
+    >
       <Image
         style={styles.imgAvatar}
         source={require("../assets/images/beach.jpg")}
@@ -104,7 +102,7 @@ export const PlaceItem = ({ item }: ItemProps) => {
         accessible={true}
         style={{
           flex: 1,
-          flexDirection: "row",
+          flexDirection: "column",
           paddingHorizontal: 5,
           paddingVertical: 10,
         }}
@@ -120,26 +118,26 @@ export const PlaceItem = ({ item }: ItemProps) => {
           >
             {item.name}
           </Text>
-          <Text style={styles.textStyle}>{item.description}</Text>
           <Text style={styles.textStyle}>{item.location}</Text>
-        </View>
-        <View
-          accessible={true}
-          style={{ flex: 1, alignItems: "flex-end", paddingRight: 15 }}
-        >
           <Text
             style={{
               fontFamily: "Manrope_300Light",
-              fontSize: 18,
+              fontSize: 14,
               color: colors.text,
-              flexGrow: 2,
-              textAlign: "right",
-              marginRight: 10,
-              alignItems: "flex-start",
             }}
           >
             {item.category}
           </Text>
+        </View>
+      </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          marginRight: 10,
+        }}
+      >
+        <Text>
           {isActive ? (
             <Entypo
               name="heart"
@@ -161,8 +159,8 @@ export const PlaceItem = ({ item }: ItemProps) => {
               }}
             />
           )}
-        </View>
+        </Text>
       </View>
-    </Animated.View>
+    </LinearGradient>
   );
 };

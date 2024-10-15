@@ -10,7 +10,7 @@ import { EventItem } from "@/components/EventItem";
 import { useFonts, Manrope_800ExtraBold } from "@expo-google-fonts/manrope";
 import { ThemeContext } from "@/constants/ThemeContext";
 
-const Page = () => {
+const EventScreen = () => {
   const [data, setData] = useState();
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
@@ -46,4 +46,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default EventScreen;

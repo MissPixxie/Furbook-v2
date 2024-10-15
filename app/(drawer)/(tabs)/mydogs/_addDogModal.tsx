@@ -19,6 +19,7 @@ import { Overlay } from "@rneui/themed";
 import DropDownPicker from "react-native-dropdown-picker";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
+
 // COMPONENTS
 import { CustomButton } from "@/components/customButton";
 import * as ImagePicker from "expo-image-picker";
@@ -50,12 +51,7 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
   const [age, setAge] = useState("");
   const [breed, setBreed] = useState("");
 
-  const [openNeutered, setOpenNeutered] = useState(false);
   const [neutered, setNeutered] = useState(false);
-  const [neuteredItems, setNeuteredItems] = useState([
-    { label: "Yes", value: true },
-    { label: "No", value: false },
-  ]);
 
   const [male, setMale] = useState(Boolean);
   const [female, setFemale] = useState(Boolean);
@@ -63,32 +59,6 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
 
   const onNeuteredOpen = useCallback(() => {}, []);
 
-  const onGenderOpen = useCallback(() => {
-    setOpenNeutered(false);
-  }, []);
-
-  // const toggleGender = (value: string) => {
-  //   if (value === "Female") {
-
-  //   }
-  //   if (female === true) {
-  //     setMale(false);
-  //   }
-  // }, []);
-
-  // const pickerRef = useRef<any>();
-
-  // function open() {
-  //   if (pickerRef != undefined) {
-  //     pickerRef.current.focus();
-  //   }
-  // }
-
-  // function close() {
-  //   if (pickerRef != undefined) {
-  //     pickerRef.current.blur();
-  //   }
-  // }
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({

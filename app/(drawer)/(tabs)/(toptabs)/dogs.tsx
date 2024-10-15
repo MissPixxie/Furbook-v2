@@ -13,16 +13,10 @@ import { Dog } from "@/constants/types";
 import { DogItem } from "@/components/dogItem";
 import { ThemeContext } from "@/constants/ThemeContext";
 
-const Page = () => {
+const DogScreen = () => {
   const [data, setData] = useState();
   const { theme } = useContext(ThemeContext);
   const { colors } = theme;
-
-  const p = useLocalSearchParams();
-  const g = useGlobalSearchParams();
-
-  console.log(p);
-  console.log(g);
 
   useEffect(() => {
     const getDogs = async () => {
@@ -57,4 +51,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default DogScreen;

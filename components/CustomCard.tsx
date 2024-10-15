@@ -1,4 +1,4 @@
-import { LinearGradient } from "expo-linear-gradient";
+import { LinearGradient, LinearGradientPoint } from "expo-linear-gradient";
 import React from "react";
 import { Text, StyleSheet, TouchableOpacity, View, Image } from "react-native";
 
@@ -16,6 +16,10 @@ interface Props {
   height?: number;
   rowGap?: number;
   gradientColors: Array<string>;
+  padding?: number;
+  locations?: Array<number>;
+  start?: LinearGradientPoint;
+  marginVertical?: number;
 }
 
 type FontSize = 18 | 20 | 22 | 26 | 28 | 32;
@@ -35,10 +39,14 @@ export const CustomCard = ({
   height,
   gradientColors,
   rowGap,
+  padding = 20,
+  locations,
+  start,
+  marginVertical,
 }: Props) => {
   const styles = StyleSheet.create({
     linearGradient: {
-      padding: 20,
+      padding: padding,
       rowGap: rowGap,
       color: color,
       flex: flex,
@@ -50,6 +58,7 @@ export const CustomCard = ({
       shadowOpacity: 0.2,
       shadowRadius: 3,
       elevation: 3,
+      marginVertical: marginVertical,
     },
     cardContainer: {
       backgroundColor: "transparent",
