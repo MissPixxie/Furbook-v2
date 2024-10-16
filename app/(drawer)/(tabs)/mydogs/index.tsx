@@ -18,6 +18,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import ImageGallery from "@/components/ImageGallery";
 
 export default function MyDogsScreen() {
   const [data, setData] = useState<Dog[]>();
@@ -131,6 +132,10 @@ export default function MyDogsScreen() {
         keyExtractor={(item) => item._id}
         style={styles.flatList}
       />
+      <View>
+        <Text>Gallery</Text>
+        <ImageGallery />
+      </View>
       <CustomButton
         title="New dog"
         bgColor="#bced95"

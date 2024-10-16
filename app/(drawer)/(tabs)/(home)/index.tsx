@@ -83,9 +83,7 @@ export default function HomeScreen() {
   // }
 
   return (
-    <KeyboardAwareScrollView
-      style={{ backgroundColor: colors.background, paddingTop: 10 }}
-    >
+    <View style={{ flex: 1 }}>
       <Text style={{ fontSize: 20, color: colors.text }}>Places</Text>
       <View
         style={{
@@ -121,7 +119,7 @@ export default function HomeScreen() {
         lightColor="green"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <CustomCard gradientColors={colors.gradientCard}>
+      {/* <CustomCard gradientColors={colors.gradientCard}>
         <View
           style={{
             margin: "auto",
@@ -182,7 +180,7 @@ export default function HomeScreen() {
             <Text style={{ color: "#fff", fontWeight: "600" }}>Events</Text>
           </RNBounceable>
         </View>
-      </CustomCard>
-    </KeyboardAwareScrollView>
+      </CustomCard> */}
+    </View>
   );
 }
