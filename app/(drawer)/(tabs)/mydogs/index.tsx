@@ -18,7 +18,7 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import ImageGallery from "@/components/ImageGallery";
+import ImageGallery from "@/components/ImageGallery/ImageGallery";
 
 export default function MyDogsScreen() {
   const [data, setData] = useState<Dog[]>();
@@ -116,33 +116,40 @@ export default function MyDogsScreen() {
   });
 
   return (
-    <View accessible={true} style={styles.container}>
-      <KeyboardAvoidingView behavior="padding">
-        {modalVisible && (
-          <AddDogModal
-            closeModal={toggleModal}
-            //addDog={addDog}
-            updateFunction={getData}
-          />
-        )}
-      </KeyboardAvoidingView>
-      <FlatList
-        data={data}
-        renderItem={itemFromList}
-        keyExtractor={(item) => item._id}
-        style={styles.flatList}
-      />
-      <View>
-        <Text>Gallery</Text>
-        <ImageGallery />
+    <ScrollView>
+      <View accessible={true} style={styles.container}>
+        <KeyboardAvoidingView behavior="padding">
+          {modalVisible && (
+            <AddDogModal
+              closeModal={toggleModal}
+              //addDog={addDog}
+              updateFunction={getData}
+            />
+          )}
+        </KeyboardAvoidingView>
+        <FlatList
+          data={data}
+          renderItem={itemFromList}
+          keyExtractor={(item) => item._id}
+          style={styles.flatList}
+        />
+        <View style={{ padding: 5 }}>
+          <View
+            style={{ flexDirection: "row", justifyContent: "space-between" }}
+          >
+            <Text style={{ fontSize: 20 }}>Gallery</Text>
+            <Text style={{ fontSize: 18, marginRight: 5 }}>See all</Text>
+          </View>
+          <ImageGallery />
+        </View>
+        <CustomButton
+          title="New dog"
+          bgColor="#bced95"
+          onPress={() => setModalVisible(true)}
+          marginBottom={70}
+          width="60%"
+        />
       </View>
-      <CustomButton
-        title="New dog"
-        bgColor="#bced95"
-        onPress={() => setModalVisible(true)}
-        marginBottom={70}
-        width="60%"
-      />
-    </View>
+    </ScrollView>
   );
 }
