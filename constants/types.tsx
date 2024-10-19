@@ -1,3 +1,5 @@
+import { ImageSourcePropType } from "react-native";
+
 export type Dog = {
   _id: string;
   name: string;
@@ -49,4 +51,10 @@ export type Message = {
   receiver: User["name"]; // User
   message: string;
   createdAt: Date;
+};
+
+export type ImageItem = {
+  id: number | undefined;
+  url: ImageSourcePropType | undefined;
+  date: string | undefined;
 };

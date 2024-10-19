@@ -1,17 +1,16 @@
+import { useState } from "react";
 import {
   Image,
   ImageSourcePropType,
+  KeyboardAvoidingView,
+  Modal,
   StyleSheet,
   useWindowDimensions,
+  View,
 } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
+import { TouchableOpacity } from "react-native-gesture-handler";
 import Animated, { useSharedValue } from "react-native-reanimated";
-
-type ImageItem = {
-  id: number;
-  url: ImageSourcePropType | undefined;
-  date: string;
-};
+import { ImageItem } from "@/constants/types";
 
 export default function ImageElement({ url }: ImageItem) {
   const { width } = useWindowDimensions();
@@ -19,9 +18,7 @@ export default function ImageElement({ url }: ImageItem) {
 
   const styles = StyleSheet.create({
     imageStyle: {
-      //flex: 1,
       maxWidth: widthOfImage,
-      //alignSelf: "stretch",
       maxHeight: 200,
     },
   });

@@ -2,11 +2,10 @@ import React, { Children, createContext, useContext, useMemo } from "react";
 import { useState, useEffect, useCallback } from "react";
 import {
   View,
-  Image,
-  Text,
-  FlatList,
+  StyleSheet,
   ImageSourcePropType,
   useWindowDimensions,
+  KeyboardAvoidingView,
 } from "react-native";
 import Animated, {
   useSharedValue,
@@ -24,7 +23,9 @@ import Animated, {
 import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import ImageElement from "./ImageElement";
-import { ScrollView } from "react-native-gesture-handler";
+import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
+import { Modal } from "../Modal";
+import { ImageItem } from "@/constants/types";
 
 const images: Array<ImageItem> = [
   { id: 1, url: require("@/assets/images/galleryimage1.jpg"), date: "" },
@@ -33,33 +34,42 @@ const images: Array<ImageItem> = [
   { id: 4, url: require("@/assets/images/galleryimage4.jpg"), date: "" },
 ];
 
-type ImageItem = {
-  id: number;
-  url: ImageSourcePropType | undefined;
-  date: string;
-};
-
 export default function ImageGallery() {
+  const [currentImage, setCurrentImage] = useState<ImageItem | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const toggleModal = () => {
+    setModalVisible(!modalVisible);
+  };
   // Hämtar värdet på skärmen och delar det med 2 för att skapa 2 columner
   // tar bort 5 på grund av att columngap ska finnas med i beräkningen
   const { width } = useWindowDimensions();
   const widthOfImageView = width / 2 - 8;
 
+  const styles = StyleSheet.create({
+    container: {
+      flexDirection: "row",
+      flexWrap: "wrap",
+      rowGap: 5,
+      columnGap: 5,
+      maxWidth: width,
+    },
+  });
+
   return (
-    <View
-      style={{
-        flexDirection: "row",
-        flexWrap: "wrap",
-        rowGap: 5,
-        columnGap: 5,
-        maxWidth: width,
-        backgroundColor: "blue",
-      }}
-    >
+    <View style={styles.container}>
+      <KeyboardAvoidingView behavior="padding">
+        {modalVisible && (
+          <Modal closeModal={toggleModal} image={currentImage} />
+        )}
+      </KeyboardAvoidingView>
       {images.map((image) => (
-        <View
-          style={{
-            maxWidth: widthOfImageView,
+        <TouchableOpacity
+          key={image.id}
+          style={{ maxWidth: widthOfImageView, maxHeight: 200 }}
+          onPress={() => {
+            setCurrentImage(image);
+            setModalVisible(true);
           }}
         >
           <ImageElement
@@ -68,15 +78,8 @@ export default function ImageGallery() {
             url={image.url}
             date={image.date}
           />
-        </View>
+        </TouchableOpacity>
       ))}
     </View>
-    // <FlatList
-    //   data={images}
-    //   renderItem={imageItem}
-    //   keyExtractor={(item) => item.id.toString()}
-    //   numColumns={2}
-    //   centerContent={true}
-    // />
   );
 }

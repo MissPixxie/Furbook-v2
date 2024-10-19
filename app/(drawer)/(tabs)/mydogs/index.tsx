@@ -127,12 +127,12 @@ export default function MyDogsScreen() {
             />
           )}
         </KeyboardAvoidingView>
-        <FlatList
+        {/* <FlatList
           data={data}
           renderItem={itemFromList}
           keyExtractor={(item) => item._id}
           style={styles.flatList}
-        />
+        /> */}
         <View style={{ padding: 5 }}>
           <View
             style={{ flexDirection: "row", justifyContent: "space-between" }}
