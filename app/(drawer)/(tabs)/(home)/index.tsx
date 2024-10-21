@@ -105,7 +105,7 @@ export default function HomeScreen() {
         darkColor="rgba(255,255,255,0.1)"
       />
       <View>
-        <Text>Create</Text>
+        <Text style={{ fontSize: 20, color: colors.text }}>Create</Text>
         <View style={{ margin: "auto" }}>
           <Create />
         </View>

@@ -32,7 +32,7 @@ export default function BouncyBox({ children, backgroundColor }: Props) {
     });
 
   const animatedStyles = useAnimatedStyle(() => ({
-    transform: [{ scale: withTiming(pressed.value ? 1 : 1.5) }],
+    transform: [{ scale: withTiming(pressed.value ? 0.5 : 1) }],
   }));
 
   const styles = StyleSheet.create({
@@ -40,8 +40,12 @@ export default function BouncyBox({ children, backgroundColor }: Props) {
       height: 100,
       width: 100,
       borderRadius: 5,
-      padding: 3,
       backgroundColor: backgroundColor,
+      shadowColor: "#1f1f1f",
+      shadowOffset: { width: -2, height: 4 },
+      shadowOpacity: 0.1,
+      shadowRadius: 3,
+      elevation: 2,
     },
   });
 
