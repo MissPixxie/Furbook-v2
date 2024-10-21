@@ -36,10 +36,10 @@ const images: Array<ImageItem> = [
 
 export default function ImageGallery() {
   const [currentImage, setCurrentImage] = useState<ImageItem | null>(null);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [imageModalVisible, setImageModalVisible] = useState(false);
 
   const toggleModal = () => {
-    setModalVisible(!modalVisible);
+    setImageModalVisible(!imageModalVisible);
   };
   // Hämtar värdet på skärmen och delar det med 2 för att skapa 2 columner
   // tar bort 5 på grund av att columngap ska finnas med i beräkningen
@@ -58,18 +58,13 @@ export default function ImageGallery() {
 
   return (
     <View style={styles.container}>
-      <KeyboardAvoidingView behavior="padding">
-        {modalVisible && (
-          <Modal closeModal={toggleModal} image={currentImage} />
-        )}
-      </KeyboardAvoidingView>
       {images.map((image) => (
         <TouchableOpacity
           key={image.id}
           style={{ maxWidth: widthOfImageView, maxHeight: 200 }}
           onPress={() => {
             setCurrentImage(image);
-            setModalVisible(true);
+            setImageModalVisible(true);
           }}
         >
           <ImageElement
@@ -80,6 +75,11 @@ export default function ImageGallery() {
           />
         </TouchableOpacity>
       ))}
+      <KeyboardAvoidingView behavior="padding">
+        {imageModalVisible && (
+          <Modal closeImageModal={toggleModal} image={currentImage} />
+        )}
+      </KeyboardAvoidingView>
     </View>
   );
 }

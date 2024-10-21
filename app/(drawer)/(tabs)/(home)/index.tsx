@@ -18,11 +18,9 @@ import {
   Manrope_300Light,
   Manrope_200ExtraLight,
 } from "@expo-google-fonts/manrope";
-import { Tabs } from "expo-router";
-import { Header } from "@/app/(drawer)/_header";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { Place } from "@/constants/types";
 import { PlaceItem } from "@/components/SmallPlaceItem";
+import Create from "@/components/Create";
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -83,35 +81,21 @@ export default function HomeScreen() {
   // }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ padding: 8 }}>
       <Text style={{ fontSize: 20, color: colors.text }}>Places</Text>
       <View
         style={{
           margin: "auto",
           width: "100%",
-          rowGap: 10,
-          columnGap: 15,
-          backgroundColor: "transparent",
         }}
       >
         <FlatList
           data={placesData}
           renderItem={itemFromList}
           keyExtractor={(item) => item._id}
+          collapsable={true}
+          style={{ maxHeight: 296, marginBottom: 10 }}
         />
-        <RNBounceable
-          style={{
-            backgroundColor: "#bced95",
-            borderRadius: 5,
-            padding: 3,
-            width: "100%",
-          }}
-          onPress={() => {}}
-        >
-          <Text style={{ color: colors.text, fontWeight: "600" }}>
-            New places
-          </Text>
-        </RNBounceable>
       </View>
       {/* <Button title="test" onPress={speak} /> */}
       <View
@@ -119,68 +103,10 @@ export default function HomeScreen() {
         lightColor="green"
         darkColor="rgba(255,255,255,0.1)"
       />
-      {/* <CustomCard gradientColors={colors.gradientCard}>
-        <View
-          style={{
-            margin: "auto",
-            width: "80%",
-            flexDirection: "row",
-            flexWrap: "wrap",
-            rowGap: 15,
-            columnGap: 15,
-            backgroundColor: "transparent",
-          }}
-        >
-          <RNBounceable
-            style={{
-              backgroundColor: "#bced95",
-              borderRadius: 5,
-              padding: 3,
-              width: 100,
-              height: 100,
-            }}
-            onPress={() => {}}
-          >
-            <Text style={{ color: "#fff", fontWeight: "600" }}>Events</Text>
-          </RNBounceable>
-          <RNBounceable
-            style={{
-              backgroundColor: "#bced95",
-              borderRadius: 5,
-              padding: 3,
-              width: 100,
-              height: 100,
-            }}
-            onPress={() => {}}
-          >
-            <Text style={{ color: "#fff", fontWeight: "600" }}>Events</Text>
-          </RNBounceable>
-          <RNBounceable
-            style={{
-              backgroundColor: "#bced95",
-              borderRadius: 5,
-              padding: 3,
-              width: 100,
-              height: 100,
-            }}
-            onPress={() => {}}
-          >
-            <Text style={{ color: "#fff", fontWeight: "600" }}>Events</Text>
-          </RNBounceable>
-          <RNBounceable
-            style={{
-              backgroundColor: "#bced95",
-              borderRadius: 5,
-              padding: 3,
-              width: 100,
-              height: 100,
-            }}
-            onPress={() => {}}
-          >
-            <Text style={{ color: "#fff", fontWeight: "600" }}>Events</Text>
-          </RNBounceable>
-        </View>
-      </CustomCard> */}
+      <Text>Create</Text>
+      <View style={{ margin: "auto" }}>
+        <Create />
+      </View>
     </View>
   );
 }

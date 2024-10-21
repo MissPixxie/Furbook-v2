@@ -19,7 +19,6 @@ import { Overlay } from "@rneui/themed";
 import DropDownPicker from "react-native-dropdown-picker";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
-
 // COMPONENTS
 import { CustomButton } from "@/components/customButton";
 import * as ImagePicker from "expo-image-picker";
@@ -58,7 +57,6 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
   const [gender, setGender] = useState(null);
 
   const onNeuteredOpen = useCallback(() => {}, []);
-
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -321,11 +319,6 @@ export const AddDogModal = ({ closeModal, updateFunction }: Props) => {
                   onPress={closeModal}
                   gradientColors={["#0c1603", "#182c07", "#0c1603"]}
                   color={colors.text}
-                />
-                <CustomButton
-                  title="Close"
-                  onPress={closeModal}
-                  bgColor={"#182c07"}
                 />
               </View>
             </View>

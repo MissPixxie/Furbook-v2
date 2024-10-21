@@ -127,6 +127,21 @@ export default function MyDogsScreen() {
             />
           )}
         </KeyboardAvoidingView>
+        {data?.map((dog) => (
+          <TouchableOpacity
+            key={dog._id}
+            onPress={async () => {
+              if (Platform.OS === "ios") {
+                await storeDogData(backUpDog);
+              } else {
+                await storeDogData(dog);
+              }
+              router.push(`/mydogs/${dog._id}`);
+            }}
+          >
+            <DogItem item={dog} />
+          </TouchableOpacity>
+        ))}
         {/* <FlatList
           data={data}
           renderItem={itemFromList}

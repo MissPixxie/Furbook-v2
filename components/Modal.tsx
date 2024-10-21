@@ -20,11 +20,11 @@ import { ThemeContext } from "@/constants/ThemeContext";
 import ImageElement from "./ImageGallery/ImageElement";
 
 interface Props {
-  closeModal: () => void;
+  closeImageModal: () => void;
   image: ImageItem | null;
 }
 
-export const Modal = ({ closeModal, image }: Props) => {
+export const Modal = ({ closeImageModal, image }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { colors } = theme;
 
@@ -38,14 +38,14 @@ export const Modal = ({ closeModal, image }: Props) => {
   });
 
   return (
-    <TouchableWithoutFeedback onPress={closeModal}>
+    <TouchableWithoutFeedback onPress={closeImageModal}>
       <KeyboardAwareScrollView>
         <KeyboardAvoidingView behavior="padding">
           <Overlay
             isVisible={true}
             fullScreen={false}
             backdropStyle={{ backgroundColor: "black", opacity: 0.7 }}
-            onBackdropPress={closeModal}
+            onBackdropPress={closeImageModal}
             overlayStyle={{
               flex: 1,
               backgroundColor: "transparent",
@@ -65,7 +65,7 @@ export const Modal = ({ closeModal, image }: Props) => {
               >
                 <Text
                   style={{ fontSize: 18, color: "white" }}
-                  onPress={closeModal}
+                  onPress={closeImageModal}
                 >
                   Close
                 </Text>
@@ -74,7 +74,7 @@ export const Modal = ({ closeModal, image }: Props) => {
                   size={28}
                   color="white"
                   style={styles.exitButton}
-                  onPress={closeModal}
+                  onPress={closeImageModal}
                 />
               </View>
               <Image source={image?.url} style={styles.imageStyle} />
