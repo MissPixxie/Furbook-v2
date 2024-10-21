@@ -10,7 +10,7 @@ import {
 } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { Dog } from "@/constants/types";
-import { DogItem } from "@/components/dogItem";
+import { DogItem } from "@/components/Dogs/DogItem";
 import { ThemeContext } from "@/constants/ThemeContext";
 
 const DogScreen = () => {

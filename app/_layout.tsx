@@ -10,8 +10,8 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemeContext, ThemeProvider } from "@/constants/ThemeContext";
 import { Slot } from "expo-router";
 import { SessionProvider } from "../constants/authenticationContext";
-import { appId, baseUrl } from "../atlasConfig.json";
 import SignIn from "./sign-in";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -55,7 +55,9 @@ function RootLayout() {
   return (
     <SessionProvider>
       <ThemeProvider>
-        <Slot />
+        <GestureHandlerRootView style={{ flex: 1 }}>
+          <Slot />
+        </GestureHandlerRootView>
       </ThemeProvider>
     </SessionProvider>
   );

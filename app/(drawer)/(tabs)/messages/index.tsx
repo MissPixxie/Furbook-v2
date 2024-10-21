@@ -1,5 +1,3 @@
-import { AddDog } from "@/components/AddDog";
-import { CustomButton } from "@/components/customButton";
 import { MessageItem } from "@/components/MessageItem";
 import { Message } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
@@ -14,7 +12,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
 import {
   useFonts,
   Manrope_800ExtraBold,

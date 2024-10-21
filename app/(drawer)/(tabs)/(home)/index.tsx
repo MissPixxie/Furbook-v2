@@ -21,6 +21,7 @@ import {
 import { Place } from "@/constants/types";
 import { PlaceItem } from "@/components/SmallPlaceItem";
 import Create from "@/components/Create";
+import BouncyBox from "@/components/BouncyBox";
 
 export default function HomeScreen() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -103,9 +104,11 @@ export default function HomeScreen() {
         lightColor="green"
         darkColor="rgba(255,255,255,0.1)"
       />
-      <Text>Create</Text>
-      <View style={{ margin: "auto" }}>
-        <Create />
+      <View>
+        <Text>Create</Text>
+        <View style={{ margin: "auto" }}>
+          <Create />
+        </View>
       </View>
     </View>
   );

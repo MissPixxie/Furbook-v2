@@ -24,7 +24,7 @@ import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import ImageElement from "./ImageElement";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { Modal } from "../Modal";
+import { Modal } from "../Dogs/Modal";
 import { ImageItem } from "@/constants/types";
 
 const images: Array<ImageItem> = [

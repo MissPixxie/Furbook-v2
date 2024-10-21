@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Text, useWindowDimensions, View } from "react-native";
 import RNBounceable from "@freakycoder/react-native-bounceable";
 import { ThemeContext } from "@/constants/ThemeContext";
+import BouncyBox from "./BouncyBox";
 
 export default function Create() {
   const { theme, toggleTheme } = useContext(ThemeContext);
@@ -20,54 +21,18 @@ export default function Create() {
         maxWidth: calculatedWidth,
       }}
     >
-      <RNBounceable
-        style={{
-          backgroundColor: "#a4c6fc",
-          borderRadius: 5,
-          padding: 3,
-          width: 100,
-          height: 100,
-        }}
-        onPress={() => {}}
-      >
-        <Text style={{ color: colors.text, fontWeight: "600" }}>New Event</Text>
-      </RNBounceable>
-      <RNBounceable
-        style={{
-          backgroundColor: "#e4acfa",
-          borderRadius: 5,
-          padding: 3,
-          width: 100,
-          height: 100,
-        }}
-        onPress={() => {}}
-      >
-        <Text style={{ color: colors.text, fontWeight: "600" }}>New Place</Text>
-      </RNBounceable>
-      <RNBounceable
-        style={{
-          backgroundColor: "#fff8c7",
-          borderRadius: 5,
-          padding: 3,
-          width: 100,
-          height: 100,
-        }}
-        onPress={() => {}}
-      >
-        <Text style={{ color: colors.text, fontWeight: "600" }}>New Dog</Text>
-      </RNBounceable>
-      <RNBounceable
-        style={{
-          backgroundColor: "#c9ffea",
-          borderRadius: 5,
-          padding: 3,
-          width: 100,
-          height: 100,
-        }}
-        onPress={() => {}}
-      >
-        <Text style={{ color: colors.text, fontWeight: "600" }}>New Route</Text>
-      </RNBounceable>
+      <BouncyBox backgroundColor="#a4c6fc">
+        <Text style={{ color: colors.text }}>New Event</Text>
+      </BouncyBox>
+      <BouncyBox backgroundColor="#e4acfa">
+        <Text style={{ color: colors.text }}>New Place</Text>
+      </BouncyBox>
+      <BouncyBox backgroundColor="#fff8c7">
+        <Text style={{ color: colors.text }}>New Dog</Text>
+      </BouncyBox>
+      <BouncyBox backgroundColor="#c9ffea">
+        <Text style={{ color: colors.text }}>New Route</Text>
+      </BouncyBox>
     </View>
   );
 }

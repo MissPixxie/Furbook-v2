@@ -20,7 +20,7 @@ import { useLocalSearchParams, router, Stack, useRouter } from "expo-router";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Header } from "@/app/(drawer)/_header";
 import { Image } from "expo-image";
-import { DogImage } from "@/components/DogImage";
+import { DogImage } from "@/components/Dogs/DogImage";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Dog } from "@/constants/types";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
@@ -31,7 +31,7 @@ import { MaterialIcons, Feather } from "@expo/vector-icons";
 import { LinearButton } from "@/components/linearButton";
 import type { ICarouselInstance } from "react-native-reanimated-carousel";
 import Carousel from "react-native-reanimated-carousel";
-import { AddDogModal } from "./_addDogModal";
+import { AddDogModal } from "../../../../components/Dogs/AddDogModal";
 import { UpdateDogModal } from "./_updateDogModal";
 
 const PAGE_WIDTH = window.innerWidth;

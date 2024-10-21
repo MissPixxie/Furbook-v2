@@ -1,6 +1,6 @@
-import { AddDogModal } from "./_addDogModal";
+import { AddDogModal } from "../../../../components/Dogs/AddDogModal";
 import { CustomButton } from "@/components/customButton";
-import { DogItem } from "@/components/dogItem";
+import { DogItem } from "@/components/Dogs/DogItem";
 import { Dog } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Stack, useLocalSearchParams, useRouter } from "expo-router";

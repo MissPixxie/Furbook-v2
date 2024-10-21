@@ -25,7 +25,7 @@ import Animated, {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { RefreshControl } from "react-native-gesture-handler";
 import { Entypo, AntDesign } from "@expo/vector-icons";
-import { Dog } from "../constants/types";
+import { Dog } from "../../constants/types";
 import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { RouteNode } from "expo-router/build/Route";
@@ -72,7 +72,7 @@ export const DogItem = ({ item }: ItemProps) => {
     <Animated.View accessible={true} style={styles.postContainer}>
       <Image
         style={styles.imgAvatar}
-        source={require("../assets/images/OGBUB40.jpg")}
+        source={require("../../assets/images/OGBUB40.jpg")}
       />
       <View
         accessible={true}

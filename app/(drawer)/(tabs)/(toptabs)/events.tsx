@@ -5,7 +5,7 @@ import { Text, View } from "@/components/Themed";
 import { Stack } from "expo-router";
 import { useContext, useEffect, useState } from "react";
 import { Event } from "@/constants/types";
-import { DogItem } from "@/components/dogItem";
+import { DogItem } from "@/components/Dogs/DogItem";
 import { EventItem } from "@/components/EventItem";
 import { useFonts, Manrope_800ExtraBold } from "@expo-google-fonts/manrope";
 import { ThemeContext } from "@/constants/ThemeContext";

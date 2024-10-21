@@ -17,7 +17,7 @@ import { Entypo } from "@expo/vector-icons";
 
 // CONTEXT
 import { ThemeContext } from "@/constants/ThemeContext";
-import ImageElement from "./ImageGallery/ImageElement";
+import ImageElement from "../ImageGallery/ImageElement";
 
 interface Props {
   closeImageModal: () => void;

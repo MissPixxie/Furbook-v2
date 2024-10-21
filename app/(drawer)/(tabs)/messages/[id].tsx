@@ -4,7 +4,7 @@ import { useLocalSearchParams, router, Stack, useRouter } from "expo-router";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Header } from "@/app/(drawer)/_header";
 import { Image } from "expo-image";
-import { DogImage } from "@/components/DogImage";
+import { DogImage } from "@/components/Dogs/DogImage";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { Message } from "@/constants/types";
 
