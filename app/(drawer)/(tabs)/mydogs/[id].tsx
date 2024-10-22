@@ -32,7 +32,7 @@ import { LinearButton } from "@/components/linearButton";
 import type { ICarouselInstance } from "react-native-reanimated-carousel";
 import Carousel from "react-native-reanimated-carousel";
 import { AddDogModal } from "../../../../components/Dogs/AddDogModal";
-import { UpdateDogModal } from "./_updateDogModal";
+import { UpdateDogModal } from "../../../../components/Dogs/UpdateDogModal";
 
 const PAGE_WIDTH = window.innerWidth;
 

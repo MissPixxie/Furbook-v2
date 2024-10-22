@@ -1,14 +1,8 @@
 import { FlatList, StyleSheet } from "react-native";
 import * as Speech from "expo-speech";
-import EditScreenInfo from "@/components/EditScreenInfo";
 import { Text, View } from "@/components/Themed";
-import { Button } from "@rneui/themed";
-import { DrawerToggleButton } from "@react-navigation/drawer";
-import { CustomCard } from "@/components/CustomCard";
-import { SafeAreaView } from "react-native-safe-area-context";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { useContext, useState } from "react";
-import RNBounceable from "@freakycoder/react-native-bounceable";
 import { useFetchPlaces } from "@/apiFetch/useFetchPlaces";
 
 import {

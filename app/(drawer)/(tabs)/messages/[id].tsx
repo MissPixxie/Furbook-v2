@@ -19,8 +19,6 @@ export default function MessageIdPage({ item }: Props) {
   const { colors } = theme;
   console.log(item);
 
-  // pass dog object not just id
-
   const styles = StyleSheet.create({
     imgAvatar: {
       width: "50%",

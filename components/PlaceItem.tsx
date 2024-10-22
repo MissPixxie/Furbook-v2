@@ -51,12 +51,6 @@ export const PlaceItem = ({ item }: ItemProps) => {
     Manrope_200ExtraLight,
   });
 
-  if (Platform.OS === "ios") {
-    console.log("ios");
-  } else {
-    console.log("android");
-  }
-
   if (!fontsLoaded && !fontError) {
     return null;
   }

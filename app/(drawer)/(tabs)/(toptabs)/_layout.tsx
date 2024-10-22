@@ -12,6 +12,7 @@ import { View } from "react-native";
 import { SearchBar } from "@rneui/themed";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { color } from "@rneui/themed/dist/config";
+import Search from "@/components/Search";
 
 const { Navigator } = createMaterialTopTabNavigator();
 
@@ -33,30 +34,7 @@ const TopTabsLayout = () => {
   return (
     <>
       <SafeAreaView style={{ backgroundColor: colors.background }}>
-        <SearchBar
-          accessible={true}
-          accessibilityLabel="Searchbar"
-          containerStyle={{
-            backgroundColor: colors.primary,
-            borderBottomColor: "transparent",
-            borderTopColor: "transparent",
-          }}
-          inputContainerStyle={{
-            backgroundColor: colors.inputs,
-          }}
-          searchIcon={{
-            size: 26,
-            color: colors.textSecondary,
-          }}
-          inputStyle={{
-            fontSize: 16,
-            color: colors.textSecondary,
-          }}
-          placeholderTextColor={colors.textSecondary}
-          placeholder="Type Here..."
-          onChangeText={updateSearch}
-          value={search}
-        />
+        <Search searchValue="" />
       </SafeAreaView>
       <MaterialTopTabs
         screenOptions={{
