@@ -11,11 +11,14 @@ import {
   TouchableOpacity,
   useWindowDimensions,
   Dimensions,
+  Alert,
 } from "react-native";
 import Animated, {
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
+  withTiming,
 } from "react-native-reanimated";
 import { SafeAreaView } from "react-native-safe-area-context";
 import {
@@ -64,6 +67,7 @@ const MessageItem: React.FC<ItemProps> = ({ item }) => {
 
   const { colors } = theme;
 
+  const isFocused = useSharedValue(false);
   const translationX = useSharedValue(0);
   const prevTranslationX = useSharedValue(0);
 
@@ -78,23 +82,46 @@ const MessageItem: React.FC<ItemProps> = ({ item }) => {
   const pan = Gesture.Pan()
     .onStart(() => {
       prevTranslationX.value = translationX.value;
+      isFocused.value = true;
     })
     .onUpdate((event) => {
-      const maxTranslateX = width / 2 - 50;
-
-      translationX.value = clamp(
-        prevTranslationX.value + event.translationX,
-        -maxTranslateX,
-        maxTranslateX
-      );
+      const maxTranslateX = width / 2 - 100;
+      if (event.translationX < 0) {
+        translationX.value = clamp(
+          prevTranslationX.value + event.translationX,
+          -maxTranslateX,
+          0
+        );
+      }
     })
     .onEnd(() => {
-      translationX.value = 0;
+      withSpring(translationX.value);
     })
     .runOnJS(true);
 
   return (
     <View style={styles.taskContainer}>
+      <View style={styles.iconContainer}>
+        <Feather
+          name="trash-2"
+          size={24}
+          color="white"
+          style={{ alignSelf: "flex-end", right: "25%" }}
+          onPress={() => {
+            Alert.alert("", "Are you sure you want to delete this message?", [
+              {
+                text: "Delete",
+                onPress: () => console.log("Delete Pressed"),
+              },
+              {
+                text: "Cancel",
+                onPress: () => console.log("Cancel Pressed"),
+                style: "cancel",
+              },
+            ]);
+          }}
+        />
+      </View>
       <GestureDetector gesture={pan}>
         <Animated.View style={[styles.task, rStyle]}>
           <View
@@ -125,13 +152,13 @@ const styles = StyleSheet.create({
   taskContainer: {
     width: "100%",
     alignItems: "center",
+    marginVertical: 5,
   },
   task: {
     backgroundColor: "white",
     borderRadius: 5,
     width: "90%",
     height: 70,
-    marginVertical: 5,
     justifyContent: "center",
     shadowOpacity: 0.08,
     shadowOffset: {
@@ -142,11 +169,14 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   iconContainer: {
+    height: 70,
+    width: 150,
     position: "absolute",
-    right: "6%",
-    top: "45%",
+    borderRadius: 5,
+    right: "5%",
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#e60202",
   },
   textStyle: {
     fontSize: 16,
