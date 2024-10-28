@@ -1,17 +1,6 @@
-import { MessageItem } from "@/components/Messages/MessageItem";
-import { Message } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
-import { Link, Stack, useRouter } from "expo-router";
 import { useContext, useEffect, useState } from "react";
-import {
-  Button,
-  FlatList,
-  KeyboardAvoidingView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { View } from "react-native";
 import {
   useFonts,
   Manrope_800ExtraBold,

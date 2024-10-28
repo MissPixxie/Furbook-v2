@@ -17,14 +17,13 @@ import { Entypo } from "@expo/vector-icons";
 
 // CONTEXT
 import { ThemeContext } from "@/constants/ThemeContext";
-import ImageElement from "../ImageGallery/ImageElement";
 
 interface Props {
   closeImageModal: () => void;
   image: ImageItem | null;
 }
 
-export const Modal = ({ closeImageModal, image }: Props) => {
+export const ImageModal = ({ closeImageModal, image }: Props) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { colors } = theme;
 

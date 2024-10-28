@@ -14,6 +14,8 @@ import {
   Alert,
 } from "react-native";
 import Animated, {
+  FadeIn,
+  FadeOut,
   useAnimatedGestureHandler,
   useAnimatedStyle,
   useSharedValue,
@@ -26,6 +28,7 @@ import {
   GestureDetector,
   PanGestureHandler,
   RefreshControl,
+  TouchableWithoutFeedback,
 } from "react-native-gesture-handler";
 import { Entypo, AntDesign } from "@expo/vector-icons";
 import { Message } from "../../constants/types";
@@ -42,6 +45,7 @@ import Feather from "@expo/vector-icons/Feather";
 
 interface ItemProps {
   item: Message;
+  shouldDismiss: (item: any) => void;
 }
 
 function clamp(val: number, min: number, max: number) {
@@ -50,7 +54,7 @@ function clamp(val: number, min: number, max: number) {
 
 const { width, height } = Dimensions.get("screen");
 
-const MessageItem: React.FC<ItemProps> = ({ item }) => {
+const MessageItem: React.FC<ItemProps> = ({ item, shouldDismiss }) => {
   const { theme, toggleTheme } = useContext(ThemeContext);
   const { width } = useWindowDimensions();
 
@@ -67,7 +71,7 @@ const MessageItem: React.FC<ItemProps> = ({ item }) => {
 
   const { colors } = theme;
 
-  const isFocused = useSharedValue(false);
+  const pressed = useSharedValue(false);
   const translationX = useSharedValue(0);
   const prevTranslationX = useSharedValue(0);
 
@@ -82,19 +86,16 @@ const MessageItem: React.FC<ItemProps> = ({ item }) => {
   const pan = Gesture.Pan()
     .onStart(() => {
       prevTranslationX.value = translationX.value;
-      isFocused.value = true;
     })
-    .onUpdate((event) => {
+    .onChange((event) => {
       const maxTranslateX = width / 2 - 100;
-      if (event.translationX < 0) {
-        translationX.value = clamp(
-          prevTranslationX.value + event.translationX,
-          -maxTranslateX,
-          0
-        );
-      }
+      translationX.value = clamp(
+        prevTranslationX.value + event.translationX,
+        -maxTranslateX,
+        0
+      );
     })
-    .onEnd(() => {
+    .onFinalize(() => {
       withSpring(translationX.value);
     })
     .runOnJS(true);
@@ -111,7 +112,11 @@ const MessageItem: React.FC<ItemProps> = ({ item }) => {
             Alert.alert("", "Are you sure you want to delete this message?", [
               {
                 text: "Delete",
-                onPress: () => console.log("Delete Pressed"),
+                onPress: () => {
+                  pressed.value = true;
+                  shouldDismiss(item._id);
+                  console.log("Delete Pressed");
+                },
               },
               {
                 text: "Cancel",
@@ -123,7 +128,7 @@ const MessageItem: React.FC<ItemProps> = ({ item }) => {
         />
       </View>
       <GestureDetector gesture={pan}>
-        <Animated.View style={[styles.task, rStyle]}>
+        <Animated.View style={[styles.task, rStyle]} exiting={FadeOut}>
           <View
             style={{
               flex: 1,

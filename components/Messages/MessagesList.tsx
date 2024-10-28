@@ -2,7 +2,7 @@ import MessageItem from "@/components/Messages/MessageItem";
 import { Message } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { Link, Stack, useRouter } from "expo-router";
-import { useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import {
   FlatList,
   StyleSheet,
@@ -11,7 +11,11 @@ import {
   View,
 } from "react-native";
 import { dummyMessages } from "@/constants/dummyMessages";
-import { Gesture, GestureDetector } from "react-native-gesture-handler";
+import {
+  Gesture,
+  GestureDetector,
+  TouchableWithoutFeedback,
+} from "react-native-gesture-handler";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -31,10 +35,21 @@ export default function MessagesList() {
       //     router.navigate(`/messages/${item._id}`);
       //   }}
       // >
-      <MessageItem item={item} />
+      <TouchableWithoutFeedback>
+        <MessageItem item={item} shouldDismiss={handleRemoveCard} />
+      </TouchableWithoutFeedback>
       //</TouchableOpacity>
     );
   };
+
+  const handleRemoveCard = useCallback((message: string) => {
+    setData((prev) => {
+      if (prev != null) {
+        return prev.filter((item) => item._id !== message);
+      }
+      return prev; // returnerar prev om det är null
+    });
+  }, []);
 
   const styles = StyleSheet.create({
     textTitle: {

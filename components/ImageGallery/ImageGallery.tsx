@@ -24,7 +24,7 @@ import Colors from "@/constants/Colors";
 import { ThemeContext } from "@/constants/ThemeContext";
 import ImageElement from "./ImageElement";
 import { ScrollView, TouchableOpacity } from "react-native-gesture-handler";
-import { Modal } from "../Dogs/Modal";
+import { ImageModal } from "../Dogs/ImageModal";
 import { ImageItem } from "@/constants/types";
 
 const images: Array<ImageItem> = [
@@ -77,7 +77,7 @@ export default function ImageGallery() {
       ))}
       <KeyboardAvoidingView behavior="padding">
         {imageModalVisible && (
-          <Modal closeImageModal={toggleModal} image={currentImage} />
+          <ImageModal closeImageModal={toggleModal} image={currentImage} />
         )}
       </KeyboardAvoidingView>
     </View>
