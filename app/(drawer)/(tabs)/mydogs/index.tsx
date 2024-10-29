@@ -1,5 +1,5 @@
 import { AddDogModal } from "../../../../components/Dogs/AddDogModal";
-import { CustomButton } from "@/components/customButton";
+import { CustomButton } from "@/components/Buttons/customButton";
 import { DogItem } from "@/components/Dogs/DogItem";
 import { Dog } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
@@ -19,12 +19,18 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import ImageGallery from "@/components/ImageGallery/ImageGallery";
+import BouncyBox from "@/components/BouncyBox";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import Feather from "@expo/vector-icons/Feather";
+import BouncyButton from "@/components/Buttons/BouncyButton";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function MyDogsScreen() {
   const [data, setData] = useState<Dog[]>();
   const router = useRouter();
   const { theme, toggleTheme } = useContext(ThemeContext);
   const [updateFromDetailScreen, setUpdateFromDetailScreen] = useState(false);
+  const [showAllImages, setShowAllImages] = useState(false);
 
   const { colors } = theme;
 
@@ -116,55 +122,70 @@ export default function MyDogsScreen() {
   });
 
   return (
-    <ScrollView>
-      <View accessible={true} style={styles.container}>
-        <KeyboardAvoidingView behavior="padding">
-          {modalVisible && (
-            <AddDogModal
-              closeModal={toggleModal}
-              //addDog={addDog}
-              updateFunction={getData}
-            />
-          )}
-        </KeyboardAvoidingView>
-        {data?.map((dog) => (
-          <TouchableOpacity
-            key={dog._id}
-            onPress={async () => {
-              if (Platform.OS === "ios") {
-                await storeDogData(backUpDog);
-              } else {
-                await storeDogData(dog);
-              }
-              router.push(`/mydogs/${dog._id}`);
-            }}
-          >
-            <DogItem item={dog} />
-          </TouchableOpacity>
-        ))}
-        {/* <FlatList
+    <SafeAreaView>
+      <BouncyButton toggleModal={toggleModal}>
+        <LinearGradient
+          locations={[0.1, 0.9]}
+          colors={["#d8fcbb", "#eaffd9"]}
+          start={{ x: 0.1, y: 0.6 }}
+          style={{
+            borderRadius: 50,
+            padding: 15,
+          }}
+        >
+          <Feather name="plus" size={24} color="black" />
+        </LinearGradient>
+      </BouncyButton>
+      <ScrollView>
+        <View accessible={true} style={styles.container}>
+          <KeyboardAvoidingView behavior="padding">
+            {modalVisible && (
+              <AddDogModal
+                closeModal={toggleModal}
+                //addDog={addDog}
+                updateFunction={getData}
+              />
+            )}
+          </KeyboardAvoidingView>
+          <View>
+            <Text style={{ fontSize: 20, marginLeft: 5 }}>My Dogs</Text>
+            {data?.map((dog) => (
+              <TouchableOpacity
+                key={dog._id}
+                onPress={async () => {
+                  if (Platform.OS === "ios") {
+                    await storeDogData(backUpDog);
+                  } else {
+                    await storeDogData(dog);
+                  }
+                  router.push(`/mydogs/${dog._id}`);
+                }}
+              >
+                <DogItem item={dog} />
+              </TouchableOpacity>
+            ))}
+          </View>
+          {/* <FlatList
           data={data}
           renderItem={itemFromList}
           keyExtractor={(item) => item._id}
           style={styles.flatList}
         /> */}
-        <View style={{ padding: 5 }}>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Text style={{ fontSize: 20 }}>Gallery</Text>
-            <Text style={{ fontSize: 18, marginRight: 5 }}>See all</Text>
+          <View style={{ padding: 5 }}>
+            <View
+              style={{ flexDirection: "row", justifyContent: "space-between" }}
+            >
+              <Text style={{ fontSize: 20 }}>Gallery</Text>
+              <TouchableOpacity
+                onPress={() => setShowAllImages(!showAllImages)}
+              >
+                <Text style={{ fontSize: 18, marginRight: 5 }}>See all</Text>
+              </TouchableOpacity>
+            </View>
+            <ImageGallery showAllImages={showAllImages} />
           </View>
-          <ImageGallery />
         </View>
-        <CustomButton
-          title="New dog"
-          bgColor="#bced95"
-          onPress={() => setModalVisible(true)}
-          marginBottom={70}
-          width="60%"
-        />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

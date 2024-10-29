@@ -20,7 +20,7 @@ import DropDownPicker from "react-native-dropdown-picker";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 // COMPONENTS
-import { CustomButton } from "@/components/customButton";
+import { CustomButton } from "@/components/Buttons/customButton";
 import * as ImagePicker from "expo-image-picker";
 // import { Picker } from "@react-native-picker/picker";
 

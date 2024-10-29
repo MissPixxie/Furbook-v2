@@ -11,7 +11,7 @@ import {
 //import { AuthContext, defaultContextState } from "../context/AuthContext";
 
 //CONTEXT
-import { CustomButton } from "@/components/customButton";
+import { CustomButton } from "@/components/Buttons/customButton";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { useSession } from "@/constants/authenticationContext";
 

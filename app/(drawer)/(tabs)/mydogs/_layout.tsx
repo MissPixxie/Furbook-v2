@@ -11,7 +11,7 @@ export default function _layout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
+        headerShown: false,
         headerStyle: { backgroundColor: colors.card },
         headerTitleStyle: { color: colors.text },
         headerTitle: "My Dogs",

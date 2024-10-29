@@ -51,3 +51,5 @@ export const dummyMessages: Message[] = [
     createdAt: new Date(),
   },
 ];
+
+export const filteredDummyMessages = () => {};

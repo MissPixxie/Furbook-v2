@@ -26,7 +26,7 @@ import { Dog } from "@/constants/types";
 import { FlatList, ScrollView, TextInput } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import DropDownPicker from "react-native-dropdown-picker";
-import { CustomButton } from "@/components/customButton";
+import { CustomButton } from "@/components/Buttons/customButton";
 import { MaterialIcons, Feather } from "@expo/vector-icons";
 import { LinearButton } from "@/components/linearButton";
 import type { ICarouselInstance } from "react-native-reanimated-carousel";

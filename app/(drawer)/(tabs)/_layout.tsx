@@ -103,7 +103,7 @@ const TabLayout = () => {
             ),
           }}
         />
-        <Tabs.Screen
+        {/* <Tabs.Screen
           name="messages"
           options={{
             tabBarAccessibilityLabel: "messages button",
@@ -119,21 +119,7 @@ const TabLayout = () => {
               <FontAwesome name="envelope" size={26} color={color} />
             ),
           }}
-        />
-        {/* <Tabs.Screen
-        name="messages"
-        options={{
-          tabBarAccessibilityLabel: "messages button",
-          headerTitleStyle: { color: colors.text },
-          title: "Messages",
-          headerShown: false,
-          headerStyle: { backgroundColor: colors.primary },
-          headerTitleAlign: "center",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="envelope" size={26} color={color} />
-          ),
-        }}
-      /> */}
+        /> */}
         <Tabs.Screen
           name="notifications"
           options={{

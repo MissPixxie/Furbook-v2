@@ -32,11 +32,22 @@ const images: Array<ImageItem> = [
   { id: 2, url: require("@/assets/images/galleryimage2.jpg"), date: "" },
   { id: 3, url: require("@/assets/images/galleryimage3.jpg"), date: "" },
   { id: 4, url: require("@/assets/images/galleryimage4.jpg"), date: "" },
+  { id: 5, url: require("@/assets/images/galleryimage3.jpg"), date: "" },
+  { id: 6, url: require("@/assets/images/galleryimage4.jpg"), date: "" },
 ];
 
-export default function ImageGallery() {
+interface Props {
+  showAllImages: boolean;
+}
+
+export default function ImageGallery({ showAllImages }: Props) {
   const [currentImage, setCurrentImage] = useState<ImageItem | null>(null);
   const [imageModalVisible, setImageModalVisible] = useState(false);
+  const limitedImages = images.filter((image) => {
+    if (image.id !== undefined) {
+      return image.id <= 4;
+    }
+  });
 
   const toggleModal = () => {
     setImageModalVisible(!imageModalVisible);
@@ -58,23 +69,45 @@ export default function ImageGallery() {
 
   return (
     <View style={styles.container}>
-      {images.map((image) => (
-        <TouchableOpacity
-          key={image.id}
-          style={{ maxWidth: widthOfImageView, maxHeight: 200 }}
-          onPress={() => {
-            setCurrentImage(image);
-            setImageModalVisible(true);
-          }}
-        >
-          <ImageElement
-            key={image.id}
-            id={image.id}
-            url={image.url}
-            date={image.date}
-          />
-        </TouchableOpacity>
-      ))}
+      {showAllImages
+        ? images.map((image) => {
+            return (
+              <TouchableOpacity
+                key={image.id}
+                style={{ maxWidth: widthOfImageView, maxHeight: 200 }}
+                onPress={() => {
+                  setCurrentImage(image);
+                  setImageModalVisible(true);
+                }}
+              >
+                <ImageElement
+                  key={image.id}
+                  id={image.id}
+                  url={image.url}
+                  date={image.date}
+                />
+              </TouchableOpacity>
+            );
+          })
+        : limitedImages.map((image) => {
+            return (
+              <TouchableOpacity
+                key={image.id}
+                style={{ maxWidth: widthOfImageView, maxHeight: 200 }}
+                onPress={() => {
+                  setCurrentImage(image);
+                  setImageModalVisible(true);
+                }}
+              >
+                <ImageElement
+                  key={image.id}
+                  id={image.id}
+                  url={image.url}
+                  date={image.date}
+                />
+              </TouchableOpacity>
+            );
+          })}
       <KeyboardAvoidingView behavior="padding">
         {imageModalVisible && (
           <ImageModal closeImageModal={toggleModal} image={currentImage} />
