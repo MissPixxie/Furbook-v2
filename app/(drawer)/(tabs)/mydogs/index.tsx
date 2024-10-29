@@ -62,25 +62,6 @@ export default function MyDogsScreen() {
     }
   }
 
-  const backUpDog = {
-    _id: "64c3fdfa814905343abc5778",
-    name: "Pelle",
-    age: 10,
-    sex: "Male",
-    breed: "Chihuahua",
-    neutered: false,
-    owner: "64c2d55242e5f091901c5497",
-  };
-
-  const storeDogData = async (value: Dog) => {
-    try {
-      const dataToStore = JSON.stringify(value);
-      await AsyncStorage.setItem("dog", dataToStore);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
   useEffect(() => {
     const getDogs = async () => {
       const res = await fetch("http://localhost:8081/api/dogs/");
@@ -90,22 +71,9 @@ export default function MyDogsScreen() {
     getDogs();
   }, []);
 
-  // const routeToDog = () => {
-  //   router.push("/(tabs)/mydogs/1");
-  // };
-
   const itemFromList = ({ item }: { item: Dog }) => {
     return (
-      <TouchableOpacity
-        onPress={async () => {
-          if (Platform.OS === "ios") {
-            await storeDogData(backUpDog);
-          } else {
-            await storeDogData(item);
-          }
-          router.push(`/mydogs/${item._id}`);
-        }}
-      >
+      <TouchableOpacity onPress={() => router.push(`/mydogs/${item._id}`)}>
         <DogItem item={item} />
       </TouchableOpacity>
     );
@@ -122,7 +90,7 @@ export default function MyDogsScreen() {
   });
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{ paddingHorizontal: 5 }}>
       <BouncyButton toggleModal={toggleModal}>
         <LinearGradient
           locations={[0.1, 0.9]}
@@ -147,17 +115,19 @@ export default function MyDogsScreen() {
               />
             )}
           </KeyboardAvoidingView>
-          <View>
-            <Text style={{ fontSize: 20, marginLeft: 5 }}>My Dogs</Text>
+          <View
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Text style={{ fontSize: 20, alignSelf: "flex-start" }}>
+              My Dogs
+            </Text>
             {data?.map((dog) => (
               <TouchableOpacity
                 key={dog._id}
-                onPress={async () => {
-                  if (Platform.OS === "ios") {
-                    await storeDogData(backUpDog);
-                  } else {
-                    await storeDogData(dog);
-                  }
+                onPress={() => {
                   router.push(`/mydogs/${dog._id}`);
                 }}
               >
@@ -165,15 +135,12 @@ export default function MyDogsScreen() {
               </TouchableOpacity>
             ))}
           </View>
-          {/* <FlatList
-          data={data}
-          renderItem={itemFromList}
-          keyExtractor={(item) => item._id}
-          style={styles.flatList}
-        /> */}
-          <View style={{ padding: 5 }}>
+          <View>
             <View
-              style={{ flexDirection: "row", justifyContent: "space-between" }}
+              style={{
+                flexDirection: "row",
+                justifyContent: "space-between",
+              }}
             >
               <Text style={{ fontSize: 20 }}>Gallery</Text>
               <TouchableOpacity

@@ -9,7 +9,12 @@ import {
   View,
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import Animated, { useSharedValue } from "react-native-reanimated";
+import Animated, {
+  useSharedValue,
+  LinearTransition,
+  FadeIn,
+  FadeOut,
+} from "react-native-reanimated";
 import { ImageItem } from "@/constants/types";
 
 export default function ImageElement({ url }: ImageItem) {
@@ -23,5 +28,9 @@ export default function ImageElement({ url }: ImageItem) {
     },
   });
 
-  return <Image source={url} style={styles.imageStyle} />;
+  return (
+    <Animated.View entering={FadeIn} exiting={FadeOut}>
+      <Image source={url} style={styles.imageStyle} />
+    </Animated.View>
+  );
 }
