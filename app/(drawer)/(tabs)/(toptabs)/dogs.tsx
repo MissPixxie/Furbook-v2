@@ -1,4 +1,4 @@
-// import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View, Text } from "react-native";
 // import { Text, View } from "@/components/Themed";
 // import {
 //   router,
@@ -11,6 +11,28 @@
 // import { Dog } from "@/constants/types";
 // import { DogItem } from "@/components/Dogs/DogItem";
 // import { ThemeContext } from "@/constants/ThemeContext";
+import MapView, { Provider, PROVIDER_GOOGLE } from "react-native-maps";
+
+const useMapFeature = true;
+
+export default function MapScreen() {
+	return (
+		<View>
+			{useMapFeature ? (
+				<View style={{ flex: 1 }}>
+					<MapView
+						provider={PROVIDER_GOOGLE}
+						style={{ width: "100%", height: "100%" }}
+					/>
+				</View>
+			) : (
+				<View>
+					<Text>Map Screen</Text>
+				</View>
+			)}
+		</View>
+	);
+}
 
 // const DogScreen = () => {
 //   const [data, setData] = useState();

@@ -14,7 +14,6 @@ import { useSession } from "@/constants/authenticationContext";
 import { Ionicons } from "@expo/vector-icons";
 import { LinearGradient } from "expo-linear-gradient";
 import { useEffect, useState } from "react";
-import { useAuth } from "@realm/react";
 
 export default function SignIn() {
   const { signIn } = useSession();

@@ -6,7 +6,7 @@ export async function GET(
   url: string
 ): Promise<Response> {
   // Fetch data from external API
-  const response = await fetch("http://localhost:8001/places");
+  const response = await fetch("http://localhost:8002/places");
   // Check for successful response
   if (!response.ok) {
     return new Response(null, { status: response.status });

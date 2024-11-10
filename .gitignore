@@ -47,3 +47,5 @@ android/
 atlasConfig.json
 .idea/
 .vscode/
+app.config.js
+%ProgramData%/

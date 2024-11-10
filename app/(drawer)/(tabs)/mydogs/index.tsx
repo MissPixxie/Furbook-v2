@@ -104,7 +104,7 @@ export default function MyDogsScreen() {
           <Feather name="plus" size={24} color="black" />
         </LinearGradient>
       </BouncyButton>
-      <ScrollView>
+      <ScrollView style={{ marginBottom: 105 }}>
         <View accessible={true} style={styles.container}>
           <KeyboardAvoidingView behavior="padding">
             {modalVisible && (

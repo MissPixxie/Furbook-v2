@@ -5,12 +5,25 @@ import {
 	Text,
 	Pressable,
 	StyleSheet,
+	FlatList,
+	Button,
 	Image,
-	Platform,
 } from "react-native";
-import Animated from "react-native-reanimated";
-import { Entypo, AntDesign, FontAwesome6 } from "@expo/vector-icons";
-import { Place } from "../constants/types";
+import Animated, {
+	useSharedValue,
+	useAnimatedStyle,
+	withTiming,
+	withSpring,
+	withRepeat,
+	SlideInUp,
+	withDelay,
+	withSequence,
+	StretchInX,
+	FlipInEasyX,
+	Easing,
+} from "react-native-reanimated";
+import { Entypo, AntDesign } from "@expo/vector-icons";
+import { Event } from "../../constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";
 import {
 	useFonts,
@@ -19,17 +32,15 @@ import {
 	Manrope_300Light,
 	Manrope_200ExtraLight,
 } from "@expo-google-fonts/manrope";
-import { useFetchPlaces } from "@/apiFetch/useFetchPlaces";
-import DogAcceptedIcon from "./DogAcceptedIcon";
 
 interface ItemProps {
-	item: Place;
+	item: Event;
 }
 
-export const PlaceItem = ({ item }: ItemProps) => {
+export const EventItem = ({ item }: ItemProps) => {
+	const [isVisable, setIsVisable] = useState(false);
 	const [isActive, setActive] = useState(false);
 	const { theme, toggleTheme } = useContext(ThemeContext);
-	const { colors } = theme;
 
 	let [fontsLoaded, fontError] = useFonts({
 		Manrope_800ExtraBold,
@@ -42,11 +53,13 @@ export const PlaceItem = ({ item }: ItemProps) => {
 		return null;
 	}
 
+	const { colors } = theme;
+
+	const toggleSavedItems = () => {
+		setActive((prevState) => !prevState);
+	};
+
 	const styles = StyleSheet.create({
-		container: {
-			flex: 1,
-			backgroundColor: colors.background,
-		},
 		postContainer: {
 			width: "100%",
 			marginVertical: 10,
@@ -64,7 +77,6 @@ export const PlaceItem = ({ item }: ItemProps) => {
 			borderTopRightRadius: 20,
 		},
 		textTitle: {
-			fontFamily: "Manrope_800ExtraBold",
 			color: colors.text,
 			fontSize: 20,
 		},
@@ -75,11 +87,12 @@ export const PlaceItem = ({ item }: ItemProps) => {
 	});
 
 	// Fix styling, cards big image
+
 	return (
 		<Animated.View accessible={true} style={styles.postContainer}>
 			<Image
 				style={styles.imgAvatar}
-				source={require("../assets/images/beach.jpg")}
+				source={require("../../assets/images/beach.jpg")}
 			/>
 			<View
 				accessible={true}
@@ -90,22 +103,18 @@ export const PlaceItem = ({ item }: ItemProps) => {
 					paddingVertical: 10,
 				}}
 			>
-				<View
-					accessible={true}
-					style={{ marginLeft: 15, alignSelf: "flex-start" }}
-				>
+				<View style={{ marginLeft: 15, alignSelf: "flex-start" }}>
 					<Text
 						accessible={true}
-						accessibilityLabel={item.name}
+						accessibilityLabel={item.title}
 						style={styles.textTitle}
 					>
-						{item.name}
+						{item.title}
 					</Text>
 					<Text style={styles.textStyle}>{item.description}</Text>
-					<Text style={styles.textStyle}>{item.location}</Text>
+					<Text style={styles.textStyle}>{item.place}</Text>
 				</View>
 				<View
-					accessible={true}
 					style={{
 						flex: 1,
 						alignItems: "flex-end",
@@ -123,19 +132,15 @@ export const PlaceItem = ({ item }: ItemProps) => {
 							alignItems: "flex-start",
 						}}
 					>
-						{item.category}
+						12.00 24/4
 					</Text>
-					<View></View>
-					<DogAcceptedIcon dogAccepted={item.isDogFriendly} />
 					{isActive ? (
 						<Entypo
 							name="heart"
 							size={24}
 							color="black"
 							style={{ alignSelf: "flex-end" }}
-							onPress={() => {
-								setActive((prevState) => !prevState);
-							}}
+							onPress={toggleSavedItems}
 						/>
 					) : (
 						<Entypo
@@ -143,9 +148,7 @@ export const PlaceItem = ({ item }: ItemProps) => {
 							size={24}
 							color="black"
 							style={{ alignSelf: "flex-end" }}
-							onPress={() => {
-								setActive((prevState) => !prevState);
-							}}
+							onPress={toggleSavedItems}
 						/>
 					)}
 				</View>

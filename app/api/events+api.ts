@@ -3,7 +3,7 @@ import React from "react";
 
 export async function GET(request: Request, url: string): Promise<Response> {
   // Fetch data from external API
-  const response = await fetch("http://localhost:8001/events");
+  const response = await fetch("http://localhost:8002/events");
   // Check for successful response
   if (!response.ok) {
     return new Response(null, { status: response.status });

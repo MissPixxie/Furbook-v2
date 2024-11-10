@@ -44,7 +44,7 @@ const TopTabsLayout = () => {
           tabBarActiveTintColor: "green",
         }}
       >
-        {/* <MaterialTopTabs.Screen name="dogs" /> */}
+        <MaterialTopTabs.Screen name="dogs" />
         <MaterialTopTabs.Screen name="events" />
         <MaterialTopTabs.Screen name="places" />
       </MaterialTopTabs>
