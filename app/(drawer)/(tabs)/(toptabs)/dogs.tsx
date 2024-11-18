@@ -17,7 +17,7 @@ const useMapFeature = true;
 
 export default function MapScreen() {
 	return (
-		<View>
+		<View style={{ flex: 1 }}>
 			{useMapFeature ? (
 				<View style={{ flex: 1 }}>
 					<MapView

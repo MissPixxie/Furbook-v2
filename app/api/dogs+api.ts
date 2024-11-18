@@ -5,7 +5,7 @@ import React from "react";
 export async function GET(request: Request): Promise<Response> {
   // Fetch data from external API
   const response = await fetch(
-    "http://localhost:8002/dogs/64c2d55242e5f091901c5497"
+    "http://localhost:8001/dogs/64c2d55242e5f091901c5497"
   );
   // Check for successful response
   if (!response.ok) {
