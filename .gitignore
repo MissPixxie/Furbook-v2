@@ -45,3 +45,5 @@ atlasConfig.json
 .vscode/
 app.config.js
 %ProgramData%/
+.uppskjutnaProblem.txt
+
