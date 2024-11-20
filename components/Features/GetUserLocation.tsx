@@ -1,4 +1,5 @@
 // import GetLocation from "react-native-get-location";
+//import React from "react";
 
 // export default function GetUserLocation() {
 // 	GetLocation.getCurrentPosition({

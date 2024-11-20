@@ -17,6 +17,7 @@ import { PlaceItem } from "@/components/SmallPlaceItem";
 import Create from "@/components/Create";
 import BouncyBox from "@/components/BouncyBox";
 import { Button } from "@rneui/themed/dist/Button";
+import React from "react";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);

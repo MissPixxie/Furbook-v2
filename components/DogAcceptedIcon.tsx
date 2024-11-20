@@ -3,6 +3,7 @@ import Feather from "@expo/vector-icons/Feather";
 import Entypo from "@expo/vector-icons/Entypo";
 import { useState } from "react";
 import { View, Text, StyleSheet } from "react-native";
+import React from "react";
 
 interface Props {
 	dogAccepted: boolean;
