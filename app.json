@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "Furbook",
-    "slug": "Furbook",
+    "slug": "furbook",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -33,6 +33,15 @@
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "3d270750-84ce-4f83-b00d-83fb00d0e0f7"
+      }
+    },
+    "owner": "misspixxie"
   }
 }

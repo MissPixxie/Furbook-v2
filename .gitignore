@@ -47,10 +47,10 @@ yarn-error.*
 
 server/
 android/
-atlasConfig.json
+/android/build/
+.env.local
 .idea/
 .vscode/
-app.config.js
 %ProgramData%/
 .uppskjutnaProblem.txt
 
