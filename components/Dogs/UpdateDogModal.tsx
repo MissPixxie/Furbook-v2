@@ -19,7 +19,7 @@ import { Overlay } from "@rneui/themed";
 import DropDownPicker from "react-native-dropdown-picker";
 
 // COMPONENTS
-import { CustomButton } from "@/components/Buttons/CustomButton";
+import { CustomButton } from "../Buttons/customButton";
 import * as ImagePicker from "expo-image-picker";
 // import { Picker } from "@react-native-picker/picker";
 

@@ -7,6 +7,7 @@ node_modules/
 .expo/
 dist/
 web-build/
+<<<<<<< HEAD
 expo-env.d.ts
 
 # Native
@@ -31,6 +32,26 @@ yarn-error.*
 
 # local env files
 .env*.local
+<<<<<<< HEAD
 
 # typescript
 *.tsbuildinfo
+=======
+.env
+
+# typescript
+*.tsbuildinfo
+
+
+.vercel
+
+server/
+android/
+atlasConfig.json
+.idea/
+.vscode/
+app.config.js
+%ProgramData%/
+.uppskjutnaProblem.txt
+
+>>>>>>> origin/main

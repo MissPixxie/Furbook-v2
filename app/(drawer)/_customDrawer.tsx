@@ -26,6 +26,7 @@ import {
 import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import Svg, { Ellipse, G } from "react-native-svg";
+
 import { LinearButton } from "@/components/Buttons/LinearButton";
 import { router } from "expo-router";
 import SignIn from "../sign-in";

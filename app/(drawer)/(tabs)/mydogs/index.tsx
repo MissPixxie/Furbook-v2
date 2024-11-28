@@ -1,5 +1,5 @@
 import { AddDogModal } from "../../../../components/Dogs/AddDogModal";
-import { CustomButton } from "@/components/Buttons/CustomButton";
+import { CustomButton } from "@/components/Buttons/customButton";
 import { DogItem } from "@/components/Dogs/DogItem";
 import { Dog } from "@/constants/types";
 import { ThemeContext } from "@/constants/ThemeContext";

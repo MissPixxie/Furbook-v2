@@ -23,6 +23,7 @@ interface Props {
   navigation: any;
 }
 
+
 const SignUpScreen = ({ navigation }: Props) => {
   const [name, setName] = useState("");
   const [email, setMail] = useState("");
