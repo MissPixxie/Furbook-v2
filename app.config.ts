@@ -20,14 +20,7 @@ export default {
 						process.env.GOOGLE_MAPS_API_KEY || "default-api-key",
 				},
 			},
-		},
-		ios: {
-			config: {
-				googleMaps: {
-					apiKey:
-						process.env.GOOGLE_MAPS_API_KEY || "default-api-key",
-				},
-			},
+			package: "com.misspixxie.Furbook",
 		},
 	},
 };

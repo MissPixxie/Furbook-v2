@@ -91,6 +91,7 @@ android {
         applicationId 'com.misspixxie.Furbook'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
+        manifestPlaceholders = [ GOOGLE_MAPS_API_KEY: '$process.env.GOOGLE_MAPS_API_KEY']
         versionCode 1
         versionName "1.0.0"
     }

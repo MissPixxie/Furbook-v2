@@ -1,6 +1,7 @@
 import React from "react";
 import { View, StyleSheet } from "react-native";
 import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
+import { SafeAreaView } from "react-native-safe-area-context";
 //import GetUserLocation from "./GetUserLocation";
 // import GetLocation from "react-native-get-location";
 // import { request, PERMISSIONS, RESULTS } from "react-native-permissions";
@@ -44,22 +45,27 @@ export default function MapScreen() {
 	// 		const { code, message } = error;
 	// 		console.warn(code, message);
 	// 	});
+	const styles = StyleSheet.create({
+		container: {
+			flex: 1,
+		},
+		map: {
+			...StyleSheet.absoluteFillObject,
+		},
+	});
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<MapView
 				provider={PROVIDER_GOOGLE}
 				style={styles.map}
-				showsUserLocation={true}
+				region={{
+					latitude: 59.3293, // Stockholm
+					longitude: 18.0686,
+					latitudeDelta: 0.0922,
+					longitudeDelta: 0.0421,
+				}}
 			/>
-		</View>
+		</SafeAreaView>
 	);
 }
-const styles = StyleSheet.create({
-	container: {
-		flex: 1,
-	},
-	map: {
-		...StyleSheet.absoluteFillObject,
-	},
-});
