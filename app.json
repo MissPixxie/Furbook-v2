@@ -35,11 +35,11 @@
       "typedRoutes": true
     },
     "extra": {
+      "eas": {
+        "projectId": "56ac245b-e073-48d3-946f-8e710b4fd206"
+      },
       "router": {
         "origin": false
-      },
-      "eas": {
-        "projectId": "3d270750-84ce-4f83-b00d-83fb00d0e0f7"
       }
     },
     "owner": "misspixxie"

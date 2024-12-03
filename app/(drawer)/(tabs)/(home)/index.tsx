@@ -17,6 +17,7 @@ import Create from "@/components/Create";
 import BouncyBox from "@/components/BouncyBox";
 import { Button } from "@rneui/themed/dist/Button";
 import React from "react";
+import EventsNearby from "@/components/Features/EventsNearby";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -48,7 +49,7 @@ export default function HomeScreen() {
 			flex: 1,
 			rowGap: 15,
 			backgroundColor: colors.background,
-			paddingHorizontal: 15,
+			padding: 8,
 		},
 		title: {
 			fontSize: 20,
@@ -75,7 +76,7 @@ export default function HomeScreen() {
 	// }
 
 	return (
-		<View style={{ padding: 8 }}>
+		<View style={styles.container}>
 			<Text style={{ fontSize: 20, color: colors.text }}>Places</Text>
 			<View
 				style={{
@@ -88,7 +89,7 @@ export default function HomeScreen() {
 					renderItem={itemFromList}
 					keyExtractor={(item) => item._id}
 					collapsable={true}
-					style={{ maxHeight: 296, marginBottom: 10 }}
+					style={{ maxHeight: 296 }}
 				/>
 			</View>
 			{/* <Button title="test" onPress={speak} /> */}
@@ -102,6 +103,9 @@ export default function HomeScreen() {
 				<View style={{ margin: "auto" }}>
 					<Create />
 				</View>
+			</View>
+			<View>
+				<EventsNearby />
 			</View>
 		</View>
 	);
