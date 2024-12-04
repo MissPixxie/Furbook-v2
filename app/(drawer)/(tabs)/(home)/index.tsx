@@ -18,6 +18,9 @@ import BouncyBox from "@/components/BouncyBox";
 import { Button } from "@rneui/themed/dist/Button";
 import React from "react";
 import EventsNearby from "@/components/Features/EventsNearby";
+import ListOfEvents from "@/components/Events/ListOfEvents";
+import { SafeAreaView } from "react-native-safe-area-context";
+import { FlashList } from "@shopify/flash-list";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -76,7 +79,7 @@ export default function HomeScreen() {
 	// }
 
 	return (
-		<View style={styles.container}>
+		<SafeAreaView style={styles.container}>
 			<Text style={{ fontSize: 20, color: colors.text }}>Places</Text>
 			<View
 				style={{
@@ -84,12 +87,13 @@ export default function HomeScreen() {
 					width: "100%",
 				}}
 			>
-				<FlatList
+				<FlashList
 					data={placesData}
 					renderItem={itemFromList}
 					keyExtractor={(item) => item._id}
-					collapsable={true}
-					style={{ maxHeight: 296 }}
+					contentContainerStyle={{ backgroundColor: "pink" }}
+					estimatedItemSize={5}
+					estimatedListSize={{ height: 500, width: 100 }}
 				/>
 			</View>
 			{/* <Button title="test" onPress={speak} /> */}
@@ -105,8 +109,8 @@ export default function HomeScreen() {
 				</View>
 			</View>
 			<View>
-				<EventsNearby />
+				<ListOfEvents />
 			</View>
-		</View>
+		</SafeAreaView>
 	);
 }
