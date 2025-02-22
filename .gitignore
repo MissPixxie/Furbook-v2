@@ -46,8 +46,8 @@ yarn-error.*
 .vercel
 
 server/
-android/
-/android/build/
+/android/
+android/app/src/main/AndroidManifest.xml
 .env.local
 .idea/
 .vscode/

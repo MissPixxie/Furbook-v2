@@ -20,7 +20,7 @@ import React from "react";
 import EventsNearby from "@/components/Features/EventsNearby";
 import ListOfEvents from "@/components/Events/ListOfEvents";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { FlashList } from "@shopify/flash-list";
+//import { FlashList } from "@shopify/flash-list";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -87,14 +87,14 @@ export default function HomeScreen() {
 					width: "100%",
 				}}
 			>
-				<FlashList
+				{/* <FlashList
 					data={placesData}
 					renderItem={itemFromList}
 					keyExtractor={(item) => item._id}
 					contentContainerStyle={{ backgroundColor: "pink" }}
 					estimatedItemSize={5}
 					estimatedListSize={{ height: 500, width: 100 }}
-				/>
+				/> */}
 			</View>
 			{/* <Button title="test" onPress={speak} /> */}
 			<View
