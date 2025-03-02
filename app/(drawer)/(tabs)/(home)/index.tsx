@@ -32,7 +32,6 @@ export default function HomeScreen() {
 		Manrope_300Light,
 		Manrope_200ExtraLight,
 	});
-	const { placesData, error } = useFetchPlaces();
 
 	// const speak = () => {
 	// 	const thingToSay = "Morocco";
@@ -70,32 +69,8 @@ export default function HomeScreen() {
 		},
 	});
 
-	const itemFromList = ({ item }: { item: Place }) => {
-		return <PlaceItem item={item} />;
-	};
-
-	// if (placesData !== null) {
-	//   const filteredData = placesData.slice(0, 2);
-	// }
-
 	return (
 		<SafeAreaView style={styles.container}>
-			<Text style={{ fontSize: 20, color: colors.text }}>Places</Text>
-			<View
-				style={{
-					margin: "auto",
-					width: "100%",
-				}}
-			>
-				{/* <FlashList
-					data={placesData}
-					renderItem={itemFromList}
-					keyExtractor={(item) => item._id}
-					contentContainerStyle={{ backgroundColor: "pink" }}
-					estimatedItemSize={5}
-					estimatedListSize={{ height: 500, width: 100 }}
-				/> */}
-			</View>
 			{/* <Button title="test" onPress={speak} /> */}
 			<View
 				style={styles.separator}

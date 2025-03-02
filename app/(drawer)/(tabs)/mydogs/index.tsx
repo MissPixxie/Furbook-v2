@@ -25,6 +25,7 @@ import FontAwesome from "@expo/vector-icons/FontAwesome";
 import Feather from "@expo/vector-icons/Feather";
 import BouncyButton from "@/components/Buttons/BouncyButton";
 import { LinearGradient } from "expo-linear-gradient";
+import { useFetchDogs } from "@/apiFetch/useFetchDogs";
 
 export default function MyDogsScreen() {
 	const [data, setData] = useState<Dog[]>();
@@ -32,6 +33,7 @@ export default function MyDogsScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const [updateFromDetailScreen, setUpdateFromDetailScreen] = useState(false);
 	const [showAllImages, setShowAllImages] = useState(false);
+	const { dogsData, error } = useFetchDogs();
 
 	const { colors } = theme;
 
@@ -44,33 +46,11 @@ export default function MyDogsScreen() {
 	const updateWhenDogRemoved = (actionType: string, newState: boolean) => {
 		if (actionType === "updated") {
 			setUpdateFromDetailScreen(newState);
-			getData();
+			useFetchDogs();
 		} else {
 			console.log("something went wrong");
 		}
 	};
-
-	async function getData() {
-		try {
-			const response = await fetch("http://localhost:8081/api/dogs/");
-			console.log(response);
-			const data = await response.json();
-			setData(data);
-		} catch (error) {
-			if (error instanceof Error) {
-				console.log(error);
-			}
-		}
-	}
-
-	useEffect(() => {
-		const getDogs = async () => {
-			const res = await fetch("http://localhost:8081/api/dogs/");
-			const data = await res.json();
-			setData(data);
-		};
-		getDogs();
-	}, []);
 
 	const itemFromList = ({ item }: { item: Dog }) => {
 		return (
@@ -114,7 +94,7 @@ export default function MyDogsScreen() {
 							<AddDogModal
 								closeModal={toggleModal}
 								//addDog={addDog}
-								updateFunction={getData}
+								updateFunction={useFetchDogs}
 							/>
 						)}
 					</KeyboardAvoidingView>
@@ -127,7 +107,7 @@ export default function MyDogsScreen() {
 						<Text style={{ fontSize: 20, alignSelf: "flex-start" }}>
 							My Dogs
 						</Text>
-						{data?.map((dog) => (
+						{dogsData?.map((dog) => (
 							<TouchableOpacity
 								key={dog._id}
 								onPress={() => {
