@@ -1,5 +1,11 @@
-import React, { useContext } from "react";
-import { Text, useWindowDimensions, View, StyleSheet } from "react-native";
+import React, { useContext, useState } from "react";
+import {
+	Text,
+	useWindowDimensions,
+	View,
+	StyleSheet,
+	KeyboardAvoidingView,
+} from "react-native";
 import { ThemeContext } from "@/constants/ThemeContext";
 import BouncyBox from "./BouncyBox";
 import { LinearGradient } from "expo-linear-gradient";
@@ -7,12 +13,21 @@ import { Ionicons } from "@expo/vector-icons";
 import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Entypo from "@expo/vector-icons/Entypo";
 import FontAwesome6 from "@expo/vector-icons/FontAwesome6";
+import BouncyButton from "./Buttons/BouncyButton";
+import { CreateEventModal } from "./Events/CreateEventModal";
+import { useFetchEvents } from "@/apiFetch/useFetchEvents";
 
 export default function Create() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const { colors } = theme;
 	const { width } = useWindowDimensions();
 	const calculatedWidth = width - 150;
+
+	const [modalVisible, setModalVisible] = useState(false);
+
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
 
 	const styles = StyleSheet.create({
 		text: {
@@ -32,7 +47,16 @@ export default function Create() {
 				maxWidth: calculatedWidth,
 			}}
 		>
-			<BouncyBox>
+			<KeyboardAvoidingView behavior="padding">
+				{modalVisible && (
+					<CreateEventModal
+						closeModal={toggleModal}
+						//addDog={addDog}
+						updateFunction={useFetchEvents}
+					/>
+				)}
+			</KeyboardAvoidingView>
+			<BouncyButton toggleModal={toggleModal}>
 				<LinearGradient
 					locations={[0.1, 0.9]}
 					colors={["#a4c6fc", "#c9deff"]}
@@ -53,7 +77,7 @@ export default function Create() {
 						}}
 					/>
 				</LinearGradient>
-			</BouncyBox>
+			</BouncyButton>
 			<BouncyBox>
 				<LinearGradient
 					locations={[0.1, 0.9]}

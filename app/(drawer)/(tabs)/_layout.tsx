@@ -70,7 +70,7 @@ const TabLayout = () => {
 						title: "Home",
 						headerShown: true,
 						header: () => <Header />,
-						headerStyle: { backgroundColor: colors.primary },
+						headerStyle: { backgroundColor: colors.background },
 						headerTitleAlign: "center",
 						tabBarIcon: ({ color }) => (
 							<Entypo name="home" size={26} color={color} />

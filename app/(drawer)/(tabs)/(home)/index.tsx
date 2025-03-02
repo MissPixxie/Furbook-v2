@@ -1,4 +1,4 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, KeyboardAvoidingView, StyleSheet } from "react-native";
 import { Text, View } from "@/components/Themed";
 import { ThemeContext } from "@/constants/ThemeContext";
 import { useContext, useEffect, useState } from "react";
@@ -22,6 +22,8 @@ import ListOfEvents from "@/components/Events/ListOfEvents";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ScrollView } from "react-native-gesture-handler";
 //import { FlashList } from "@shopify/flash-list";
+import { CreateEventModal } from "@/components/Events/CreateEventModal";
+import { useFetchEvents } from "@/apiFetch/useFetchEvents";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -33,7 +35,10 @@ export default function HomeScreen() {
 		Manrope_300Light,
 		Manrope_200ExtraLight,
 	});
-
+	const [modalVisible, setModalVisible] = useState(false);
+	const toggleModal = () => {
+		setModalVisible(!modalVisible);
+	};
 	// const speak = () => {
 	// 	const thingToSay = "Morocco";
 	// 	Speech.speak(thingToSay);

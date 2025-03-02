@@ -21,7 +21,7 @@ export default function Header() {
 	};
 	const styles = StyleSheet.create({
 		container: {
-			backgroundColor: colors.primary,
+			backgroundColor: colors.background,
 			shadowColor: "#171717",
 			shadowOffset: { width: -2, height: 4 },
 			shadowOpacity: 0.2,
@@ -29,9 +29,10 @@ export default function Header() {
 			elevation: 3,
 		},
 		iconStyle: {
-			color: "black",
+			color: colors.text,
 			textAlign: "right",
 			marginRight: 15,
+			marginTop: 10,
 			marginBottom: Platform.OS === "ios" ? -20 : 10,
 		},
 	});
@@ -42,7 +43,7 @@ export default function Header() {
 				<Feather
 					name="menu"
 					size={30}
-					color={"black"}
+					style={styles.iconStyle}
 					onPress={toggleDrawer}
 				/>
 			</Text>

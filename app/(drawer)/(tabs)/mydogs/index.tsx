@@ -63,7 +63,9 @@ export default function MyDogsScreen() {
 	});
 
 	return (
-		<SafeAreaView style={{ paddingHorizontal: 5 }}>
+		<SafeAreaView
+			style={{ paddingHorizontal: 5, backgroundColor: colors.background }}
+		>
 			<BouncyButton toggleModal={toggleModal}>
 				<LinearGradient
 					locations={[0.1, 0.9]}
@@ -94,7 +96,13 @@ export default function MyDogsScreen() {
 							alignItems: "center",
 						}}
 					>
-						<Text style={{ fontSize: 20, alignSelf: "flex-start" }}>
+						<Text
+							style={{
+								fontSize: 20,
+								alignSelf: "flex-start",
+								color: colors.text,
+							}}
+						>
 							My Dogs
 						</Text>
 						{dogsData?.map((dog) => (
@@ -115,11 +123,19 @@ export default function MyDogsScreen() {
 								justifyContent: "space-between",
 							}}
 						>
-							<Text style={{ fontSize: 20 }}>Gallery</Text>
+							<Text style={{ fontSize: 20, color: colors.text }}>
+								Gallery
+							</Text>
 							<TouchableOpacity
 								onPress={() => setShowAllImages(!showAllImages)}
 							>
-								<Text style={{ fontSize: 18, marginRight: 5 }}>
+								<Text
+									style={{
+										fontSize: 18,
+										marginRight: 5,
+										color: colors.text,
+									}}
+								>
 									See all
 								</Text>
 							</TouchableOpacity>
