@@ -20,6 +20,7 @@ import React from "react";
 import EventsNearby from "@/components/Features/EventsNearby";
 import ListOfEvents from "@/components/Events/ListOfEvents";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { ScrollView } from "react-native-gesture-handler";
 //import { FlashList } from "@shopify/flash-list";
 
 export default function HomeScreen() {
@@ -71,21 +72,25 @@ export default function HomeScreen() {
 
 	return (
 		<SafeAreaView style={styles.container}>
-			{/* <Button title="test" onPress={speak} /> */}
-			<View
-				style={styles.separator}
-				lightColor="green"
-				darkColor="rgba(255,255,255,0.1)"
-			/>
-			<View>
-				<Text style={{ fontSize: 20, color: colors.text }}>Create</Text>
-				<View style={{ margin: "auto" }}>
-					<Create />
+			<ScrollView>
+				{/* <Button title="test" onPress={speak} /> */}
+				<View style={{ backgroundColor: colors.background }}>
+					<Text style={{ fontSize: 20, color: colors.text }}>
+						Create
+					</Text>
+					<View style={{ margin: "auto" }}>
+						<Create />
+					</View>
 				</View>
-			</View>
-			<View>
-				<ListOfEvents />
-			</View>
+				<View
+					style={styles.separator}
+					lightColor="green"
+					darkColor="rgba(255,255,255,0.1)"
+				/>
+				<>
+					<ListOfEvents />
+				</>
+			</ScrollView>
 		</SafeAreaView>
 	);
 }

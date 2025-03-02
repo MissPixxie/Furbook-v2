@@ -61,7 +61,6 @@ export const EventItem = ({ item }: ItemProps) => {
 
 	const styles = StyleSheet.create({
 		postContainer: {
-			width: "100%",
 			marginVertical: 10,
 			flexDirection: "column",
 			backgroundColor: colors.card,
@@ -73,8 +72,9 @@ export const EventItem = ({ item }: ItemProps) => {
 			elevation: 4,
 		},
 		imgAvatar: {
+			width: "99.9%",
 			borderTopLeftRadius: 10,
-			borderTopRightRadius: 20,
+			borderTopRightRadius: 10,
 		},
 		textTitle: {
 			color: colors.text,

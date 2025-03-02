@@ -52,16 +52,6 @@ export default function MyDogsScreen() {
 		}
 	};
 
-	const itemFromList = ({ item }: { item: Dog }) => {
-		return (
-			<TouchableOpacity
-				onPress={() => router.push(`/mydogs/${item._id}`)}
-			>
-				<DogItem item={item} />
-			</TouchableOpacity>
-		);
-	};
-
 	const styles = StyleSheet.create({
 		container: {
 			backgroundColor: colors.background,

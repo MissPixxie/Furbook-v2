@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { Event } from "@/constants/types";
 
 export const useFetchEvents = () => {
-	const [eventsData, setData] = useState(null);
+	const [eventsData, setData] = useState<Event[]>();
 	const [error, setError] = useState("");
 
 	useEffect(() => {
