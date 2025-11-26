@@ -47,6 +47,7 @@ yarn-error.*
 
 server/
 android/
+backend/
 .env.local
 .idea/
 .vscode/

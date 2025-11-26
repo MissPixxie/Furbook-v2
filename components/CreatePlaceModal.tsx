@@ -23,7 +23,6 @@ import DateTimePicker, {
 } from "@react-native-community/datetimepicker";
 
 // COMPONENTS
-import { CustomButton } from "../Buttons/customButton";
 import * as ImagePicker from "expo-image-picker";
 // import { Picker } from "@react-native-picker/picker";
 
@@ -39,7 +38,7 @@ import {
 
 // CONTEXT
 import { ThemeContext } from "@/constants/ThemeContext";
-import { LinearButton } from "../Buttons/LinearButton";
+import { LinearButton } from "./Buttons/LinearButton";
 import RNDateTimePicker from "@react-native-community/datetimepicker";
 
 interface Props {
@@ -47,46 +46,18 @@ interface Props {
 	updateFunction?: () => void;
 }
 
-export const CreateEventModal = ({ closeModal, updateFunction }: Props) => {
+export const CreatePlaceModal = ({ closeModal, updateFunction }: Props) => {
 	const { theme, toggleTheme } = useContext(ThemeContext);
 	const { colors } = theme;
 	const [image, setImage] = useState<string | null>(null);
 	const [selectedImageUpload, setSelectedImageUpload] = useState();
 	const [cameraPermission, setCameraPermission] =
 		ImagePicker.useCameraPermissions();
-	const [date, setDate] = useState(new Date(1598051730000));
-	const [mode, setMode] = useState<"date" | "time" | "datetime">("date");
-	const [show, setShow] = useState(false);
-
-	const onChange = (
-		event: DateTimePickerEvent,
-		selectedDate?: Date | undefined
-	) => {
-		const currentDate = selectedDate;
-		setShow(false);
-		if (currentDate !== undefined) {
-			setDate(currentDate);
-		}
-	};
-
-	const showMode = (currentMode: "date" | "time" | "datetime") => {
-		setShow(true);
-		setMode(currentMode);
-	};
-
-	const showDatePicker = () => {
-		showMode("date");
-	};
-
-	const showTimePicker = () => {
-		showMode("time");
-	};
 
 	// INPUTS
-	const [title, setTitle] = useState("");
+	const [name, setName] = useState("");
 	const [infoText, setInfoText] = useState("");
 	const [location, setLocation] = useState("");
-	const [day, setDay] = useState("");
 
 	const pickImage = async () => {
 		let result = await ImagePicker.launchImageLibraryAsync({
@@ -108,8 +79,8 @@ export const CreateEventModal = ({ closeModal, updateFunction }: Props) => {
 	}
 
 	const checkInput = () => {
-		if (!title) {
-			Alert.alert("Title is required");
+		if (!name) {
+			Alert.alert("Name is required");
 			return;
 		}
 		if (!infoText) {
@@ -118,10 +89,6 @@ export const CreateEventModal = ({ closeModal, updateFunction }: Props) => {
 		}
 		if (!location) {
 			Alert.alert("Location is required");
-			return;
-		}
-		if (!day) {
-			Alert.alert("Day is required");
 			return;
 		} else {
 			newEvent();
@@ -209,36 +176,6 @@ export const CreateEventModal = ({ closeModal, updateFunction }: Props) => {
 								onPress={closeModal}
 							/>
 							<View style={styles.inputs}>
-								{/* <View style={styles.ImageContainer}>
-									{image ? (
-										<Image
-											source={{ uri: image }}
-											style={{
-												width: 200,
-												height: 200,
-												zIndex: -1,
-											}}
-										/>
-									) : (
-										<Image
-											source={require("@/assets/images/OGBUB40.jpg")}
-											style={{
-												width: 140,
-												height: 140,
-												zIndex: -1,
-											}}
-										/>
-									)}
-									<View style={styles.ImageIconContainer}>
-										<MaterialIcons
-											name="add-a-photo"
-											size={32}
-											color="black"
-											onPress={pickImage}
-											style={styles.ImageIcon}
-										/>
-									</View>
-								</View> */}
 								<View style={styles.Input}>
 									<AntDesign
 										name="tag"
@@ -246,9 +183,9 @@ export const CreateEventModal = ({ closeModal, updateFunction }: Props) => {
 										color="black"
 									/>
 									<TextInput
-										onChangeText={setTitle}
-										value={title}
-										placeholder="Title"
+										onChangeText={setName}
+										value={name}
+										placeholder="Name"
 										style={styles.inputText}
 										placeholderTextColor="#636363"
 									/>
@@ -291,54 +228,12 @@ export const CreateEventModal = ({ closeModal, updateFunction }: Props) => {
 										rowGap: 15,
 										marginTop: 15,
 									}}
-								>
-									<View
-										style={{
-											display: "flex",
-											flexDirection: "row",
-											justifyContent: "center",
-										}}
-									>
-										<Text style={{ fontSize: 18 }}>
-											{date.toLocaleString([], {
-												month: "2-digit",
-												day: "2-digit",
-												hour: "2-digit",
-												minute: "2-digit",
-											})}
-										</Text>
-										{show && (
-											<DateTimePicker
-												testID="dateTimePicker"
-												value={date}
-												mode={mode}
-												is24Hour={true}
-												onChange={onChange}
-											/>
-										)}
-									</View>
-									<View
-										style={{
-											flexDirection: "row",
-											justifyContent: "center",
-											columnGap: 10,
-										}}
-									>
-										<Button
-											onPress={showDatePicker}
-											title="Set date"
-										/>
-										<Button
-											onPress={showTimePicker}
-											title="Set time"
-										/>
-									</View>
-								</View>
+								></View>
 							</View>
 
 							<View style={{ zIndex: -1, width: "100%" }}>
 								<LinearButton
-									title="Add new event"
+									title="Add new place"
 									onPress={checkInput}
 									gradientColors={[
 										"#bced95",

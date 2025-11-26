@@ -24,6 +24,10 @@ import { ScrollView } from "react-native-gesture-handler";
 //import { FlashList } from "@shopify/flash-list";
 import { CreateEventModal } from "@/components/Events/CreateEventModal";
 import { useFetchEvents } from "@/apiFetch/useFetchEvents";
+import BouncyButton from "@/components/Buttons/BouncyButton";
+import { LinearGradient } from "expo-linear-gradient";
+import { Entypo, MaterialIcons } from "@expo/vector-icons";
+import { CreatePlaceModal } from "@/components/CreatePlaceModal";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -35,9 +39,14 @@ export default function HomeScreen() {
 		Manrope_300Light,
 		Manrope_200ExtraLight,
 	});
-	const [modalVisible, setModalVisible] = useState(false);
-	const toggleModal = () => {
-		setModalVisible(!modalVisible);
+	const [eventModalVisible, setEventModalVisible] = useState(false);
+	const toggleEventModal = () => {
+		setEventModalVisible(!eventModalVisible);
+	};
+
+	const [placeModalVisible, setPlaceModalVisible] = useState(false);
+	const togglePlaceModal = () => {
+		setPlaceModalVisible(!placeModalVisible);
 	};
 	// const speak = () => {
 	// 	const thingToSay = "Morocco";
@@ -83,10 +92,82 @@ export default function HomeScreen() {
 					<Text style={{ fontSize: 20, color: colors.text }}>
 						Create
 					</Text>
-					<View style={{ margin: "auto" }}>
-						<Create />
+					<View
+						style={{
+							display: "flex",
+							flexDirection: "row",
+							justifyContent: "center",
+							backgroundColor: "white",
+							borderRadius: 10,
+							paddingVertical: 20,
+						}}
+					>
+						<BouncyButton toggleModal={toggleEventModal}>
+							<LinearGradient
+								locations={[0.1, 0.9]}
+								colors={["#b3fca4ff", "#cdffc9ff"]}
+								start={{ x: 0.1, y: 0.6 }}
+								style={{
+									flex: 1,
+									borderRadius: 5,
+									width: 150,
+									height: 150,
+									justifyContent: "center",
+								}}
+							>
+								<MaterialIcons
+									name="event"
+									size={52}
+									color="#ffffffff"
+									style={{
+										alignSelf: "center",
+										opacity: 0.7,
+									}}
+								/>
+							</LinearGradient>
+						</BouncyButton>
+						<BouncyButton toggleModal={togglePlaceModal}>
+							<LinearGradient
+								locations={[0.1, 0.9]}
+								colors={["#b3fca4ff", "#cdffc9ff"]}
+								start={{ x: 0.1, y: 0.6 }}
+								style={{
+									flex: 1,
+									borderRadius: 5,
+									width: 150,
+									height: 150,
+									justifyContent: "center",
+								}}
+							>
+								<Entypo
+									name="location"
+									size={52}
+									color="#ffffffff"
+									style={{
+										alignSelf: "center",
+										opacity: 0.7,
+									}}
+								/>
+							</LinearGradient>
+						</BouncyButton>
 					</View>
 				</View>
+				<KeyboardAvoidingView behavior="padding">
+					{placeModalVisible && (
+						<CreatePlaceModal
+							closeModal={togglePlaceModal}
+							updateFunction={useFetchEvents}
+						/>
+					)}
+				</KeyboardAvoidingView>
+				<KeyboardAvoidingView behavior="padding">
+					{eventModalVisible && (
+						<CreateEventModal
+							closeModal={toggleEventModal}
+							updateFunction={useFetchEvents}
+						/>
+					)}
+				</KeyboardAvoidingView>
 				<View
 					style={styles.separator}
 					lightColor="green"

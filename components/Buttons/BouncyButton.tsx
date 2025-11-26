@@ -38,18 +38,18 @@ export default function BouncyButton({ children, toggleModal }: Props) {
 
 	const styles = StyleSheet.create({
 		box: {
-			width: 50,
-			height: 50,
+			width: 150,
+			height: 150,
 			justifyContent: "center",
 			alignItems: "center",
 			alignSelf: "flex-end",
 			marginRight: 10,
-			shadowColor: "#1f1f1f",
+			shadowColor: "#111111ff",
 			shadowOffset: { width: -2, height: 4 },
-			borderRadius: 50,
+			borderRadius: 10,
 			shadowOpacity: 0.1,
 			shadowRadius: 3,
-			elevation: 2,
+			elevation: 7,
 		},
 	});
 

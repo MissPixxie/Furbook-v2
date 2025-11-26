@@ -51,7 +51,6 @@ export default function Create() {
 				{modalVisible && (
 					<CreateEventModal
 						closeModal={toggleModal}
-						//addDog={addDog}
 						updateFunction={useFetchEvents}
 					/>
 				)}
@@ -100,7 +99,7 @@ export default function Create() {
 					/>
 				</LinearGradient>
 			</BouncyBox>
-			<BouncyBox>
+			{/* <BouncyBox>
 				<LinearGradient
 					locations={[0.1, 0.9]}
 					colors={["#fff8c7", "#fffad9"]}
@@ -143,7 +142,7 @@ export default function Create() {
 						}}
 					/>
 				</LinearGradient>
-			</BouncyBox>
+			</BouncyBox> */}
 		</View>
 	);
 }
