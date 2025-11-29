@@ -28,6 +28,7 @@ import BouncyButton from "@/components/Buttons/BouncyButton";
 import { LinearGradient } from "expo-linear-gradient";
 import { Entypo, MaterialIcons } from "@expo/vector-icons";
 import { CreatePlaceModal } from "@/components/CreatePlaceModal";
+import LikedEvents from "@/components/LikedEvents";
 
 export default function HomeScreen() {
 	const { theme, toggleTheme } = useContext(ThemeContext);
@@ -89,6 +90,7 @@ export default function HomeScreen() {
 			<ScrollView>
 				{/* <Button title="test" onPress={speak} /> */}
 				<View style={{ backgroundColor: colors.background }}>
+					<LikedEvents />
 					<Text style={{ fontSize: 20, color: colors.text }}>
 						Create
 					</Text>
